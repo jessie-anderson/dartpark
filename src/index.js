@@ -1,7 +1,7 @@
 // es6 import style
 import $ from 'jquery';
 
-require('./style.scss');
+import './style.scss';
 
 
 // this is a generator function.
