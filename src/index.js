@@ -1,23 +1,8 @@
-// es6 import style
-import $ from 'jquery';
+import React from 'react';
+import ReactDOM from 'react-dom';
 
-import './style.scss';
+import App from './components/app';
 
-
-// this is a generator function.
-// note the *
-function *simpleCounter() {
-  let count = 0;
-  while (true) {
-    yield count++;
-  }
-}
-
-// instantiate generator
-const counter = simpleCounter();
-
-setInterval(
-  // arrow notation for anonymous function
-  () => { $('#main').html(`You've been on this page for ${counter.next().value} seconds.`); }
-  , 1000
-);
+// entry point that just renders app
+// could be used for routing at some point
+ReactDOM.render(<App />, document.getElementById('main'));
