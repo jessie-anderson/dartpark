@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 
-import '../style.scss';
-
 import Welcome from './welcome';
 
 // example class based component (smart component)
