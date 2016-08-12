@@ -1,10 +1,86 @@
 # DartPark
 
-TODO: short project description, some sample screenshots or mockups
+DartPark is an application that allows users to buy and sell parking spots on and around Dartmouth’s campus. Users can register as either renters or vendors; renters must be Dartmouth students, but vendors can be residents of Hanover, students, student organizations, the town of Hanover, or anyone else with spots available in Hanover. If a user is a student, they will have the option to create a vendor profile as well.
+
+The app will allow renters to search for and buy parking spots based on location and price. Vendors will be able to list spots with location, description, and price. Payment will occur through the app.
+
+### Mockups
+
+**Sign Up!**
+![alt text](Mockups/Sign Up.png)
+
+Renter or Vendor?
+![alt text](Mockups/SelectAccountType.png)
+
+**Or login if you already have an account:**
+![alt text](Mockups/Log In.png)
+
+**Vendor Stuff:**
+
+Don't have any spots yet?
+![alt text](Mockups/DefaultVendor-FTU.png)
+
+Create spots to sell...
+![alt text](Mockups/AddSpots.png)
+
+And then review the spots you made...
+![alt text](Mockups/ViewSpots.png)
+
+And then edit info as needed...
+![alt text](Mockups/AddPicPopUp.png)
+
+And now this is your homepage:
+![alt text](Mockups/DefaultVendor.png)
+
+**Renter Stuff**
+
+Dartmouth Students Only!
+![alt text](Mockups/StudentAuth.png)
+
+**Shared stuff**
+
+Profile page
+![alt text](Mockups/EditProfile.png)
+
+Messaging
+![alt text](Mockups/Messaging.png)
+
+**General Flow**
+![alt text](Mockups/FLOW_CHART.png)
 
 ## Architecture
 
-### Schemas
+### Code organization
+
+* Two repos
+  * Frontend: [dartpark](https://github.com/jessie-anderson/dartpark)
+  * Backend: [dartpark-server](https://github.com/jessie-anderson/dartpark-server)
+* Frontend: see src/ file for components
+  * Renter-specific components
+  * Vendor-specific components
+  * Shared components
+
+### Tools and Libraries
+* Bootstrap
+* Heroku
+* mongodb
+* mongoose
+* Google Maps API
+* react-router
+* eslint
+* Sass
+* Express
+* Redux
+* react
+* babel
+* npm
+* github
+* atom
+* this guy
+
+![](http://i.imgur.com/B8qZnEO.gif)
+
+### Mongoose Schemas (Rough Ideas)
 
 **Users**
 
@@ -22,15 +98,21 @@ TODO: short project description, some sample screenshots or mockups
 * Address
 * Path to photo: (url/path)
 
-TODO:  descriptions of code organization and tools and libraries used
-
 ## Setup
 
-TODO: how to get the project dev environment up and running, npm install etc
+* npm install
+* npm start (frontend)
+* mongod (backend)
+* mongo (if you want the mongo command line)
+* npm start dev (backend)
+
 
 ## Deployment
 
-TODO: how to deploy the project
+`git push heroku master` (backend)
+
+`npm run deploy` (frontend)
+
 
 ## Authors
 
@@ -41,3 +123,5 @@ TODO: how to deploy the project
 * Divya Kalidindi
 
 ## Acknowledgments
+
+Thanks, Tim!
