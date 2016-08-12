@@ -1,4 +1,4 @@
-# DartPark
+dc # DartPark
 
 DartPark is an application that allows users to buy and sell parking spots on and around Dartmouth’s campus. Users can register as either renters or vendors; renters must be Dartmouth students, but vendors can be residents of Hanover, students, student organizations, the town of Hanover, or anyone else with spots available in Hanover. If a user is a student, they will have the option to create a vendor profile as well.
 
@@ -32,21 +32,43 @@ And then edit info as needed...
 And now this is your homepage:
 ![alt text](Mockups/DefaultVendor.png)
 
+And you can click on spots to view/ edit them!
+![alt text](Mockups/SpotDetails.png)
+
+Sample profile page:
+![alt text](Mockups/EditProfile.png)
+
 **Renter Stuff**
 
 Dartmouth Students Only!
 ![alt text](Mockups/StudentAuth.png)
 
-**Shared stuff**
+Search for spots...
+![alt text](Mockups/FindSpot-Select.png)
 
-Profile page
-![alt text](Mockups/EditProfile.png)
+And click on one you're interested in...
+![alt text](Mockups/FindSpot-Search.png)
+
+And pay!
+![alt text](Mockups/PayForSpot.png)
+
+Here's a sample profile:
+![alt text](Mockups/ProfileRenter.png)
+
+
+**Shared stuff**
 
 Messaging
 ![alt text](Mockups/Messaging.png)
 
-**General Flow**
+**Flow Charts**
+
+Vendor
 ![alt text](Mockups/FLOW_CHART.png)
+
+Renter
+![alt text](Mockups/Renter_FLOWCHART.png)
+
 
 ## Architecture
 
