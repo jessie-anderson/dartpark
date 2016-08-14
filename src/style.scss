@@ -4,3 +4,11 @@ body {
   background: darken(white, 10%);
   margin: 50px;
 }
+
+#searchbar {
+  margin-bottom: 20px;
+  input {
+    font-size: 1.5em;
+    border-radius: .25em;
+  }
+} 
