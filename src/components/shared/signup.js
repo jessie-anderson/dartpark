@@ -17,7 +17,6 @@ class SignUp extends Component {
         <h2>Sign up via:</h2>
         <button>Login with Facebook</button>
         <button>Login with Google</button>
-        <span>`Don't have an account?`</span>
         <p>Actually I do have an account!</p>
         <Link to="/signin"><button>Back to Sign In</button></Link>
       </div>
