@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 
-import HomePage from './home';
+// import Welcome from './welcome';
 
 // example class based component (smart component)
-class App extends Component {
+class HomePage extends Component {
   constructor(props) {
     super(props);
 
@@ -14,10 +14,10 @@ class App extends Component {
   render() {
     return (
       <div>
-        <HomePage />
+        Home Page
       </div>
     );
   }
 }
 
-export default App;
+export default HomePage;
