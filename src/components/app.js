@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 
-import SignIn from './shared/signin';
-
 // example class based component (smart component)
 class App extends Component {
   constructor(props) {
@@ -14,7 +12,10 @@ class App extends Component {
   render() {
     return (
       <div>
-        <SignIn />
+        // NavBars will go here
+        <div>
+            {this.props.children}
+        </div>
       </div>
     );
   }
