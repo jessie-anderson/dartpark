@@ -7,12 +7,32 @@ class CreateSpots extends Component {
     super(props);
 
     // init component state here
-    this.state = {};
+    this.state = {
+      numberOfSpots:"",
+      spotOrdering: "",
+      pricePerSpot:"",
+      spotAddress:""
+    };
     this.onButtonPress=this.onButtonPress.bind(this);
   }
 
 
+  onAddressChange(event){
+    this.setState({spotAddress:event.target.value});
 
+  }
+
+  onPriceChange(event){
+    this.setState({pricePerSpot:event.target.value});
+  }
+
+  onNumSpotsChange(event){
+    this.setState({numberOfSpots:event.target.value});
+  }
+
+  onSpotOrderingChange(event){
+    this.setState({spotOrdering:event.target.value});
+  }
 
   onButtonPress(event) {
 
@@ -22,8 +42,24 @@ class CreateSpots extends Component {
   render() {
     return (
       <h1>Create Spot(s)<h1>
-      <label for="numSpots">Number of Spots: </label>
-      <input id="numSpots" ><br>
+
+      <label onChange={} for="numSpots">Number of Spots: </label>
+      <input placeholder= "Insert a Number 0-100..." id="numSpots" ></input>
+
+      <label for="namingOption">How would you like to name your spots? </label>
+      <select id="namingOption">
+        <option value="num">Spot 1, Spot 2, Spot 3, etc...</option>
+        <option value="letter">Spot A, Spot B, Spot C, etc...</option>
+      </select>
+
+      <label for="spotLocation">Spot Address: </label>
+      <input id="spotLocation" placeholder="Enter Address..."></input>
+
+
+      <label for="spotPrice">Spot Price: </label>
+      <input placeholder= "Price in dollars (Ex. $x.xx)..." id="numSpots" ></input>
+
+
       <div>Note: Dont worry, you can edit all this information further on the next page.</div>
       <button onClick={this.onButtonPress}>Create Spots<button>
     );
