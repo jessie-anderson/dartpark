@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
+// import { connect } from 'react-redux';
 import { Link } from 'react-router';
 
 class SignIn extends Component {
@@ -26,12 +26,18 @@ class SignIn extends Component {
         <input onChange={this.onPasswordChange} placeholder={"Password..."} />
         <button>Login with Facebook</button>
         <button>Login with Google</button>
-        <span>Don't have an account?</span>
-        <Link to="/signup"><button>Sign Up</button></Link>
+        <span>`Don't have an account?`</span>
+        <Link to={'/signup'}><button>Sign Up</button></Link>
       </div>
     );
   }
 }
 
+// const mapStateToProps = (state) => (
+//   {
+//     email: state.email,
+//     password: state.password,
+//   }
+// );
 // react-redux glue -- outputs Container that know state in props
 export default SignIn;

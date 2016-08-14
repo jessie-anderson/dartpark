@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router';
 
 // import Welcome from './welcome';
 
@@ -16,6 +17,7 @@ class HomePage extends Component {
     return (
       <div>
         Home Page
+        <Link to={'/signin'}><button>sign in</button></Link>
       </div>
 
     );

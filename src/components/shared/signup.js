@@ -7,7 +7,7 @@ class SignUp extends Component {
     super(props);
 
     // init component state here
-    this.state = { email: '', password: '' };
+    this.state = { };
   }
 
   render() {
@@ -19,7 +19,7 @@ class SignUp extends Component {
         <button>Login with Google</button>
         <span>`Don't have an account?`</span>
         <p>Actually I do have an account!</p>
-        <Link to="/signup"><button>Back to Sign In</button></Link>
+        <Link to="/signin"><button>Back to Sign In</button></Link>
       </div>
     );
   }
