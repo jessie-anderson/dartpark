@@ -4,6 +4,7 @@ import { Link } from 'react-router';
 // import Welcome from './welcome';
 
 // example class based component (smart component)
+
 class HomePage extends Component {
   constructor(props) {
     super(props);
@@ -18,6 +19,7 @@ class HomePage extends Component {
         Home Page
         <Link to={'/signin'}><button>sign in</button></Link>
       </div>
+
     );
   }
 }
