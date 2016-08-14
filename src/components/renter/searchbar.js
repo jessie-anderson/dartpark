@@ -1,4 +1,5 @@
 // auto complete Google still to be done
+// corresponds to FindSpot-Search on mockups
 
 import React, { Component } from 'react';
 
