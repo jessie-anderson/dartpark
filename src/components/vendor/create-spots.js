@@ -14,6 +14,10 @@ class CreateSpots extends Component {
       spotAddress:""
     };
     this.onButtonPress=this.onButtonPress.bind(this);
+    this.onAddressChange=this.onAddressChange.bind(this);
+    this.onPriceChange=this.onPriceChange.bind(this);
+    this.onNumSpotsChange=this.onNumSpotsChange.bind(this);
+    this.onSpotOrderingChange=this.onSpotOrderingChange(this);
   }
 
 
