@@ -20,6 +20,7 @@ class SearchBar extends Component {
       <div>
         <p>Find a Spot</p>
         <div id="searchbar"><input onChange={this.onInputChange} value={this.state.searchterm} /></div>
+        <button>Search this location!</button>
       </div>
     );
   }
