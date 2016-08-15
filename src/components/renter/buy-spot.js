@@ -1,15 +1,22 @@
-// pay for Spot
+import ResultItem from './spot-list-item';
+import React from 'react';
+import { Link } from 'react-router';
 
-// need to render:
-// spot list item that was chose
-// payment options
-// buy spot button
 
-const BuySpot
+// corresponds to FindSpot-Select on mockups
 
-return (
-  <div>
-    <p></p>
-    <div id="searchbar"><input onChange={this.onInputChange} value={this.state.searchterm} /></div>
-  </div>
-);
+const BuyItem = (props) => {
+  return (
+    <div>
+      <p>Spot Details</p>
+      <p><b>BUY SPOT BUY SPOT BUY SPOT</b></p>
+      <p><b>BUY SPOT BUY SPOT BUY SPOT</b></p>
+      <p><b>BUY SPOT BUY SPOT BUY SPOT</b></p>
+      <ResultItem />
+      <p>Payment Info To Be Added</p>
+      <Link to="/renter"><button>Buy Spot!</button></Link>
+    </div>
+    );
+};
+
+export default BuyItem;
