@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import CardItem from './payment-options';
+import CarInfo from './car-info';
 
 class Profile extends Component {
   constructor(props) {
@@ -52,6 +54,8 @@ class Profile extends Component {
         <div className="button">
           <button id="edit-info">Edit My Info</button>
         </div>
+        <CardItem />
+        <CarInfo />
       </div>
     );
   }
