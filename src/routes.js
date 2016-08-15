@@ -16,6 +16,9 @@ import Profile from './components/renter/profile';
 import SelectType from './components/shared/selectActType';
 import StudentAuth from './components/shared/studentAuth';
 
+import CreateSpots from './components/vendor/create-spots';
+import SpotItem from './components/vendor/spot-list-item';
+
 
 export default(
   <Route path="/" component={App}>
@@ -29,6 +32,9 @@ export default(
     <Route path="/renter/spot-detail" component={SpotDetail} />
     <Route path="/renter/buy-spot" component={BuyItem} />
     <Route path="/renter" component={RenterHome} />
+
+    <Route path="/vendor/create-spots" component={CreateSpots} />
+    <Route path="/vendor/spot-list-item" component={SpotItem} />
 
     <Route path="/selectType" component={SelectType} />
     <Route path="/studentAuth" component={StudentAuth} />
