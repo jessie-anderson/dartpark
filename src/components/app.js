@@ -12,7 +12,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        // NavBars will go here
+        {/* NavBars will go here, depending on authentication*/}
         <div>
             {this.props.children}
         </div>
