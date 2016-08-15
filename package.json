@@ -43,6 +43,7 @@
     "webpack-dev-server": "^1.14.1"
   },
   "dependencies": {
+
     "axios": "^0.13.1",
     "marked": "^0.3.6",
     "react": "^15.2.1",
