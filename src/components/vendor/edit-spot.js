@@ -8,10 +8,12 @@ class CreateSpots extends Component {
 
     // init component state here
     this.state = {
-      numberOfSpots: '',
-      spotOrdering: '',
       pricePerSpot: '',
       spotAddress: '',
+      spotName: '',
+      vendorName: '',
+      spotPrice: '',
+
     };
     this.onButtonPress = this.onButtonPress.bind(this);
     this.onAddressChange = this.onAddressChange.bind(this);
@@ -45,10 +47,8 @@ class CreateSpots extends Component {
   render() {
     return (
       <div>
-        <h1>Create Spot(s)</h1>
+        <h1>Edit Spot</h1>
 
-        <label htmlFor="numSpots">Number of Spots: </label>
-        <input placeholder="Insert a Number 0-100..." id="numSpots" ></input>
 
         <label htmlFor="namingOption">How would you like to name your spots? </label>
         <select onChange={this.onSpotOrderingChange} id="namingOption">
