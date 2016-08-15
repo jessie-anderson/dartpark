@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router';
+
+// import Welcome from './welcome';
 
 // example class based component (smart component)
-class App extends Component {
+
+class HomePage extends Component {
   constructor(props) {
     super(props);
 
@@ -12,13 +16,12 @@ class App extends Component {
   render() {
     return (
       <div>
-        // NavBars will go here
-        <div>
-            {this.props.children}
-        </div>
+        Home Page
+        <Link to={'/signin'}><button>sign in</button></Link>
       </div>
+
     );
   }
 }
 
-export default App;
+export default HomePage;
