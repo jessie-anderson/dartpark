@@ -8,10 +8,8 @@ class Manage extends Component {
 
     // init component state here
     this.state = {};
-    this.onButtonPress=this.onButtonPress.bind(this);
+    this.onButtonPress = this.onButtonPress.bind(this);
   }
-
-
 
 
   onButtonPress(event) {
@@ -21,9 +19,11 @@ class Manage extends Component {
 
   render() {
     return (
-      <h1>Manage Spots<h1>
-      <h2>You have not created any spots yet.  Click the button below to add some spots to your profile.</h2>
-      <button onClick={this.onButtonPress}>+Add Spots<button>
+      <div>
+        <h1>Manage Spots</h1>
+        <h2>You have not created any spots yet.  Click the button below to add some spots to your profile.</h2>
+        <button onClick={this.onButtonPress}>+Add Spots</button>
+      </div>
     );
   }
 }
