@@ -26,12 +26,4 @@ class ResultItem extends Component {
   }
 }
 
-
-// // mapStateToProps
-// const mapStateToProps = (state) => (
-//   {
-//     user: state.auth.user,
-//   }
-// );
-
 export default ResultItem;

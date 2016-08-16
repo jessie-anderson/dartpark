@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import CardItem from './card-item';
+import CardItemEdit from './carditem-edit';
 import CarInfo from './car-info';
+
 
 class Profile extends Component {
   constructor(props) {
@@ -35,9 +36,9 @@ class Profile extends Component {
 
   render() {
     return (
-      <div className="newPost">
-        <div className="heading">
-          <span>Profile</span>
+      <div className="Profile">
+        <div className="prof-header">
+          <h3>Profile</h3>
         </div>
         <div className="inputs">
           <input value={this.state.firstname} onChange={this.onChangeFirst} placeholder="First Name" />
@@ -54,7 +55,7 @@ class Profile extends Component {
         <div className="button">
           <button id="edit-info">Edit My Info</button>
         </div>
-        <CardItem />
+        <CardItemEdit />
         <CarInfo />
       </div>
     );
