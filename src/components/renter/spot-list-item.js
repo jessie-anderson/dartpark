@@ -7,7 +7,7 @@ class ResultItem extends Component {
       address: '123 Darty Rd.',
       vendor: 'P. Hanlon',
       distance: '4 miles away',
-      price: '$60',
+      price: '$1769',
     };
   }
 
@@ -25,13 +25,5 @@ class ResultItem extends Component {
     );
   }
 }
-
-
-// // mapStateToProps
-// const mapStateToProps = (state) => (
-//   {
-//     user: state.auth.user,
-//   }
-// );
 
 export default ResultItem;

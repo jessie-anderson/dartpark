@@ -1,6 +1,11 @@
+$main-color: #417505; /* dark-green */
+$highlight-color: #579D07; /*brighter-green*/
+$accent-color: #D9EFC1; /*light-green*/
+$light-font-color: #4A4A4A;
+
 body {
   font-family: "Roboto", sans-serif;
-  color: rgb(10%, 10%, 10%);
-  background: darken(white, 10%);
+  color: $light-font-color;
+  background: darken(white, 5%);
   margin: 50px;
 }

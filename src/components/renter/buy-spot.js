@@ -1,6 +1,8 @@
 import ResultItem from './spot-list-item';
 import React from 'react';
 import { Link } from 'react-router';
+import CardItemRender from './payment-render';
+import VehicleItemRender from './vehicle-render';
 
 
 // corresponds to FindSpot-Select on mockups
@@ -8,12 +10,11 @@ import { Link } from 'react-router';
 const BuyItem = (props) => {
   return (
     <div>
-      <p>Spot Details</p>
-      <p><b>BUY SPOT BUY SPOT BUY SPOT</b></p>
-      <p><b>BUY SPOT BUY SPOT BUY SPOT</b></p>
-      <p><b>BUY SPOT BUY SPOT BUY SPOT</b></p>
+      <h3>Spot Details</h3>
       <ResultItem />
-      <p>Payment Info To Be Added</p>
+      <h3>Payment Info</h3>
+      <CardItemRender />
+      <VehicleItemRender />
       <Link to="/renter"><button>Buy Spot!</button></Link>
     </div>
     );

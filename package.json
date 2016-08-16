@@ -1,19 +1,19 @@
 {
-  "name": "js-react-starter",
+  "name": "dartpark",
   "version": "1.0.0",
-  "description": "",
+  "description": "DartPark is an application that allows users to buy and sell parking spots on and around Dartmouth’s campus. Users can register as either renters or vendors; renters must be Dartmouth students, but vendors can be residents of Hanover, students, student organizations, the town of Hanover, or anyone else with spots available in Hanover. If a user is a student, they will have the option to create a vendor profile as well.",
   "main": "src/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node_modules/.bin/webpack-dev-server --inline --hot",
+    "test": "echo \"Error: no test specified.\"",
+    "start": "webpack-dev-server --inline --hot",
     "build": "WEBPACK_ENV=production node_modules/.bin/webpack --optimize-minimize --progress --color",
-    "deploy": "npm run build; surge -p . -d tim-js-starter.surge.sh"
+    "deploy": "npm run build; surge -p . -d dartpark.surge.sh"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/dartmouth-cs52/js-starter.git"
   },
-  "author": "",
+  "author": "Jessie Anderson, Luisa Vasquez, Divya Kalidindi, Ben Cooper, Mau Esquivel",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/dartmouth-cs52/js-starter/issues"
@@ -28,6 +28,7 @@
     "babel-preset-es2015": "^6.9.0",
     "babel-preset-react": "^6.11.1",
     "babel-preset-stage-1": "^6.5.0",
+    "bootstrap": "^3.3.7",
     "css-loader": "^0.23.1",
     "eslint": "^2.13.0",
     "eslint-config-airbnb": "^9.0.1",
@@ -37,8 +38,10 @@
     "extract-text-webpack-plugin": "^1.0.1",
     "node-sass": "^3.8.0",
     "postcss-loader": "^0.9.1",
+    "react-bootstrap": "^0.30.2",
     "sass-loader": "^4.0.0",
     "style-loader": "^0.13.1",
+    "surge": "^0.18.0",
     "webpack": "^1.13.1",
     "webpack-dev-server": "^1.14.1"
   },
