@@ -26,8 +26,8 @@ class UploadPopUp extends Component {
       <div>
         <p>Add Picture</p>
         <Tabs defaultActiveKey={1}>
-          <Tab eventKey={1} title="Upload Picture">{this.uploadPicture()}</Tab>
-          <Tab eventKey={2} title="Use Google Photo">{this.googlePicture()}</Tab>
+          <Tab eventKey={1} title="Upload Picture"></Tab>
+          <Tab eventKey={2} title="Use Google Photo"></Tab>
         </Tabs>
       </div>
     );
