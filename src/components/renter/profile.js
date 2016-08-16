@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import CardItem from './payment-options';
+import CardItem from './card-item';
 import CarInfo from './car-info';
 
 class Profile extends Component {

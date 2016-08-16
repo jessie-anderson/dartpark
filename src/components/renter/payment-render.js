@@ -1,40 +1,42 @@
-// import React, { Component } from 'react';
-// import { connect } from 'react-redux';
-//
-// class CardItemRender extends Component {
-//   constructor(props) {
-//     super(props);
-//     this.state = { nameOnCard: '', cardNum: '' };
-//     this.handleRender = this.handleRender.bind(this);
-//   }
-//
-//   handleRender() {
-//     this.setState({ nameOnCard: this.props.nameOnCard, cardNum: this.props.cardNum });
-//   }
-//
-//   render() {
-//     return (
-//       <div className="newPost">
-//         <div className="heading">
-//           <span>Choose Payment Type</span>
-//         </div>
-//         <div className="inputs">
-//           {this.handleRender}
-//           <h3 {this.nameOnCard}>Name on Card:{this.state.nameOnCard}</h3>
-//           <h3>Card Number:{this.state.cardNum}</h3>
-//           <button>Choose this card</button>
-//         </div>
-//       </div>
-//     );
-//   }
-// }
-//
-// const mapStateToProps = (state) => (
-//   {
-//     nameOnCard: state.nameOnCard,
-//     cardNum: state.cardNum,
-//
-//   }
-// );
-//
-// export default connect(mapStateToProps, null)(CardItemRender);
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+// import CardItem from './card-item';
+
+const cardData = [
+  { cardName: 'Bob', cardNum: 'xxxx-xxxx-xxxx-1234' },
+  { cardName: 'Billy', cardNum: 'xxxx-xxxx-xxxx-4321' },
+];
+
+const CardItem = (props) => {
+  return (
+    <div>
+      <p> Name: {props.name}</p>
+      <p> Number: {props.num}</p>
+    </div>
+  );
+};
+
+class CardItemRender extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
+
+  render() {
+    const users = cardData.map((card) => {
+      return (
+        <CardItem name={card.cardName} num={card.cardNum} key={card.cardNum} />
+      );
+    });
+    return (
+      <div className="newPost">
+        <div className="heading">
+          <span>Choose Payment Type</span>
+        </div>
+        {users}
+      </div>
+    );
+  }
+}
+
+export default CardItemRender;
