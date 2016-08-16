@@ -40,7 +40,6 @@ export default(
     <Route path="/vendor/manage" component={VendorManage} />
     <Route path="/vendor/create-spots" component={CreateSpots} />
     <Route path="/vendor/spot-list-item" component={SpotItem} />
-    <Route path="/vendor/upload-PopUp" component={Upload} />
 
     <Route path="/selectType" component={SelectType} />
     <Route path="/studentAuth" component={StudentAuth} />
