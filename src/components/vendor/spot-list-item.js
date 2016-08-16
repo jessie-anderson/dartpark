@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { bootstrap } from 'react-bootstrap';
+// import { connect } from 'react-redux';
+// import { bootstrap } from 'react-bootstrap';
 
 class SpotItem extends Component {
   constructor(props) {
