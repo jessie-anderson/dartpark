@@ -39,9 +39,6 @@ class CarInfo extends Component {
   render() {
     return (
       <div className="newPost">
-        <div className="heading">
-          <span>Profile</span>
-        </div>
         <div className="inputs">
           <input value={this.state.make} onChange={this.onChangeMake} placeholder="Make" />
         </div>
@@ -58,7 +55,7 @@ class CarInfo extends Component {
           <input value={this.state.license} onChange={this.onChangeLicense} placeholder="License Plate Number" />
         </div>
         <div className="button">
-          <button id="edit-info">Edit My Info</button>
+          <button id="edit-info">Edit Vehicle Info</button>
         </div>
       </div>
     );
