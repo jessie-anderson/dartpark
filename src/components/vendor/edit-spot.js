@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bootstrap } from 'react-bootstrap';
 
-class CreateSpots extends Component {
+class EditSpot extends Component {
   constructor(props) {
     super(props);
 
@@ -13,7 +13,6 @@ class CreateSpots extends Component {
       spotName: '',
       vendorName: '',
       spotPrice: '',
-
     };
     this.onButtonPress = this.onButtonPress.bind(this);
     this.onAddressChange = this.onAddressChange.bind(this);
@@ -49,17 +48,14 @@ class CreateSpots extends Component {
       <div>
         <h1>Edit Spot</h1>
         <label htmlFor="spotLocation">Spot Address: </label>
-        <input id="spotLocation" placeholder="Enter Address..."></input>
-
+        <input id="spotLocation" placeholder={this.spotAddress}></input>
 
         <label htmlFor="spotPrice">Spot Price: </label>
-        <input placeholder="Price in dollars (Ex. $x.xx)..." id="numSpots" ></input>
+        <input placeholder={this.spotPrice} id="numSpots" ></input>
 
-
-        <p>Note: Dont worry, you can edit all this information further on the next page.</p>
-        <button onClick={this.onButtonPress}>Create Spots</button>
+        <button onClick={this.onButtonPress}>Save Spot</button>
       </div>
     );
   }
 }
-export default CreateSpots;
+export default EditSpot;
