@@ -25,7 +25,7 @@ class CardItemRender extends Component {
   render() {
     const users = cardData.map((card) => {
       return (
-        <CardItem name={card.cardName} num={card.cardNum} />
+        <CardItem name={card.cardName} num={card.cardNum} key={card.cardNum} />
       );
     });
     return (
