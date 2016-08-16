@@ -48,14 +48,6 @@ class CreateSpots extends Component {
     return (
       <div>
         <h1>Edit Spot</h1>
-
-
-        <label htmlFor="namingOption">How would you like to name your spots? </label>
-        <select onChange={this.onSpotOrderingChange} id="namingOption">
-          <option value="num">Spot 1, Spot 2, Spot 3, etc...</option>
-          <option value="letter">Spot A, Spot B, Spot C, etc...</option>
-        </select>
-
         <label htmlFor="spotLocation">Spot Address: </label>
         <input id="spotLocation" placeholder="Enter Address..."></input>
 
