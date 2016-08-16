@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 // import { connect } from 'react-redux';
 
-class Profile extends Component {
+class VendorProfile extends Component {
   constructor(props) {
     super(props);
 
@@ -33,4 +33,4 @@ class Profile extends Component {
     );
   }
 }
-export default Profile;
+export default VendorProfile;

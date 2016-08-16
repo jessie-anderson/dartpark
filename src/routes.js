@@ -18,7 +18,11 @@ import StudentAuth from './components/shared/studentAuth';
 
 import CreateSpots from './components/vendor/create-spots';
 import SpotItem from './components/vendor/spot-list-item';
+import UploadPopUp from './components/vendor/upload-PopUp';
+import VendorManage from './components/vendor/manage';
 
+import EditSpot from './components/vendor/edit-spot';
+import VendorProfile from './components/vendor/profile';
 
 export default(
   <Route path="/" component={App}>
@@ -33,8 +37,10 @@ export default(
     <Route path="/renter/buy-spot" component={BuyItem} />
     <Route path="/renter" component={RenterHome} />
 
+    <Route path="/vendor/manage" component={VendorManage} />
     <Route path="/vendor/create-spots" component={CreateSpots} />
     <Route path="/vendor/spot-list-item" component={SpotItem} />
+    <Route path="/vendor/upload-PopUp" component={Upload} />
 
     <Route path="/selectType" component={SelectType} />
     <Route path="/studentAuth" component={StudentAuth} />
