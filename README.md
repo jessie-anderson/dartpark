@@ -135,6 +135,8 @@ Renter
 
 `npm run deploy` (frontend)
 
+Also, deploys automatically using Travis CI whenever master branch is updated.
+
 
 ## Authors
 
