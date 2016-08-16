@@ -2,4 +2,4 @@ language: node_js
 node_js:
   - "0.12"
 after_success:
-  - surge --project ./src/index.js --domain dartpark.surge.sh
+  - surge --project ./src --domain dartpark.surge.sh
