@@ -20,7 +20,7 @@
 //         </div>
 //         <div className="inputs">
 //           {this.handleRender}
-//           <h3>Name on Card:{this.state.nameOnCard}</h3>
+//           <h3 {this.nameOnCard}>Name on Card:{this.state.nameOnCard}</h3>
 //           <h3>Card Number:{this.state.cardNum}</h3>
 //           <button>Choose this card</button>
 //         </div>
