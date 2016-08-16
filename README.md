@@ -137,6 +137,9 @@ Renter
 
 Also, deploys automatically using Travis CI whenever master branch is updated.
 
+Screenshot of Travis CI at work:
+![travis](travis.png)
+
 
 ## Authors
 
