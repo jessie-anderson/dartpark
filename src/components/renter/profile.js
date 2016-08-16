@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import CardItemEdit from './carditem-edit';
-import CarInfo from './car-info';
+import VehicleItemRender from './vehicle-render';
 
 
 class Profile extends Component {
@@ -56,7 +56,7 @@ class Profile extends Component {
           <button id="edit-info">Edit My Info</button>
         </div>
         <CardItemEdit />
-        <CarInfo />
+        <VehicleItemRender />
       </div>
     );
   }
