@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bootstrap } from 'react-bootstrap';
+import { Link } from 'react-router';
 
-class Manage extends Component {
+
+class VendorManage extends Component {
   constructor(props) {
     super(props);
 
@@ -22,10 +24,10 @@ class Manage extends Component {
       <div>
         <h1>Manage Spots</h1>
         <h2>You have not created any spots yet.  Click the button below to add some spots to your profile.</h2>
-        <button onClick={this.onButtonPress}>+Add Spots</button>
+        <Link to="/vendor/create-spots" ><button onClick={this.onButtonPress}>+Add Spots</button></Link>
       </div>
     );
   }
 }
 
-export default Manage;
+export default VendorManage;
