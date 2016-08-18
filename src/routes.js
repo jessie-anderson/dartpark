@@ -18,11 +18,11 @@ import StudentAuth from './components/shared/studentAuth';
 
 import CreateSpots from './components/vendor/create-spots';
 import SpotItem from './components/vendor/spot-list-item';
-import UploadPopUp from './components/vendor/upload-PopUp';
 import VendorManage from './components/vendor/manage';
 
 import EditSpot from './components/vendor/edit-spot';
 import VendorProfile from './components/vendor/profile';
+import FinalizeSpots from './components/vendor/finalize-spots';
 
 export default(
   <Route path="/" component={App}>
@@ -40,7 +40,10 @@ export default(
     <Route path="/vendor/manage" component={VendorManage} />
     <Route path="/vendor/create-spots" component={CreateSpots} />
     <Route path="/vendor/spot-list-item" component={SpotItem} />
-    <Route path="/vendor/upload-PopUp" component={UploadPopUp} />
+    <Route path="/vendor/finalize-spots" component={FinalizeSpots} />
+    <Route path="/vendor/edit-spots" component={EditSpot} />
+    <Route path="/vendor/profile" component={VendorProfile} />
+
 
     <Route path="/selectType" component={SelectType} />
     <Route path="/studentAuth" component={StudentAuth} />

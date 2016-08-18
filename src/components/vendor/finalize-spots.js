@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import SpotItem from '../renter/spot-list-item';
+import { Link } from 'react-router';
 
 class FinalizeSpots extends Component {
   constructor(props) {
@@ -18,7 +20,8 @@ class FinalizeSpots extends Component {
       <div>
         <h1>Review Created Spots</h1>
         {this.getAllSpots()}
-        <button>Done</button>
+        <SpotItem />
+        <Link to="/vendor/manage"><button>Done</button></Link>
       </div>
     );
   }

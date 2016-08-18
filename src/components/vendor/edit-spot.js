@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import { bootstrap } from 'react-bootstrap';
+import SpotItem from './spot-list-item';
+import { Link } from 'react-router';
 
 class EditSpot extends Component {
   constructor(props) {
@@ -52,8 +53,9 @@ class EditSpot extends Component {
 
         <label htmlFor="spotPrice">Spot Price: </label>
         <input placeholder={this.spotPrice} id="numSpots" ></input>
+        <SpotItem />
 
-        <button onClick={this.onButtonPress}>Save Spot</button>
+        <Link to="/vendor/manage"><button onClick={this.onButtonPress}>Save Spot</button></Link>
       </div>
     );
   }
