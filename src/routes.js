@@ -18,6 +18,7 @@ import StudentAuth from './components/shared/studentAuth';
 
 import CreateSpots from './components/vendor/create-spots';
 import SpotItem from './components/vendor/spot-list-item';
+import Messaging from './components/shared/message-page';
 
 
 export default(
@@ -38,5 +39,6 @@ export default(
 
     <Route path="/selectType" component={SelectType} />
     <Route path="/studentAuth" component={StudentAuth} />
+    <Route path="/messaging" component={Messaging} />
   </Route>
 );

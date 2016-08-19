@@ -2,10 +2,32 @@ $main-color: #417505; /* dark-green */
 $highlight-color: #579D07; /*brighter-green*/
 $accent-color: #D9EFC1; /*light-green*/
 $light-font-color: #4A4A4A;
+$title-font: 'Righteous', cursive;
 
 body {
   font-family: "Roboto", sans-serif;
   color: $light-font-color;
   background: darken(white, 5%);
   margin: 50px;
+}
+h1 {
+  text-align: center;
+  color: $light-font-color;
+}
+
+#abs-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+#header-bar {
+  display: flex;
+  background: $main-color;
+  justify-content: center;
+  color: white;
+  padding: 0.5em;
+  font-weight: bold;
+  font-family: $title-font;
+  font-size: 2.2em;
 }

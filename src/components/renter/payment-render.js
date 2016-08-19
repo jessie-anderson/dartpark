@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
+// import { connect } from 'react-redux';
 // import CardItem from './card-item';
 
 const cardData = [
@@ -10,8 +10,8 @@ const cardData = [
 const CardItem = (props) => {
   return (
     <div>
-      <p> Name: {props.name}</p>
-      <p> Number: {props.num}</p>
+      <p> Name on Card: {props.name}</p>
+      <p> Card Number: {props.num}</p>
     </div>
   );
 };
