@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bootstrap } from 'react-bootstrap';
 import { Link } from 'react-router';
+import SimpleSearchBar from '../renter/simple-bar';
 
 class CreateSpots extends Component {
   constructor(props) {
@@ -58,7 +59,8 @@ class CreateSpots extends Component {
         </select>
 
         <label htmlFor="spotLocation">Spot Address: </label>
-        <input id="spotLocation" placeholder="Enter Address..."></input>
+        // <input id="spotLocation" placeholder="Enter Address..."></input>
+        <SimpleSearchBar />
 
 
         <label htmlFor="spotPrice">Spot Price: </label>
