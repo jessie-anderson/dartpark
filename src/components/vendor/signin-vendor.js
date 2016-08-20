@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 // import { connect } from 'react-redux';
 import { Link } from 'react-router';
 
-class SignIn extends Component {
+class SignInVendor extends Component {
   constructor(props) {
     super(props);
 
@@ -41,4 +41,4 @@ class SignIn extends Component {
 //   }
 // );
 // react-redux glue -- outputs Container that know state in props
-export default SignIn;
+export default SignInVendor;
