@@ -8,8 +8,9 @@ import { Link } from 'react-router';
 const SpotDetail = (props) => {
   return (
     <div>
-      <p>Spot Details</p>
+      <h3>Spot Details</h3>
       <ResultItem />
+      <Link to="/renter/vendor-view"><button>Learn more about this vendor</button></Link>
       <Link to="/renter/buy-spot"><button>Get this spot</button></Link>
     </div>
     );
