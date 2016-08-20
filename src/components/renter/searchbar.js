@@ -30,14 +30,7 @@ class SearchBar extends Component {
   }
 
   submit(event) {
-    if (!this.state.suggestClick) {
-      console.log('suggestClick is true');
-    } else {
-      // this.state.searchTerm.label;
-      console.log('This is console log', this.state.searchTerm.label);
-      this.props.onSearchBarChange(this.state.searchterm.label);
-      console.log(this.state.searchTerm.label);
-    }
+
   }
 
   render() {
