@@ -20,7 +20,7 @@ class SearchBar extends Component {
   onSearchBarChange(value) {
     console.log(value);
     this.setState({ searchTerm: value });
-    console.log('the state: ' + this.state.searchTerm);
+    console.log('the state is ', this.state.searchTerm);
   }
 
   suggestionSelection(value) {
@@ -30,9 +30,11 @@ class SearchBar extends Component {
 
   submit(event) {
     if (!this.state.suggestClick) {
-
+      console.log('suggestClick is true');
     } else {
-      this.state.searchTerm.label;
+      // this.state.searchTerm.label;
+      console.log('This is console log', this.state.searchTerm.label);
+      this.props.onSearchBarChange(this.state.searchterm.label);
     }
   }
 
