@@ -8,7 +8,7 @@ class SearchBar extends Component {
   constructor(props) {
     super(props);
 
-    // init component state here.
+    // init component state here
     this.state =
     {
       searchTerm: '',
@@ -21,7 +21,7 @@ class SearchBar extends Component {
   onSearchBarChange(value) {
     console.log(value);
     this.setState({ searchTerm: value });
-    console.log('the state is ', this.state.searchTerm);
+    console.log('the state: ' + this.state.searchTerm);
   }
 
   suggestionSelection(value) {
@@ -30,7 +30,11 @@ class SearchBar extends Component {
   }
 
   submit(event) {
+    if (!this.state.suggestClick) {
 
+    } else {
+      console.log(this.state.searchTerm.label);
+    }
   }
 
   render() {
