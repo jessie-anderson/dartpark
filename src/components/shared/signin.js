@@ -22,7 +22,7 @@ class SignIn extends Component {
     return (
       <div>
         <div id="header-bar">dartPark</div>
-        <div>
+        <div id="abs-center">
           <h1>Sign In</h1>
           <h3>Login</h3>
           <input onChange={this.onEmailChange} placeholder={"Email..."} />
