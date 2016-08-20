@@ -16,6 +16,7 @@ class SearchBar extends Component {
     };
     this.onSearchBarChange = this.onSearchBarChange.bind(this);
     this.suggestionSelection = this.suggestionSelection.bind(this);
+    this.submit = this.submit.bind(this);
   }
   onSearchBarChange(value) {
     console.log(value);
@@ -35,6 +36,7 @@ class SearchBar extends Component {
       // this.state.searchTerm.label;
       console.log('This is console log', this.state.searchTerm.label);
       this.props.onSearchBarChange(this.state.searchterm.label);
+      console.log(this.state.searchTerm.label);
     }
   }
 
