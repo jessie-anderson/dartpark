@@ -2,25 +2,46 @@
 // corresponds to FindSpot-Search on mockups
 
 import React, { Component } from 'react';
-
+import Geosuggest from 'react-geosuggest';
 
 class SearchBar extends Component {
   constructor(props) {
     super(props);
-    this.state = { searchterm: '' };
-    this.onInputChange = this.onInputChange.bind(this);
+
+    // init component state here
+    this.state =
+    {
+      searchTerm: '',
+      suggestClick: false,
+    };
+    this.onSearchBarChange = this.onSearchBarChange.bind(this);
+    this.suggestionSelection = this.suggestionSelection.bind(this);
   }
-  onInputChange(event) {
-    console.log(event.target.value);
-    this.setState({ searchterm: event.target.value });
-    this.props.onSearchChange(this.state.searchterm);
+  onSearchBarChange(value) {
+    console.log(value);
+    this.setState({ searchTerm: value });
+    console.log('the state: ' + this.state.searchTerm);
   }
+
+  suggestionSelection(value) {
+    this.setState({ suggestClick: true });
+    this.onSearchBarChange(value);
+  }
+
+  submit(event) {
+    if (!this.state.suggestClick) {
+
+    } else {
+      this.state.searchTerm.label;
+    }
+  }
+
   render() {
     return (
       <div>
         <h3>Find a Spot</h3>
-        <div id="searchbar"><input onChange={this.onInputChange} value={this.state.searchterm} /></div>
-        <button>Search this location!</button>
+        <Geosuggest onSuggestSelect={this.suggestionSelection} onChange={this.onSearchBarChange} />
+        <button onClick={this.submit}>Search this location!</button>
       </div>
     );
   }
