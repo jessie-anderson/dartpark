@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
 
-import Geosuggest from 'react-geosuggest';
-
 // import Welcome from './welcome';
 
 // example class based component (smart component)
