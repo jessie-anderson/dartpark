@@ -12,7 +12,7 @@ class NavBar extends Component {
 
   render() {
     return (
-      <button >Profile</button>
+      <button>Profile</button>
     );
   }
 }
