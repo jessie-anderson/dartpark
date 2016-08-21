@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { createCar } from '../actions/car-actions';
+
 
 class CarInfo extends Component {
   constructor(props) {
@@ -7,14 +10,15 @@ class CarInfo extends Component {
       make: '',
       model: '',
       year: '',
-      color: '',
-      license: '',
+      paintcolor: '',
+      plateNumber: '',
     };
     this.onChangeMake = this.onChangeMake.bind(this);
     this.onChangeModel = this.onChangeModel.bind(this);
     this.onChangeYear = this.onChangeYear.bind(this);
     this.onChangeColor = this.onChangeColor.bind(this);
     this.onChangeLicense = this.onChangeLicense.bind(this);
+    this.onSubmitPress = this.onSubmitPress.bind(this);
   }
 
   onChangeMake(event) {
@@ -30,10 +34,13 @@ class CarInfo extends Component {
   }
 
   onChangeColor(event) {
-    this.setState({ color: event.target.value });
+    this.setState({ paintcolor: event.target.value });
   }
   onChangeLicense(event) {
-    this.setState({ license: event.target.value });
+    this.setState({ plateNumber: event.target.value });
+  }
+  onSubmitPress(event) {
+    this.props.createCar(this.state);
   }
 
   render() {
@@ -49,17 +56,17 @@ class CarInfo extends Component {
           <input value={this.state.year} onChange={this.onChangeYear} placeholder="Year" />
         </div>
         <div className="inputs">
-          <input value={this.state.color} onChange={this.onChangeColor} placeholder="Color" />
+          <input value={this.state.paintcolor} onChange={this.onChangeColor} placeholder="Color" />
         </div>
         <div className="inputs">
-          <input value={this.state.license} onChange={this.onChangeLicense} placeholder="License Plate Number" />
+          <input value={this.state.plateNumber} onChange={this.onChangeLicense} placeholder="License Plate Number" />
         </div>
         <div className="button">
-          <button id="edit-info">Edit Vehicle Info</button>
+          <button id="edit-info" onClick={this.onSubmitPress}>Edit Vehicle Info</button>
         </div>
       </div>
     );
   }
     }
 
-export default CarInfo;
+export default connect(null, { createCar })(CarInfo);
