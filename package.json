@@ -47,10 +47,13 @@
   },
   "dependencies": {
     "axios": "^0.13.1",
+    "braintree-web": "^2.27.0",
     "marked": "^0.3.6",
     "react": "^15.2.1",
     "react-dom": "^15.2.1",
+    "react-dropzone": "^3.5.3",
     "react-fontawesome": "^1.1.0",
+    "react-geosuggest": "^1.25.0",
     "react-redux": "^4.4.5",
     "react-router": "^2.5.2",
     "redux": "^3.5.2",

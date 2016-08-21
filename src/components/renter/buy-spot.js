@@ -2,10 +2,18 @@ import ResultItem from './spot-list-item';
 import React from 'react';
 import { Link } from 'react-router';
 import CardItemRender from './payment-render';
-import VehicleItemRender from './vehicle-render';
+// var braintree = require('braintree-web');
+//
+// braintree.client.create({
+//   authorization: 'CLIENT_AUTHORIZATION',
+// }, function (err, clientInstance) {
+//   braintree.hostedFields.create(/* ... */);
+// });
+//
 
 
 // corresponds to FindSpot-Select on mockups
+
 
 const BuyItem = (props) => {
   return (
@@ -14,7 +22,6 @@ const BuyItem = (props) => {
       <ResultItem />
       <h3>Payment Info</h3>
       <CardItemRender />
-      <VehicleItemRender />
       <Link to="/renter"><button>Buy Spot!</button></Link>
     </div>
     );

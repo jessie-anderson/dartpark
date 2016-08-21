@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 // import { connect } from 'react-redux';
 import { Link } from 'react-router';
 
-class SignIn extends Component {
+class SignInVendor extends Component {
   constructor(props) {
     super(props);
 
@@ -21,14 +21,15 @@ class SignIn extends Component {
   render() {
     return (
       <div>
-        <h1>Sign In</h1>
-        <h3>Login</h3>
-        <input onChange={this.onEmailChange} placeholder={"Email..."} />
-        <input onChange={this.onPasswordChange} placeholder={"Password..."} />
-        <button>Login with Facebook</button>
-        <button>Login with Google</button>
-        <span>`Don't have an account?`</span>
-        <Link to={'/selectType'}><button>Sign Up</button></Link>
+        <div id="header-bar">dartPark</div>
+        <div id="abs-center">
+          <h1>Sign In</h1>
+          <h3>Login</h3>
+          <input onChange={this.onEmailChange} placeholder={"Email..."} />
+          <input onChange={this.onPasswordChange} placeholder={"Password..."} />
+          <span>{'Don\'t have an account?'}</span>
+          <Link to={'/selectType'}><button>Sign Up</button></Link>
+        </div>
       </div>
     );
   }
@@ -41,4 +42,4 @@ class SignIn extends Component {
 //   }
 // );
 // react-redux glue -- outputs Container that know state in props
-export default SignIn;
+export default SignInVendor;

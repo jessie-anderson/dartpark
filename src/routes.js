@@ -2,8 +2,10 @@ import React from 'react';
 import { Route, IndexRoute } from 'react-router';
 
 import App from './components/app';
-import SignIn from './components/shared/signin';
-import SignUp from './components/shared/signup';
+import SignInVendor from './components/vendor/signin-vendor';
+import SignUpVendor from './components/vendor/signup-vendor';
+import SignInRenter from './components/renter/signin-renter';
+import SignUpRenter from './components/renter/signup-renter';
 
 import SearchBar from './components/renter/searchbar';
 import BuyItem from './components/renter/buy-spot';
@@ -18,17 +20,21 @@ import StudentAuth from './components/shared/studentAuth';
 
 import CreateSpots from './components/vendor/create-spots';
 import SpotItem from './components/vendor/spot-list-item';
-import UploadPopUp from './components/vendor/upload-PopUp';
-import VendorManage from './components/vendor/manage';
 
+import Messaging from './components/shared/message-page';
+
+import VendorManage from './components/vendor/manage';
 import EditSpot from './components/vendor/edit-spot';
 import VendorProfile from './components/vendor/profile';
+import FinalizeSpots from './components/vendor/finalize-spots';
 
 export default(
   <Route path="/" component={App}>
-    <IndexRoute component={SignIn} />
-    <Route path="/signup" component={SignUp} />
-    <Route path="/signin" component={SignIn} />
+    <IndexRoute component={SelectType} />
+    <Route path="/signup-renter" component={SignUpRenter} />
+    <Route path="/signin-renter" component={SignInRenter} />
+    <Route path="/signup-vendor" component={SignUpVendor} />
+    <Route path="/signin-vendor" component={SignInVendor} />
 
     <Route path="/renter/profile" component={Profile} />
     <Route path="/renter/search" component={SearchBar} />
@@ -40,9 +46,13 @@ export default(
     <Route path="/vendor/manage" component={VendorManage} />
     <Route path="/vendor/create-spots" component={CreateSpots} />
     <Route path="/vendor/spot-list-item" component={SpotItem} />
-    <Route path="/vendor/upload-PopUp" component={UploadPopUp} />
+    <Route path="/vendor/finalize-spots" component={FinalizeSpots} />
+    <Route path="/vendor/edit-spots" component={EditSpot} />
+    <Route path="/vendor/profile" component={VendorProfile} />
+
 
     <Route path="/selectType" component={SelectType} />
     <Route path="/studentAuth" component={StudentAuth} />
+    <Route path="/messaging" component={Messaging} />
   </Route>
 );
