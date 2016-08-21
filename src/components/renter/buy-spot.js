@@ -1,7 +1,7 @@
 import ResultItem from './spot-list-item';
-import React, { Component } from 'react';
+import React from 'react';
 import { Link } from 'react-router';
-// import CardItemRender from './payment-render';
+import CardItemRender from './payment-render';
 // var braintree = require('braintree-web');
 //
 // braintree.client.create({
@@ -21,7 +21,7 @@ const BuyItem = (props) => {
       <h3>Spot Details</h3>
       <ResultItem />
       <h3>Payment Info</h3>
-      // <CardItemRender />
+      <CardItemRender />
       <Link to="/renter"><button>Buy Spot!</button></Link>
     </div>
     );

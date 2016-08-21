@@ -5,7 +5,7 @@ import React, { Component } from 'react';
 import Geosuggest from 'react-geosuggest';
 import { Link } from 'react-router';
 
-class SearchBar extends Component {
+class SimpleSearchBar extends Component {
   constructor(props) {
     super(props);
 
@@ -41,11 +41,9 @@ class SearchBar extends Component {
   render() {
     return (
       <div>
-        <h3>Find a Spot</h3>
         <Geosuggest onSuggestSelect={this.suggestionSelection} onChange={this.onSearchBarChange} />
-        <Link to="/renter/select-spot"><button onClick={this.submit}>Search this location!</button></Link>
       </div>
     );
   }
 }
-export default SearchBar;
+export default SimpleSearchBar;
