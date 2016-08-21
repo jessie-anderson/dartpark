@@ -1,4 +1,4 @@
-import SearchBar from './searchbar';
+import SimpleSearchBar from './simple-bar';
 import React from 'react';
 import ResultItem from './spot-list-item';
 import { Link } from 'react-router';
@@ -9,20 +9,22 @@ import { Link } from 'react-router';
 const SelectSpot = (props) => {
   return (
     <div>
-      <div className="header">
-        <p>Find a Spot</p>
-        <h1>Sort your search by...</h1>
-        <div className="sortbuttons">
-          <button>Price</button>
-          <button>Distance</button>
-          <h2>Number of results</h2>
-          <button>5</button>
+      <div className="spot-select">
+        <ul>
+          <li><h3>Find a Spot</h3></li>
+          <ul className="button-list">
+            <li id="search-by">Search by: </li>
+            <li><button id="pd-button">Price</button></li>
+            <li><button id="pd-button">Distance</button></li>
+          </ul>
+        </ul>
+        <div className="search-result">
+          <SimpleSearchBar />
+          <ResultItem />
+          <Link to="/renter/spot-detail"><button id="search-button">Select this spot</button></Link>
+          <ResultItem />
+          <Link to="/renter/spot-detail"><button id="search-button">Select this spot</button></Link>
         </div>
-        <SearchBar />
-        <ResultItem />
-        <Link to="/renter/spot-detail"><button>Select this spot</button></Link>
-        <ResultItem />
-        <Link to="/renter/spot-detail"><button>Select this spot</button></Link>
       </div>
     </div>
     );

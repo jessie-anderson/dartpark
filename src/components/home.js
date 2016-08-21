@@ -18,7 +18,6 @@ class HomePage extends Component {
   render() {
     return (
       <div>
-        <Geosuggest />
         Home Page
         <Link to={'/signin'}><button>sign in</button></Link>
       </div>

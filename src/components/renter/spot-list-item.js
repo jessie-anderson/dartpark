@@ -4,7 +4,7 @@ class ResultItem extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      address: '123 Darty Rd.',
+      address: 'Sig Ep',
       vendor: 'P. Hanlon',
       distance: '4 miles away',
       price: '$1769',
@@ -14,13 +14,13 @@ class ResultItem extends Component {
   render() {
     return (
       <div>
-        <div className="ResultItem">
-          <p>Address: {this.state.address}</p>
-          <p>Vendor: {this.state.vendor}</p>
-          <p>Distance from you: {this.state.distance}</p>
-          <p>Price: {this.state.price}</p>
+        <ul className="result-details">
+          <li className="address">Address: {this.state.address}</li>
+          <li>Vendor: {this.state.vendor}</li>
+          <li>Distance from you: {this.state.distance}</li>
+          <li>Price: {this.state.price}</li>
           <img src={'http://greport.gru.edu/wp-content/uploads/2013/12/parkingspot.jpg'} alt="video" />
-        </div>
+        </ul>
       </div>
     );
   }

@@ -3,7 +3,6 @@
 
 import React, { Component } from 'react';
 import Geosuggest from 'react-geosuggest';
-import { Link } from 'react-router';
 
 class SimpleSearchBar extends Component {
   constructor(props) {

@@ -22,7 +22,6 @@ class SearchBar extends Component {
   onSearchBarChange(value) {
     console.log(value);
     this.setState({ searchTerm: value });
-    console.log('the state: ' + this.state.searchTerm);
   }
 
   suggestionSelection(value) {
@@ -32,7 +31,7 @@ class SearchBar extends Component {
 
   submit(event) {
     if (!this.state.suggestClick) {
-
+      console.log('empty');
     } else {
       console.log(this.state.searchTerm.label);
     }
@@ -41,9 +40,11 @@ class SearchBar extends Component {
   render() {
     return (
       <div>
-        <h3>Find a Spot</h3>
-        <Geosuggest onSuggestSelect={this.suggestionSelection} onChange={this.onSearchBarChange} />
-        <Link to="/renter/select-spot"><button onClick={this.submit}>Search this location!</button></Link>
+        <h1>Find a Spot</h1>
+        <div id="search">
+          <div id="searchbar"><Geosuggest onSuggestSelect={this.suggestionSelection} onChange={this.onSearchBarChange} /></div>
+          <Link to="/renter/select-spot"><button id="search-button" onClick={this.submit}>Search this location!</button></Link>
+        </div>
       </div>
     );
   }
