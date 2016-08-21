@@ -20,8 +20,10 @@ import StudentAuth from './components/shared/studentAuth';
 
 import CreateSpots from './components/vendor/create-spots';
 import SpotItem from './components/vendor/spot-list-item';
-import VendorManage from './components/vendor/manage';
 
+import Messaging from './components/shared/message-page';
+
+import VendorManage from './components/vendor/manage';
 import EditSpot from './components/vendor/edit-spot';
 import VendorProfile from './components/vendor/profile';
 import FinalizeSpots from './components/vendor/finalize-spots';
@@ -51,5 +53,6 @@ export default(
 
     <Route path="/selectType" component={SelectType} />
     <Route path="/studentAuth" component={StudentAuth} />
+    <Route path="/messaging" component={Messaging} />
   </Route>
 );
