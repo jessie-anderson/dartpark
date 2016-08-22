@@ -20,8 +20,8 @@ export function createSpot(spot) {
     axios.post(`${ROOT_URL}/vendor/spots`, {
       address: spot.address,
       price: spot.price,
-      startDate: spot.startDate,
-      endDate: spot.endDate,
+      // startDate: spot.startDate,
+      // endDate: spot.endDate,
       number: spot.number,
     }, { headers: { authorizationvendor: localStorage.getItem('token') } })
     .then(response => {
@@ -65,11 +65,13 @@ export function vendorGetSpot(id) {
 export function updateSpot(spot, id) {
   return (dispatch) => {
     axios.put(`${ROOT_URL}/vendor/spots/${id}`, {
-      address: spot.address,
-      price: spot.price,
-      startDate: spot.startDate,
-      endDate: spot.endDate,
+      address: spot.spotAddress,
+      price: spot.spotPrice,
+      // startDate: spot.startDate,
+      // endDate: spot.endDate,
       number: spot.number,
+      name: spot.spotName,
+      vendor: spot.vendorName,
     }, { headers: { authorizationvendor: localStorage.getItem('token') } })
     .then(response => {
       dispatch({
