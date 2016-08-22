@@ -5,6 +5,8 @@ import React, { Component } from 'react';
 import Geosuggest from 'react-geosuggest';
 import { Link } from 'react-router';
 import NavBar from './navbar';
+import { saveSearch } from '../../actions/spot-actions';
+
 
 class SearchBar extends Component {
   constructor(props) {
@@ -34,7 +36,7 @@ class SearchBar extends Component {
     if (!this.state.suggestClick) {
       console.log('empty');
     } else {
-      console.log(this.state.searchTerm.label);
+      this.props.saveSearch(this.state.searchTerm.label);
     }
   }
 

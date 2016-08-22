@@ -1,19 +1,27 @@
 import React, { Component } from 'react';
-// import { connect } from 'react-redux';
+import { connect } from 'react-redux';
 import { Link } from 'react-router';
+import { signupRenter } from '../../actions/spot-actions';
+
 
 class SignUpRenter extends Component {
   constructor(props) {
     super(props);
 
     // init component state here
-    this.state = { };
+    this.state = { email: '', password: '' };
+    this.onEmailChange = this.onEmailChange.bind(this);
+    this.onPasswordChange = this.onPasswordChange.bind(this);
+    this.signUpRenter = this.signUpRenter.bind(this);
   }
   onEmailChange(event) {
     this.setState({ email: event.target.value });
   }
   onPasswordChange(event) {
     this.setState({ password: event.target.value });
+  }
+  signUpRenter(event) {
+    this.props.signupRenter(this.state);
   }
   render() {
     return (
@@ -25,8 +33,7 @@ class SignUpRenter extends Component {
           <input onChange={this.onEmailChange} placeholder={"Email..."} />
           <h4>Enter your password:</h4>
           <input onChange={this.onPasswordChange} placeholder={"Password..."} />
-          <span>{'Don\'t have an account?'}</span>
-          <Link to={'/selectType'}><button>Sign Up</button></Link>
+          <button onClick={this.signUpRenter}>Sign Up</button>
         </div>
       </div>
     );
@@ -34,4 +41,4 @@ class SignUpRenter extends Component {
 }
 
 // react-redux glue -- outputs Container that know state in props
-export default SignUpRenter;
+export default connect(null, { signupRenter })(SignUpRenter);

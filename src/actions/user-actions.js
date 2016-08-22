@@ -55,9 +55,9 @@ export function signinVendor({ email, password }) {
   };
 }
 
-export function signupRenter({ email, password, username }) {
+export function signupRenter({ email, password }) {
   return (dispatch) => {
-    axios.post(`${ROOT_URL}/renter/signup`, { email, password, username })
+    axios.post(`${ROOT_URL}/renter/signup`, { email, password })
     .then(response => {
       dispatch({
         type: UserActionTypes.AUTH_RENTER,

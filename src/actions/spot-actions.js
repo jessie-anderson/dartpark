@@ -13,7 +13,23 @@ const SpotActionTypes = {
   RENTER_GET_SPOT: 'RENTER_GET_SPOT',
   RENTER_DELETE_SPOT: 'RENTER_DELETE_SPOT',
   BUY_SPOT: 'BUY_SPOT',
+  SEARCH_LOCATION: 'SEARCH_LOCATION',
 };
+
+export function saveSearch(searchRequest) {
+  return (dispatch) => {
+    axios.post(`${ROOT_URL}/renter/select-spot`, {
+      searchTerm: searchRequest,
+    }, { headers: { authorizationrenter: localStorage.getItem('token') } })
+    .then(response => {
+      dispatch({
+        type: SpotActionTypes.SEARCH_LOCATION,
+        payload: response.data,
+      })
+      .catch(err => {});
+    });
+  };
+}
 
 export function createSpot(spot) {
   return (dispatch) => {
@@ -58,7 +74,7 @@ export function vendorGetSpot(id) {
         payload: response.data,
       });
     })
-    .catch(err => {});
+    .catch(err => { console.log(err); });
   };
 }
 
