@@ -6,7 +6,7 @@ $title-font: 'Righteous', cursive;
 $main-font: 'Lato', sans-serif;
 
 body {
-  font-family: "Lato", sans-serif;
+  font-family: $main-font;
   color: $light-font-color;
   background: darken(white, 5%);
   margin: 50px;
@@ -148,4 +148,43 @@ h1 {
       font-size: 25px;
       // margin: 0px 2px;
     }
+}
+
+#nav-bar {
+  margin: 0;
+  background-color: $main-color;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: $title-font;
+  color: white;
+  font-size: 2.2em;
+  #right-align {
+    display: flex;
+    flex-flow: row nowrap;
+  }
+
+  #nav-link {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    padding: 0.5em;
+    padding-left: 0.7em;
+    padding-right: 0.7em;
+    text-align: center;
+    color: white;
+    text-decoration: none;
+    font-family: $main-font;
+    span {
+      font-size: 0.4em;
+    }
+    #fa-icon {
+      color: white;
+      font-size: 0.8em;
+    }
+    &:hover {
+      background-color: $highlight-color;
+    }
+  }
+
 }

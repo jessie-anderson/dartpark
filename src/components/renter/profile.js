@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import CardItemEdit from './carditem-edit';
 import VehicleItemRender from './vehicle-render';
 // import { createCar } from '../actions/car-actions';
+import NavBar from './navbar';
 
 
 class Profile extends Component {
@@ -37,27 +38,30 @@ class Profile extends Component {
 
   render() {
     return (
-      <div className="Profile">
-        <div className="prof-header">
-          <h3>Profile</h3>
+      <div>
+        <NavBar />
+        <div className="Profile">
+          <div className="prof-header">
+            <h3>Profile</h3>
+          </div>
+          <div className="inputs">
+            <input value={this.state.firstname} onChange={this.onChangeFirst} placeholder="First Name" />
+          </div>
+          <div className="inputs">
+            <input value={this.state.lastname} onChange={this.onChangeLast} placeholder="Last Name" />
+          </div>
+          <div className="inputs">
+            <input value={this.state.address} onChange={this.onChangeAddress} placeholder="Address" />
+          </div>
+          <div className="inputs">
+            <input value={this.state.description} onChange={this.onChangeDescription} placeholder="Add a description!" />
+          </div>
+          <div className="button">
+            <button id="edit-info">Edit My Info</button>
+          </div>
+          <CardItemEdit />
+          <VehicleItemRender />
         </div>
-        <div className="inputs">
-          <input value={this.state.firstname} onChange={this.onChangeFirst} placeholder="First Name" />
-        </div>
-        <div className="inputs">
-          <input value={this.state.lastname} onChange={this.onChangeLast} placeholder="Last Name" />
-        </div>
-        <div className="inputs">
-          <input value={this.state.address} onChange={this.onChangeAddress} placeholder="Address" />
-        </div>
-        <div className="inputs">
-          <input value={this.state.description} onChange={this.onChangeDescription} placeholder="Add a description!" />
-        </div>
-        <div className="button">
-          <button id="edit-info">Edit My Info</button>
-        </div>
-        <CardItemEdit />
-        <VehicleItemRender />
       </div>
     );
   }
