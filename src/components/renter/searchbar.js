@@ -4,6 +4,7 @@
 import React, { Component } from 'react';
 import Geosuggest from 'react-geosuggest';
 import { Link } from 'react-router';
+import NavBar from './navbar';
 
 class SearchBar extends Component {
   constructor(props) {
@@ -40,6 +41,7 @@ class SearchBar extends Component {
   render() {
     return (
       <div>
+        <NavBar />
         <h1>Find a Spot</h1>
         <div id="search">
           <div id="searchbar"><Geosuggest onSuggestSelect={this.suggestionSelection} onChange={this.onSearchBarChange} /></div>

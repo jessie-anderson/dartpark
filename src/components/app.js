@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import RenterNavBar from './renter/navbar';
+import VendorNavBar from './vendor/navbar';
 
 // example class based component (smart component)
 class App extends Component {

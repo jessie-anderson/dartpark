@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 // import { Link } from 'react-router';
 import MessageBar from './message-bar';
+import NavBar from '../vendor/navbar';
 
 // class based component (smart component)
 const messageList = [
@@ -81,6 +82,7 @@ class MessagePage extends Component {
 
     return (
       <div>
+        <NavBar />
         <h1>Messages</h1>
         <h3>Left Side Bar (Message Preview)</h3>
         {chats}
