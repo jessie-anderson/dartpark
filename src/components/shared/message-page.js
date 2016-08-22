@@ -5,9 +5,9 @@ import NavBar from '../vendor/navbar';
 
 // class based component (smart component)
 const messageList = [
-  { message: 'Hi, how are you?', sender: 'true', time: '2:05pm' },
-  { message: 'Hi! I am good', sender: 'false', time: '3:34pm' },
-  { message: 'I am good as well', sender: 'true', time: '7:00pm' },
+  { message: 'Hi, how are you?', sender: 'renter', time: '2:05pm' },
+  { message: 'Hi! I am good', sender: 'vendor', time: '3:34pm' },
+  { message: 'I am good as well', sender: 'renter', time: '7:00pm' },
 ];
 
 const messageList1 = [
@@ -75,6 +75,7 @@ class MessagePage extends Component {
       return (
         <ChatPreview
           user={data.chatWith}
+          latestChat={data[0]}
           key={data.chatWith}
         />
       );
@@ -90,7 +91,6 @@ class MessagePage extends Component {
         {sentMessages}
         <MessageBar />
       </div>
-
     );
   }
 }
