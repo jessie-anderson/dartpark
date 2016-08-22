@@ -2,6 +2,8 @@ import { SpotActionTypes } from '../actions/spot-actions';
 
 const SpotsReducer = (spots = { all: [], spot: null }, action) => {
   switch (action.type) {
+    case SpotActionTypes.SEARCH_LOCATION:
+      // return Object.assign({}, );
     case SpotActionTypes.CREATE_SPOT:
       return {
         all: action.payload.vendor.spots,

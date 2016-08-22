@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import CardItemEdit from './carditem-edit';
+import { connect } from 'react-redux';
 import VehicleItemRender from './vehicle-render';
-// import { createCar } from '../actions/car-actions';
+import { changeRenterBio } from '../../actions/user-actions';
 import NavBar from './navbar';
 
 
@@ -18,6 +19,7 @@ class Profile extends Component {
     this.onChangeLast = this.onChangeLast.bind(this);
     this.onChangeAddress = this.onChangeAddress.bind(this);
     this.onChangeDescription = this.onChangeDescription.bind(this);
+    this.onButtonPress = this.onButtonPress.bind(this);
   }
 
   onChangeFirst(event) {
@@ -34,6 +36,9 @@ class Profile extends Component {
 
   onChangeDescription(event) {
     this.setState({ description: event.target.value });
+  }
+  onButtonPress(event) {
+    this.props.changeRenterBio(this.state);
   }
 
   render() {
@@ -58,6 +63,7 @@ class Profile extends Component {
           </div>
           <div className="button">
             <button id="edit-info">Edit My Info</button>
+            <button id="save-info" onClick={this.onButtonPress}>Save Changes</button>
           </div>
           <CardItemEdit />
           <VehicleItemRender />
@@ -67,4 +73,4 @@ class Profile extends Component {
   }
 }
 
-export default Profile;
+export default connect(null, { changeRenterBio })(Profile);

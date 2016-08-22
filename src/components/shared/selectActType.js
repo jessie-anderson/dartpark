@@ -22,10 +22,9 @@ class selectActType extends Component {
   render() {
     return (
       <div>
-        <Geosuggest onSuggestSelect={this.onSearchBarChange} onChange={this.onSearchBarChange} />
         <h1>Select Account Type</h1>
-        <Link to={'/signup-renter'}><button>Renter</button></Link>
-        <Link to={'/signup-vendor'}><button>Vendor</button></Link>
+        <Link to={'/signin-renter'}><button>Renter</button></Link>
+        <Link to={'/signin-vendor'}><button>Vendor</button></Link>
       </div>
     );
   }

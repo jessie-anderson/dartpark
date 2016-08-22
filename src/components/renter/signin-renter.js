@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-// import { connect } from 'react-redux';
+import { connect } from 'react-redux';
 import { Link } from 'react-router';
+import { signinRenter } from '../../actions/user-actions';
 
 class SignInRenter extends Component {
   constructor(props) {
@@ -28,7 +29,7 @@ class SignInRenter extends Component {
         <button>Login with Facebook</button>
         <button>Login with Google</button>
         <span>`Don't have an account?`</span>
-        <Link to={'/selectType'}><button>Sign Up</button></Link>
+        <Link to={'/signup-renter'}><button>Sign Up</button></Link>
       </div>
     );
   }

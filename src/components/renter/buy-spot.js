@@ -87,7 +87,7 @@ class BuyItem extends Component {
   }
 
   clientDidCreate() {
-
+    console.log('client');
   }
 
 
