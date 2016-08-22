@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bootstrap } from 'react-bootstrap';
 import { Link } from 'react-router';
+import NavBar from './navbar';
 
 
 class VendorManage extends Component {
@@ -22,6 +23,7 @@ class VendorManage extends Component {
   render() {
     return (
       <div>
+        <NavBar />
         <h1>Manage Spots</h1>
         <h2>You have not created any spots yet.  Click the button below to add some spots to your profile.</h2>
         <Link to="/vendor/create-spots" ><button onClick={this.onButtonPress}>+Add Spots</button></Link>

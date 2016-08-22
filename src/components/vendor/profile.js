@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 // import { connect } from 'react-redux';
 import { Modal, Tab, Tabs } from 'react-bootstrap';
 let Dropzone = require('react-dropzone');
+import VendorNavBar from './navbar';
 
 class VendorProfile extends Component {
   constructor(props) {
@@ -33,6 +34,7 @@ class VendorProfile extends Component {
   render() {
     return (
       <div>
+        <VendorNavBar />
         <h1>Edit Profile</h1>
         <label htmlFor="nameVendor">Name: </label>
         <input id="nameVendor" placeholder={this.vendorName}></input>
