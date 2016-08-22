@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { bootstrap } from 'react-bootstrap';
 import { Link } from 'react-router';
 import SimpleSearchBar from '../renter/simple-bar';
+import { createSpot } from '../../actions/spot-actions';
 
 class CreateSpots extends Component {
   constructor(props) {
