@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { bootstrap } from 'react-bootstrap';
+// import { bootstrap } from 'react-bootstrap';
 import { Link } from 'react-router';
 import SimpleSearchBar from '../renter/simple-bar';
 import { createSpot } from '../../actions/spot-actions';
@@ -42,6 +42,7 @@ class CreateSpots extends Component {
 
   onButtonPress(event) {
     console.log('button pressed');
+    this.props.createSpot(event);
   }
 
 
@@ -74,4 +75,4 @@ class CreateSpots extends Component {
     );
   }
 }
-export default CreateSpots;
+export default connect(null, { createSpot })(CreateSpots);
