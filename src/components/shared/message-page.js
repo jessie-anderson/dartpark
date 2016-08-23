@@ -9,7 +9,7 @@ class MessagePage extends Component {
     super(props);
 
     // init component state here
-    this.state = { leftSide: [], rightSide: [], currentMessage: '', currentConvoId: '', role: 'renter' };
+    this.state = { currentMessage: '', currentConvoId: '', role: 'renter' };
     this.handleConvoClick = this.handleConvoClick.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSendMessage = this.handleSendMessage.bind(this);
@@ -26,21 +26,30 @@ class MessagePage extends Component {
     this.setState({ currentMessage: event.target.value });
   }
   handleSendMessage() {
-    this.props.sendMessage(this.state.currentConvoId, { message: this.state.currentMessage, sender: 'renter' });
+    this.props.sendMessage(this.state.currentConvoId, { message: this.state.currentMessage, sender: this.state.role });
   }
   renderFullConversation() {
     console.log(this.props.conversation);
     if (this.props.conversation) {
       return this.props.conversation.messages.map((message) => {
         console.log(message);
-        return (
-          <div key={message._id}>
-            <div>
-              <p>Sender: {message.sender}</p>
-              <p>{message.text}</p>
+        if (message.sender === this.state.role) { // this is you
+          return (
+            <div key={message._id} id="right-msg">
+              <div id="your-msg">
+                <div>{message.text}</div>
+              </div>
             </div>
-          </div>
           );
+        } else {
+          return (
+            <div key={message._id} id="left-msg">
+              <div id="others-msg">
+                <div>{message.text}</div>
+              </div>
+            </div>
+            );
+        }
       });
     } else {
       return <div>No messages</div>;
@@ -49,13 +58,21 @@ class MessagePage extends Component {
   renderConversationPreview() {
     if (this.props.conversations) {
       return this.props.conversations.map((convo) => {
-        return (
-          <div id="convo-preview" key={convo.id} onClick={(event) => { this.handleConvoClick(convo.id); }}>
-            <p>Id: {convo.id}</p>
-            <p>Convo with: {convo.usernameRenter}</p>
-            <p>Message: {convo.messages[0].text}</p>
-          </div>
-        );
+        if (convo.id === this.state.currentConvoId) {
+          return (
+            <div id="convo-preview-active" key={convo.id} onClick={(event) => { this.handleConvoClick(convo.id); }}>
+              <div id="chat-with">Convo with: {convo.usernameRenter}</div>
+              <div id="preview-msg">Message: {convo.messages[0].text}</div>
+            </div>
+          );
+        } else {
+          return (
+            <div id="convo-preview" key={convo.id} onClick={(event) => { this.handleConvoClick(convo.id); }}>
+              <div id="chat-with">Convo with: {convo.usernameRenter}</div>
+              <div id="preview-msg">Message: {convo.messages[0].text}</div>
+            </div>
+          );
+        }
       });
     } else {
       return <div>No conversations</div>;
@@ -65,7 +82,6 @@ class MessagePage extends Component {
     return (
       <div>
         <NavBar />
-        <h1>Messages</h1>
         <div id="messages">
           <div id="conv-prev">
             <h3>Chats</h3>
@@ -77,8 +93,8 @@ class MessagePage extends Component {
               {this.renderFullConversation()}
             </div>
             <div>
-              <input placeholder="Message..." onChange={this.handleInputChange} />
-              <button onClick={this.handleSendMessage} disabled={!this.props.conversation}>Send</button>
+              <input placeholder="Message..." onChange={this.handleInputChange} id="msg-input" />
+              <button onClick={this.handleSendMessage} disabled={!this.props.conversation} id="send-btn">Send</button>
             </div>
           </div>
         </div>
