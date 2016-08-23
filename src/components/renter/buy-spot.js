@@ -2,7 +2,11 @@ import ResultItem from './spot-list-item';
 import React, { Component } from 'react';
 import { Link } from 'react-router';
 import CardItemRender from './payment-render';
-import braintree from 'braintree-web';
+// import braintree from 'braintree-web';
+var braintree = require('braintree-web');
+var client = require('braintree-web/client');
+var hostedFields = require('braintree-web/hosted-fields');
+
 
 class BuyItem extends Component {
   constructor(props) {
@@ -80,10 +84,19 @@ class BuyItem extends Component {
 
 
 // https://github.com/braintree/braintree-web
+    // braintree.setup('sandbox_g42y39zw_348pk9cgf3bgyw2b', 'custom');
+    //
+    //
+    // braintree.client.create({
+    //   authorization: 'sandbox_g42y39zw_348pk9cgf3bgyw2b',
+    // }, () => { console.log('client_made'); });
 
-    braintree.client.create({
-      authorization: CLIENT_AUTHORIZATION,
-    }, clientDidCreate);
+
+    client.create({
+      authorization: 'CLIENT_AUTHORIZATION',
+    }, function (err, clientInstance) {
+      hostedFields.create(/* ... */);
+    });
   }
 
   clientDidCreate() {
@@ -94,8 +107,19 @@ class BuyItem extends Component {
   render() {
     return (
       <div>
-        {this.state.form}
-        {this.state.submit}
+        <form action="/" id="my-sample-form">
+          <input type="hidden" name="payment_method_nonce" />
+          <label htmlFor="card-number">Card Number</label>
+          <div id="card-number"></div>
+
+          <label htmlFor="cvv">CVV</label>
+          <div id="cvv"></div>
+
+          <label htmlFor="expiration-date">Expiration Date</label>
+          <div id="expiration-date"></div>
+
+          <input id="my-submit" type="submit" value="Pay" disabled />
+        </form>
       </div>
     );
   }
