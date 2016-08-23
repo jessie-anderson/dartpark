@@ -55,9 +55,9 @@ export function signinVendor({ email, password }) {
   };
 }
 
-export function signupRenter({ email, password }) {
+export function signupRenter({ email, password, username }) {
   return (dispatch) => {
-    axios.post(`${ROOT_URL}/renter/signup`, { email, password })
+    axios.post(`${ROOT_URL}/renter/signup`, { email, password, username })
     .then(response => {
       dispatch({
         type: UserActionTypes.AUTH_RENTER,
@@ -74,7 +74,7 @@ export function signupRenter({ email, password }) {
 
 export function signupVendor({ email, password, username }) {
   return (dispatch) => {
-    axios.post(`${ROOT_URL}/renter/signup`, { email, password, username })
+    axios.post(`${ROOT_URL}/vendor/signup`, { email, password, username })
     .then(response => {
       dispatch({
         type: UserActionTypes.AUTH_RENTER,
