@@ -36,8 +36,8 @@ class NavBar extends Component {
           </Link>
           <Link to="/messaging" id="nav-link">
             <FontAwesome id="fa-icon"
-              className="home"
-              name="home"
+              className="commenting"
+              name="commenting"
             />
             <span>Messages</span>
           </Link>

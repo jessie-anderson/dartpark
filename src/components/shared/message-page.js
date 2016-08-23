@@ -91,7 +91,7 @@ class MessagePage extends Component {
             <div id="conv-display">
               {this.renderFullConversation()}
             </div>
-            <div>
+            <div id="message-bar">
               <input placeholder="Message..." onChange={this.handleInputChange} id="msg-input" />
               <button onClick={this.handleSendMessage} disabled={!this.props.conversation} type="submit" id="send-btn">Send</button>
             </div>

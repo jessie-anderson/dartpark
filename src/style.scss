@@ -230,6 +230,9 @@ h1 {
   #full-conv {
     flex-grow: 2;
   }
+  #message-bar {
+    padding: 0.4em;
+  }
 }
 #msg-input {
   width: 90%;
@@ -278,4 +281,30 @@ h1 {
 #preview-msg {
   color: darken(white, 50%);
   margin-left: 0.3em;
+}
+#center-content {
+  margin: 0 auto;
+  display: flex;
+  height: 60vh;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-left: 2em;
+  padding-right: 2em;
+  h1 {
+    font-family: $title-font;
+    color: $main-color;
+  }
+  h2 {
+    font-size: 1.3em;
+    text-align: center;
+  }
+  #spots-btn {
+    border: none;
+    background-color: $main-color;
+    color: white;
+    font-size: 1.5em;
+    margin-top: 2em;
+    padding: 0.5em;
+  }
 }
