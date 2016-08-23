@@ -50,7 +50,6 @@ export default(
     <Route path="/vendor/edit-spots" component={EditSpot} />
     <Route path="/vendor/profile" component={VendorProfile} />
 
-
     <Route path="/selectType" component={SelectType} />
     <Route path="/studentAuth" component={StudentAuth} />
     <Route path="/messaging" component={Messaging} />
