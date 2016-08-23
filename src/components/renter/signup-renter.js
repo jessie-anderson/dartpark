@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router';
-import { signupRenter } from '../../actions/spot-actions';
+import { signupRenter } from '../../actions/user-actions';
 
 
 class SignUpRenter extends Component {
@@ -9,10 +8,11 @@ class SignUpRenter extends Component {
     super(props);
 
     // init component state here
-    this.state = { email: '', password: '' };
+    this.state = { email: '', password: '', username: '' };
     this.onEmailChange = this.onEmailChange.bind(this);
     this.onPasswordChange = this.onPasswordChange.bind(this);
-    this.signUpRenter = this.signUpRenter.bind(this);
+    this.onNameChange = this.onNameChange.bind(this);
+    this.signupRenter = this.signupRenter.bind(this);
   }
   onEmailChange(event) {
     this.setState({ email: event.target.value });
@@ -20,7 +20,10 @@ class SignUpRenter extends Component {
   onPasswordChange(event) {
     this.setState({ password: event.target.value });
   }
-  signUpRenter(event) {
+  onNameChange(event) {
+    this.setState({ username: event.target.value });
+  }
+  signupRenter() {
     this.props.signupRenter(this.state);
   }
   render() {
@@ -33,7 +36,9 @@ class SignUpRenter extends Component {
           <input onChange={this.onEmailChange} placeholder={"Email..."} />
           <h4>Enter your password:</h4>
           <input onChange={this.onPasswordChange} placeholder={"Password..."} />
-          <button onClick={this.signUpRenter}>Sign Up</button>
+          <h4>Enter your name:</h4>
+          <input onChange={this.onNameChange} placeholder={"Name..."} />
+          <button onClick={this.signupRenter}>Sign Up</button>
         </div>
       </div>
     );

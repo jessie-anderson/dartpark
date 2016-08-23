@@ -12,12 +12,16 @@ class SignInRenter extends Component {
 
     this.onEmailChange = this.onEmailChange.bind(this);
     this.onPasswordChange = this.onPasswordChange.bind(this);
+    this.signin = this.signin.bind(this);
   }
   onEmailChange(event) {
     this.setState({ email: event.target.value });
   }
   onPasswordChange(event) {
     this.setState({ password: event.target.value });
+  }
+  signin() {
+    this.props.signinRenter(this.state);
   }
   render() {
     return (
@@ -26,8 +30,7 @@ class SignInRenter extends Component {
         <h3>Login</h3>
         <input onChange={this.onEmailChange} placeholder={"Email..."} />
         <input onChange={this.onPasswordChange} placeholder={"Password..."} />
-        <button>Login with Facebook</button>
-        <button>Login with Google</button>
+        <button onClick={this.signin}>Sign In</button>
         <span>`Don't have an account?`</span>
         <Link to={'/signup-renter'}><button>Sign Up</button></Link>
       </div>
@@ -42,4 +45,4 @@ class SignInRenter extends Component {
 //   }
 // );
 // react-redux glue -- outputs Container that know state in props
-export default SignInRenter;
+export default connect(null, { signinRenter })(SignInRenter);
