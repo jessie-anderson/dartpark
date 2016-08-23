@@ -2,7 +2,6 @@ import ResultItem from './spot-list-item';
 import React, { Component } from 'react';
 import { Link } from 'react-router';
 import CardItemRender from './payment-render';
-require('dotenv').config();
 const braintree = require('braintree-web');
 
 class BuyItem extends Component {
@@ -11,68 +10,53 @@ class BuyItem extends Component {
 
     // init component state here
     this.state = {
-      // form: document.querySelector('#checkout-form'),
-      // submit: document.querySelector('input[type="submit"]'),
+      localNumber: '',
+      localExpirationDate: '',
+      localExpirationMonth: '',
+      localExpirationYear: '',
+      localCvv: '',
+      localPostalCode: '',
     };
-    var submitBtn = document.getElementById('my-submit');
-    var form = document.getElementById('my-sample-form');
 
     braintree.client.create({
-      authorization: process.env.BT_AUTH,
-    }, clientDidCreate);
-
-    function clientDidCreate(err, client) {
-      braintree.hostedFields.create({
-        client,
+      authorization: 'CLIENT_AUTHORIZATION',
+    }, function (clientErr, clientInstance) {
+      if (clientErr) {
+    // Handle error in client creation
+        return;
+      }
+      const options = {
+        client: clientInstance,
         styles: {
-          'input': {
-            'font-size': '16pt',
-            'color': '#3A3A3A',
-          },
-
-          '.number': {
-            'font-family': 'monospace',
-          },
-
-          '.valid': {
-            'color': 'green',
-          },
+      /* ... */
         },
         fields: {
-          number: {
-            selector: '#card-number',
-          },
-          cvv: {
-            selector: '#cvv',
-          },
-          expirationDate: {
-            selector: '#expiration-date',
-          },
+          number: {},
+          expirationDate: {},
+          expirationMonth: {},
+          expirationYear: {},
+          cvv: {},
+          postalCode: {},
         },
-      }, hostedFieldsDidCreate);
-    }
+      };
 
-    function hostedFieldsDidCreate(err, hostedFields) {
-      submitBtn.addEventListener('click', submitHandler.bind(null, hostedFields));
-      submitBtn.removeAttribute('disabled');
-    }
-
-    function submitHandler(hostedFields, event) {
-      event.preventDefault();
-      submitBtn.setAttribute('disabled', 'disabled');
-
-      hostedFields.tokenize(function (err, payload) {
-        if (err) {
-          submitBtn.removeAttribute('disabled');
-          console.error(err);
-        } else {
-          form['payment_method_nonce'].value = payload.nonce;
-          form.submit();
+      braintree.hostedFields.create(options, function (hostedFieldsErr, hostedFieldsInstance) {
+        if (hostedFieldsErr) {
+      // Handle error in Hosted Fields creation
+          return;
         }
+
+    // Use the Hosted Fields instance here to tokenize a card
       });
-    }
+    });
   }
 
+  onExpDateChange(event) {
+    console.log(event.target.value);
+    const wholeDate = event.target.value.split('-');
+    console.log(wholeDate[1]);
+    console.log(wholeDate[0]);
+  }
 
   render() {
     return (
@@ -86,6 +70,7 @@ class BuyItem extends Component {
           <div id="cvv"></div>
 
           <label htmlFor="expiration-date">Expiration Date</label>
+          <input id="expiration-month" />
           <div id="expiration-date"></div>
 
           <input id="my-submit" type="submit" value="Pay" disabled />
@@ -95,99 +80,6 @@ class BuyItem extends Component {
   }
 }
 export default BuyItem;
-
-//
-// class BuyItem extends Component {
-//   constructor(props) {
-//     super(props);
-//
-//     // init component state here
-//     this.state = {
-//       // form: document.querySelector('#checkout-form'),
-//       // submit: document.querySelector('input[type="submit"]'),
-//     };
-//     var submitBtn = document.getElementById('my-submit');
-//     var form = document.getElementById('my-sample-form');
-//
-//     braintree.client.create({
-//       authorization: process.env.BT_AUTH,
-//     }, clientDidCreate);
-//
-//     function clientDidCreate(err, client) {
-//       braintree.hostedFields.create({
-//         client,
-//         styles: {
-//           'input': {
-//             'font-size': '16pt',
-//             'color': '#3A3A3A',
-//           },
-//
-//           '.number': {
-//             'font-family': 'monospace',
-//           },
-//
-//           '.valid': {
-//             'color': 'green',
-//           },
-//         },
-//         fields: {
-//           number: {
-//             selector: '#card-number',
-//           },
-//           cvv: {
-//             selector: '#cvv',
-//           },
-//           expirationDate: {
-//             selector: '#expiration-date',
-//           },
-//         },
-//       }, hostedFieldsDidCreate);
-//     }
-//
-//     function hostedFieldsDidCreate(err, hostedFields) {
-//       submitBtn.addEventListener('click', submitHandler.bind(null, hostedFields));
-//       submitBtn.removeAttribute('disabled');
-//     }
-//
-//     function submitHandler(hostedFields, event) {
-//       event.preventDefault();
-//       submitBtn.setAttribute('disabled', 'disabled');
-//
-//       hostedFields.tokenize(function (err, payload) {
-//         if (err) {
-//           submitBtn.removeAttribute('disabled');
-//           console.error(err);
-//         } else {
-//           form['payment_method_nonce'].value = payload.nonce;
-//           form.submit();
-//         }
-//       });
-//     }
-//   }
-//
-//
-//   render() {
-//     return (
-//       <div>
-//         <form action="/" id="my-sample-form">
-//           <input type="hidden" name="payment_method_nonce" />
-//           <label htmlFor="card-number">Card Number</label>
-//           <div id="card-number"></div>
-//
-//           <label htmlFor="cvv">CVV</label>
-//           <div id="cvv"></div>
-//
-//           <label htmlFor="expiration-date">Expiration Date</label>
-//           <div id="expiration-date"></div>
-//
-//           <input id="my-submit" type="submit" value="Pay" disabled />
-//         </form>
-//       </div>
-//     );
-//   }
-// }
-// export default BuyItem;
-
 
 // const BuyItem = (props) => {
 //   return (
