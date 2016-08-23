@@ -34,3 +34,13 @@ export function fetchConvo(convoId) {
     });
   };
 }
+
+export function sendMessage(convoId, { message, sender }) {
+  return (dispatch) => {
+    axios.post(`${ROOT_URL}/conversations/${convoId}`, { message, sender }, { headers: { authorization: localStorage.getItem('token') } }).then(response => {
+      dispatch(fetchConvo(convoId));
+    }).catch(error => {
+        // hit an error
+    });
+  };
+}
