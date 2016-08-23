@@ -3,7 +3,7 @@ import { browserHistory } from 'react-router';
 const ROOT_URL = 'http://localhost:9090/api'; // for testing
 // const ROOT_URL = 'http://dartpark.herokuapp.com/api'; // for when it's connected to the server
 
-const SpotActionTypes = {
+export const SpotActionTypes = {
   CREATE_SPOT: 'CREATE_SPOT',
   VENDOR_GET_SPOTS: 'VENDOR_GET_SPOTS',
   VENDOR_GET_SPOT: 'VENDOR_GET_SPOT',
