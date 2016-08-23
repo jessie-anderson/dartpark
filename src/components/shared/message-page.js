@@ -52,7 +52,7 @@ class MessagePage extends Component {
         }
       });
     } else {
-      return <div>No messages</div>;
+      return <div>Select a conversation to view messages</div>;
     }
   }
   renderConversationPreview() {

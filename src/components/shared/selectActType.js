@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 // import { connect } from 'react-redux';
 import { Link } from 'react-router';
-import Geosuggest from 'react-geosuggest';
 
 class selectActType extends Component {
   constructor(props) {
@@ -9,16 +8,7 @@ class selectActType extends Component {
 
     // init component state here
     this.state = { };
-    this.onSearchBarChange = this.onSearchBarChange.bind(this);
   }
-  onSearchBarChange(value) {
-    console.log(value);
-  }
-
-  suggestionSelection() {
-    console.log('clicked');
-  }
-
   render() {
     return (
       <div>
@@ -30,5 +20,11 @@ class selectActType extends Component {
   }
 }
 
+const mapStateToProps = (state) => (
+  {
+    role: state.userType,
+  }
+);
+
 // react-redux glue -- outputs Container that know state in props
-export default selectActType;
+export default connect(mapStateToProps, null)(SelectActType);
