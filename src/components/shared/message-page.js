@@ -9,7 +9,7 @@ class MessagePage extends Component {
     super(props);
 
     // init component state here
-    this.state = { currentMessage: '', currentConvoId: '', role: 'renter' };
+    this.state = { currentMessage: '', currentConvoId: '', role: 'renter', userId: '57bb6f7cb459b705d81296b5' };
     this.handleConvoClick = this.handleConvoClick.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSendMessage = this.handleSendMessage.bind(this);
@@ -26,13 +26,12 @@ class MessagePage extends Component {
     this.setState({ currentMessage: event.target.value });
   }
   handleSendMessage() {
-    this.props.sendMessage(this.state.currentConvoId, { message: this.state.currentMessage, sender: this.state.role });
+    this.props.sendMessage(this.state.currentConvoId, this.state.userId, { message: this.state.currentMessage, sender: this.state.role });
+    // this.props.fetchConvoPreview(this.state.userId, 'renter');
   }
   renderFullConversation() {
-    console.log(this.props.conversation);
     if (this.props.conversation) {
       return this.props.conversation.messages.map((message) => {
-        console.log(message);
         if (message.sender === this.state.role) { // this is you
           return (
             <div key={message._id} id="right-msg">
@@ -94,7 +93,7 @@ class MessagePage extends Component {
             </div>
             <div>
               <input placeholder="Message..." onChange={this.handleInputChange} id="msg-input" />
-              <button onClick={this.handleSendMessage} disabled={!this.props.conversation} id="send-btn">Send</button>
+              <button onClick={this.handleSendMessage} disabled={!this.props.conversation} type="submit" id="send-btn">Send</button>
             </div>
           </div>
         </div>

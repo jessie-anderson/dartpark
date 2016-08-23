@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 // import { connect } from 'react-redux';
 import { Link } from 'react-router';
-import Geosuggest from 'react-geosuggest';
 // require('dotenv').config();
 
 
@@ -23,11 +22,6 @@ class selectActType extends Component {
   }
 }
 
-const mapStateToProps = (state) => (
-  {
-    role: state.userType,
-  }
-);
 
 // react-redux glue -- outputs Container that know state in props
-export default connect(mapStateToProps, null)(SelectActType);
+export default selectActType;
