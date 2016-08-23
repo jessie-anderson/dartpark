@@ -1,20 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 // import { Link } from 'react-router';
-import MessageBar from './message-bar';
+// import MessageBar from './message-bar';
 import NavBar from '../vendor/navbar';
-import { fetchConvos } from '../../actions/message-actions';
-
-
-const ChatPreview = (props) => {
-  return (
-    <div>
-      <div>
-        Chat with: {props.user}
-      </div>
-    </div>
-  );
-};
+import { fetchConvoPreview, fetchConvo } from '../../actions/message-actions';
 
 class MessagePage extends Component {
   constructor(props) {
@@ -22,17 +11,38 @@ class MessagePage extends Component {
 
     // init component state here
     this.state = {};
+    this.handleConvoClick = this.handleConvoClick.bind(this);
   }
   componentWillMount() {
-    this.props.fetchConvos('57bb6f7cb459b705d81296b5', 'renter');
+    this.props.fetchConvoPreview('57bb6f7cb459b705d81296b5', 'renter');
     localStorage.setItem('token', 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1N2JiNmY3Y2I0NTliNzA1ZDgxMjk2YjUiLCJpYXQiOjE0NzE5MDE1NjQ2MjB9.i9AcFPjRvjxOLVtSdmJtSkHGBbAcfwK65EPRo8kXaFM');
   }
-  renderConversations() {
+  handleConvoClick(convoId) {
+    console.log();
+    this.props.fetchConvo(convoId);
+  }
+  renderFullConversation() {
+    console.log(this.props.conversation);
+    if (this.props.conversation) {
+      return this.props.conversation.messages.map((message) => {
+        console.log(message);
+        return (
+          <div>
+            {message.text}
+          </div>
+          );
+      });
+    } else {
+      return <div>No messages</div>;
+    }
+  }
+  renderConversationPreview() {
     if (this.props.conversations) {
       return this.props.conversations.map((convo) => {
         return (
-          <div id="convo-preview">
+          <div id="convo-preview" key={convo.id} onClick={(event) => { this.handleConvoClick(convo.id); }}>
             <p>Id: {convo.id}</p>
+            <p>Convo with: {convo.usernameRenter}</p>
             <p>Message: {convo.messages[0].text}</p>
           </div>
         );
@@ -47,7 +57,9 @@ class MessagePage extends Component {
         <NavBar />
         <h1>Messages</h1>
         <h3>Conversations</h3>
-        {this.renderConversations()}
+        {this.renderConversationPreview()}
+        <h3>Full Conversation</h3>
+        {this.renderFullConversation()}
       </div>
     );
   }
@@ -55,8 +67,8 @@ class MessagePage extends Component {
 
 const mapStateToProps = (state) => (
   {
-    conversations: state.conversations,
-    conversation:
+    conversations: state.conversations.all,
+    conversation: state.conversations.conversation,
   }
 );
 
@@ -65,4 +77,4 @@ const mapStateToProps = (state) => (
 // };
 
 
-export default connect(mapStateToProps, { fetchConvos })(MessagePage);
+export default connect(mapStateToProps, { fetchConvoPreview, fetchConvo })(MessagePage);
