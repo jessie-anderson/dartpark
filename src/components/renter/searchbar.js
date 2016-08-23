@@ -6,6 +6,7 @@ import Geosuggest from 'react-geosuggest';
 import { Link } from 'react-router';
 import NavBar from './navbar';
 import { saveSearch } from '../../actions/spot-actions';
+import { connect } from 'react-redux';
 
 
 class SearchBar extends Component {
@@ -36,6 +37,7 @@ class SearchBar extends Component {
     if (!this.state.suggestClick) {
       console.log('empty');
     } else {
+      console.log(this.state.searchTerm.label);
       this.props.saveSearch(this.state.searchTerm.label);
     }
   }
@@ -53,4 +55,4 @@ class SearchBar extends Component {
     );
   }
 }
-export default SearchBar;
+export default connect(null, { saveSearch })(SearchBar);
