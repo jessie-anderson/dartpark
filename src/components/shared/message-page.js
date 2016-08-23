@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 // import { Link } from 'react-router';
-// import MessageBar from './message-bar';
+import MessageBar from './message-bar';
 import NavBar from '../vendor/navbar';
 import { fetchConvoPreview, fetchConvo } from '../../actions/message-actions';
 
@@ -10,7 +10,7 @@ class MessagePage extends Component {
     super(props);
 
     // init component state here
-    this.state = {};
+    this.state = { leftSide: [], rightSide: [] };
     this.handleConvoClick = this.handleConvoClick.bind(this);
   }
   componentWillMount() {
@@ -27,8 +27,11 @@ class MessagePage extends Component {
       return this.props.conversation.messages.map((message) => {
         console.log(message);
         return (
-          <div>
-            {message.text}
+          <div key={message._id}>
+            <div>
+              <p>Sender: {message.sender}</p>
+              <p>{message.text}</p>
+            </div>
           </div>
           );
       });
