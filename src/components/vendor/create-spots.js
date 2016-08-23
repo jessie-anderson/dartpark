@@ -42,7 +42,7 @@ class CreateSpots extends Component {
 
   onButtonPress(event) {
     console.log('button pressed');
-    this.props.createSpot(event);
+    this.props.createSpot(this.state);
   }
 
 
