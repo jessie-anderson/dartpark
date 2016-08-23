@@ -1,19 +1,35 @@
 import React, { Component } from 'react';
 // import { connect } from 'react-redux';
-import { Link } from 'react-router';
+import { connect } from 'react-redux';
+import { signupVendor } from '../../actions/user-actions';
 
 class SignUpVendor extends Component {
   constructor(props) {
     super(props);
 
+    this.onEmailChange = this.onEmailChange.bind(this);
+    this.onPasswordChange = this.onPasswordChange.bind(this);
+    this.onNameChange = this.onNameChange.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
+
     // init component state here
-    this.state = { };
+    this.state = {
+      email: '',
+      password: '',
+      username: '',
+    };
   }
   onEmailChange(event) {
     this.setState({ email: event.target.value });
   }
   onPasswordChange(event) {
     this.setState({ password: event.target.value });
+  }
+  onNameChange(event) {
+    this.setState({ username: event.target.value });
+  }
+  onSubmit() {
+    this.props.signupVendor(this.state);
   }
   render() {
     return (
@@ -25,8 +41,9 @@ class SignUpVendor extends Component {
           <input onChange={this.onEmailChange} placeholder={"Email..."} />
           <h4>Enter your password:</h4>
           <input onChange={this.onPasswordChange} placeholder={"Password..."} />
-          <span>{'Don\'t have an account?'}</span>
-          <Link to={'/selectType'}><button>Sign Up</button></Link>
+          <h4>Enter your name</h4>
+          <input onChange={this.onNameChange} placeholder={"Name..."} />
+          <button onClick={this.onSubmit}>Sign Up</button>
         </div>
       </div>
     );
@@ -34,4 +51,4 @@ class SignUpVendor extends Component {
 }
 
 // react-redux glue -- outputs Container that know state in props
-export default SignUpVendor;
+export default connect(null, { signupVendor })(SignUpVendor);
