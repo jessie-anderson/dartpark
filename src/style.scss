@@ -191,3 +191,18 @@ h1 {
 #convo-preview {
   background-color: $accent-color;
 }
+
+#messages {
+  display: flex;
+  flex-flow: row nowrap;
+  #conv-display {
+    overflow-y: scroll;
+    height: 70vh;
+  }
+  #conv-prev {
+    flex-basis: 25%;
+  }
+  #full-conv {
+    flex-grow: 2;
+  }
+}

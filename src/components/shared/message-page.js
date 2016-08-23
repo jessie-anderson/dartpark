@@ -1,25 +1,32 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 // import { Link } from 'react-router';
-import MessageBar from './message-bar';
 import NavBar from '../vendor/navbar';
-import { fetchConvoPreview, fetchConvo } from '../../actions/message-actions';
+import { fetchConvoPreview, fetchConvo, sendMessage } from '../../actions/message-actions';
 
 class MessagePage extends Component {
   constructor(props) {
     super(props);
 
     // init component state here
-    this.state = { leftSide: [], rightSide: [] };
+    this.state = { leftSide: [], rightSide: [], currentMessage: '', currentConvoId: '', role: 'renter' };
     this.handleConvoClick = this.handleConvoClick.bind(this);
+    this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleSendMessage = this.handleSendMessage.bind(this);
   }
   componentWillMount() {
     this.props.fetchConvoPreview('57bb6f7cb459b705d81296b5', 'renter');
     localStorage.setItem('token', 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1N2JiNmY3Y2I0NTliNzA1ZDgxMjk2YjUiLCJpYXQiOjE0NzE5MDE1NjQ2MjB9.i9AcFPjRvjxOLVtSdmJtSkHGBbAcfwK65EPRo8kXaFM');
   }
   handleConvoClick(convoId) {
-    console.log();
     this.props.fetchConvo(convoId);
+    this.setState({ currentConvoId: convoId });
+  }
+  handleInputChange(event) {
+    this.setState({ currentMessage: event.target.value });
+  }
+  handleSendMessage() {
+    this.props.sendMessage(this.state.currentConvoId, { message: this.state.currentMessage, sender: 'renter' });
   }
   renderFullConversation() {
     console.log(this.props.conversation);
@@ -59,10 +66,23 @@ class MessagePage extends Component {
       <div>
         <NavBar />
         <h1>Messages</h1>
-        <h3>Conversations</h3>
-        {this.renderConversationPreview()}
-        <h3>Full Conversation</h3>
-        {this.renderFullConversation()}
+        <div id="messages">
+          <div id="conv-prev">
+            <h3>Chats</h3>
+            {this.renderConversationPreview()}
+          </div>
+          <div id="full-conv">
+            <h3>Full Conversation</h3>
+            <div id="conv-display">
+              {this.renderFullConversation()}
+            </div>
+            <div>
+              <input placeholder="Message..." onChange={this.handleInputChange} />
+              <button onClick={this.handleSendMessage} disabled={!this.props.conversation}>Send</button>
+            </div>
+          </div>
+        </div>
+
       </div>
     );
   }
@@ -80,4 +100,4 @@ const mapStateToProps = (state) => (
 // };
 
 
-export default connect(mapStateToProps, { fetchConvoPreview, fetchConvo })(MessagePage);
+export default connect(mapStateToProps, { fetchConvoPreview, fetchConvo, sendMessage })(MessagePage);
