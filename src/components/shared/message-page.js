@@ -1,37 +1,10 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 // import { Link } from 'react-router';
 import MessageBar from './message-bar';
 import NavBar from '../vendor/navbar';
+import { fetchConvos } from '../../actions/message-actions';
 
-// class based component (smart component)
-const messageList = [
-  { message: 'Hi, how are you?', sender: 'true', time: '2:05pm' },
-  { message: 'Hi! I am good', sender: 'false', time: '3:34pm' },
-  { message: 'I am good as well', sender: 'true', time: '7:00pm' },
-];
-
-const messageList1 = [
-  { message: 'Hi', sender: 'false', time: '2:05pm' },
-  { message: 'Hi', sender: 'true', time: '2:05pm' },
-  { message: 'Are the lights on for my car?', sender: 'false', time: '3:34pm' },
-  { message: 'Nope just checked and they are not!', sender: 'true', time: '7:00pm' },
-];
-
-const messageData = [
-    { chatWith: 'Billy', sender: 'Bob', messages: messageList,
-     },
-    { chatWith: 'Ally', sender: 'Bob', messages: messageList1 },
-];
-
-const MessageDetail = (props) => {
-  return (
-    <div>
-      <div> Sender: {props.sender}</div>
-      <div> Message: {props.message}</div>
-      <div> Time sent: {props.time}</div>
-    </div>
-  );
-};
 
 const ChatPreview = (props) => {
   return (
@@ -50,49 +23,46 @@ class MessagePage extends Component {
     // init component state here
     this.state = {};
   }
-
+  componentWillMount() {
+    this.props.fetchConvos('57bb6f7cb459b705d81296b5', 'renter');
+    localStorage.setItem('token', 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1N2JiNmY3Y2I0NTliNzA1ZDgxMjk2YjUiLCJpYXQiOjE0NzE5MDE1NjQ2MjB9.i9AcFPjRvjxOLVtSdmJtSkHGBbAcfwK65EPRo8kXaFM');
+  }
+  renderConversations() {
+    if (this.props.conversations) {
+      return this.props.conversations.map((convo) => {
+        return (
+          <div id="convo-preview">
+            <p>Id: {convo.id}</p>
+            <p>Message: {convo.messages[0].text}</p>
+          </div>
+        );
+      });
+    } else {
+      return <div>No conversations</div>;
+    }
+  }
   render() {
-    const sentMessages = messageData.map((data) => {
-      return (
-        <MessageDetail
-          user={data.user}
-          message={data.messages.map((message) => {
-            return (
-              <div>
-                {message.message}
-                <div>Time sent: {message.time}</div>
-              </div>
-            );
-          })}
-          time={data.messages.time}
-          key={data.messages.time}
-        />
-      );
-    });
-
-    // const messagePreviewLength = 5;
-    const chats = messageData.map((data) => {
-      return (
-        <ChatPreview
-          user={data.chatWith}
-          key={data.chatWith}
-        />
-      );
-    });
-
     return (
       <div>
         <NavBar />
         <h1>Messages</h1>
-        <h3>Left Side Bar (Message Preview)</h3>
-        {chats}
-        <h3>Current Chat Messages</h3>
-        {sentMessages}
-        <MessageBar />
+        <h3>Conversations</h3>
+        {this.renderConversations()}
       </div>
-
     );
   }
 }
 
-export default MessagePage;
+const mapStateToProps = (state) => (
+  {
+    conversations: state.conversations,
+    conversation:
+  }
+);
+
+// const checkStateToProps = (state) => {
+//   console.log(state);
+// };
+
+
+export default connect(mapStateToProps, { fetchConvos })(MessagePage);
