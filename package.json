@@ -47,7 +47,7 @@
   },
   "dependencies": {
     "axios": "^0.13.1",
-    "braintree-web": "^2.27.0",
+    "braintree-web": "^3.0.1",
     "marked": "^0.3.6",
     "react": "^15.2.1",
     "react-dom": "^15.2.1",
