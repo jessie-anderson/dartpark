@@ -28,17 +28,17 @@ class SignUpRenter extends Component {
   }
   render() {
     return (
-      <div>
-        <div id="header-bar">dartPark</div>
-        <div id="abs-center">
-          <h1>Sign Up</h1>
-          <h4>Enter your email:</h4>
-          <input onChange={this.onEmailChange} placeholder={"Email..."} />
-          <h4>Enter your password:</h4>
-          <input onChange={this.onPasswordChange} placeholder={"Password..."} />
-          <h4>Enter your name:</h4>
-          <input onChange={this.onNameChange} placeholder={"Name..."} />
-          <button onClick={this.signupRenter}>Sign Up</button>
+      <div id="sign-in-renter">
+        <div id="center-content">
+          <div id="box">
+            <h1>Sign Up</h1>
+            <input onChange={this.onEmailChange} placeholder={"Email..."} />
+            <input onChange={this.onPasswordChange} placeholder={"Password..."} />
+            <input onChange={this.onNameChange} placeholder={"Name..."} />
+            <div id="btn3">
+              <button onClick={this.signupRenter}>Sign Up</button>
+            </div>
+          </div>
         </div>
       </div>
     );

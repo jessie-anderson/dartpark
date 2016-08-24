@@ -368,6 +368,10 @@ h1 {
   #btn1 {
     font-size: 1.2em;
   }
+  #btn3 {
+    font-size: 1.2em;
+    margin-top: 0.5em;
+  }
   #box {
     background-color: $accent-color;
     display: flex;
@@ -375,5 +379,6 @@ h1 {
     justify-content: center;
     padding: 3em;
     border-radius: 4px;
+    text-align: center;
   }
 }
