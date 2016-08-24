@@ -44,9 +44,6 @@ class VendorManage extends Component {
 
 
   render() {
-    return (
-      <div>
-        <div id="center-content">
     const spots = this.renderSpots();
     if (this.props.spots.length === 0) {
       return (
