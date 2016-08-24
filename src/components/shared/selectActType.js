@@ -14,9 +14,17 @@ class selectActType extends Component {
   render() {
     return (
       <div>
-        <h1>Select Account Type</h1>
-        <Link to={'/signin-renter'}><button>Renter</button></Link>
-        <Link to={'/signin-vendor'}><button>Vendor</button></Link>
+        <div id="center-content">
+          <div id="select-act">
+            <div id="sa-title">Select Account Type</div>
+            <div id="spot-btn-div">
+              <Link to={'/signin-renter'}><button id="spots-btn">Renter</button></Link>
+            </div>
+            <div id="spot-btn-div">
+              <Link to={'/signin-vendor'}><button id="spots-btn">Vendor</button></Link>
+            </div>
+          </div>
+        </div>
       </div>
     );
   }

@@ -298,13 +298,33 @@ h1 {
   h2 {
     font-size: 1.3em;
     text-align: center;
+    margin-bottom: 2em;
   }
   #spots-btn {
     border: none;
     background-color: $main-color;
     color: white;
     font-size: 1.5em;
-    margin-top: 2em;
     padding: 0.5em;
   }
+}
+
+#select-act {
+  background-color: $accent-color;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  padding: 1em;
+  border-radius: 4px;
+  padding-bottom: 2em;
+  #sa-title {
+    font-size: 2em;
+    font-family: $title-font;
+    color: $main-color;
+  }
+}
+
+#spot-btn-div {
+  margin: 2em;
 }
