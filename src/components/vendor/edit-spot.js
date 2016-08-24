@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { bootstrap } from 'react-bootstrap';
+// import { bootstrap } from 'react-bootstrap';
 import SpotItem from './spot-list-item';
 import { Link } from 'react-router';
+import { connect } from 'react-redux';
 import { updateSpot } from '../../actions/spot-actions';
 
 class EditSpot extends Component {
@@ -61,4 +62,4 @@ class EditSpot extends Component {
     );
   }
 }
-export default EditSpot;
+export default connect(null, { updateSpot })(EditSpot);

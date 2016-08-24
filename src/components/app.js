@@ -10,7 +10,6 @@ class App extends Component {
     // init component state here
     this.state = {};
   }
-
   render() {
     return (
       <div>

@@ -189,5 +189,122 @@ h1 {
 }
 
 #convo-preview {
+  background-color: white;
+  margin-right: 0.5em;
+  border-bottom: 1px solid $accent-color;
+  padding: 0.5em;
+  border-radius: 5px;
+  &:hover{
+    cursor: pointer;
+  }
+}
+#convo-preview-active {
   background-color: $accent-color;
+  margin-right: 0.5em;
+  border-bottom: 1px solid $accent-color;
+  padding: 0.5em;
+  border-radius: 5px;
+  &:hover{
+    cursor: pointer;
+  }
+}
+
+#messages {
+  display: flex;
+  flex-flow: row nowrap;
+  margin-top: 2em;
+  h3 {
+    font-family: $title-font;
+    color: $main-color;
+  }
+  #conv-display {
+    overflow-y: scroll;
+    height: 70vh;
+  }
+  #conv-prev {
+    flex-basis: 25%;
+    border-right: 2px solid $main-color;
+    margin-right: 1em;
+    margin-left: 1em;
+  }
+  #full-conv {
+    flex-grow: 2;
+  }
+  #message-bar {
+    padding: 0.4em;
+  }
+}
+#msg-input {
+  width: 90%;
+  padding: 0.5em;
+  margin-right: 0.2em;
+}
+#send-btn {
+  border: none;
+  background-color: $main-color;
+  color: white;
+  border-radius: 5px;
+  padding: 0.5em;
+}
+
+#right-msg {
+  display: flex;
+  justify-content: flex-end;
+  text-align: right;
+  margin-right: 1em;
+}
+#left-msg {
+  display: flex;
+  justify-content: flex-start;
+  text-align: left;
+  margin-left: 1em;
+}
+#your-msg {
+  background-color: $accent-color;
+  width: auto;
+  text-align: right;
+  padding: 1em;
+  border-radius: 20px;
+  margin: 0.2em;
+}
+#others-msg {
+  background-color: darken(white, 10%);
+  text-align: left;
+  padding: 1em;
+  border-radius: 20px;
+  margin: 0.2em;
+}
+#chat-with {
+  font-size: 1.2em;
+  color: $main-color;
+}
+#preview-msg {
+  color: darken(white, 50%);
+  margin-left: 0.3em;
+}
+#center-content {
+  margin: 0 auto;
+  display: flex;
+  height: 60vh;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-left: 2em;
+  padding-right: 2em;
+  h1 {
+    font-family: $title-font;
+    color: $main-color;
+  }
+  h2 {
+    font-size: 1.3em;
+    text-align: center;
+  }
+  #spots-btn {
+    border: none;
+    background-color: $main-color;
+    color: white;
+    font-size: 1.5em;
+    margin-top: 2em;
+    padding: 0.5em;
+  }
 }

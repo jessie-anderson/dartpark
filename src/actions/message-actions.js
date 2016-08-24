@@ -34,3 +34,25 @@ export function fetchConvo(convoId) {
     });
   };
 }
+export function popConvoToTop(convoId, { id, requester }) {
+  return (dispatch) => {
+    axios.put(`${ROOT_URL}/conversations/${convoId}`, { id, requester }, { headers: { authorization: localStorage.getItem('token') } }).then(response => {
+      dispatch(response);
+    }).catch(error => {
+        // hit an error
+    });
+  };
+}
+export function sendMessage(convoId, userId, { message, sender }) {
+  return (dispatch) => {
+    axios.post(`${ROOT_URL}/conversations/${convoId}`, { message, sender }, { headers: { authorization: localStorage.getItem('token') } }).then(response => {
+      fetchConvo(convoId)(dispatch);
+      popConvoToTop(convoId, { id: userId, requester: sender })((res) => {
+        console.log(res);
+        fetchConvoPreview(userId, sender)(dispatch);
+      });
+    }).catch(error => {
+        // hit an error
+    });
+  };
+}
