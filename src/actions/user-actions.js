@@ -5,9 +5,9 @@ const ROOT_URL = 'http://localhost:9090/api'; // for testing
 
 export const UserActionTypes = {
   RENTER_CHANGE_PASSWORD: 'RENTER_CHANGE_PASSWORD',
-  RENTER_CHANGE_BIO: 'RENTER_CHANGE_BIO',
+  RENTER_CHANGE_BIO_AND_NAME: 'RENTER_CHANGE_BIO_AND_NAME',
   VENDOR_CHANGE_PASSWORD: 'VENDOR_CHANGE_PASSWORD',
-  VENDOR_CHANGE_BIO: 'VENDOR_CHANGE_BIO',
+  VENDOR_CHANGE_BIO_AND_NAME: 'VENDOR_CHANGE_BIO_AND_NAME',
   AUTH_VENDOR: 'AUTH_VENDOR',
   AUTH_RENTER: 'AUTH_RENTER',
   DEAUTH_USER: 'DEAUTH_USER',
@@ -129,13 +129,13 @@ export function changeRenterPassword(password) {
   };
 }
 
-export function changeVendorBio(bio) {
+export function changeVendorBioAndName(bio, username) {
   return (dispatch) => {
-    axios.put(`${ROOT_URL}/vendor/updateBio`,
-    { bio }, { headers: { authorizationvendor: localStorage.getItem('token') } })
+    axios.put(`${ROOT_URL}/vendor/updateBioAndName`,
+    { bio, username }, { headers: { authorizationvendor: localStorage.getItem('token') } })
     .then(response => {
       dispatch({
-        type: UserActionTypes.VENDOR_CHANGE_BIO,
+        type: UserActionTypes.VENDOR_CHANGE_BIO_AND_NAME,
         payload: response.data,
       });
     })
@@ -143,13 +143,13 @@ export function changeVendorBio(bio) {
   };
 }
 
-export function changeRenterBio(bio) {
+export function changeRenterBioAndName(bio, username) {
   return (dispatch) => {
-    axios.put(`${ROOT_URL}/renter/updateBio`,
-    { bio }, { headers: { authorizationrenter: localStorage.getItem('token') } })
+    axios.put(`${ROOT_URL}/renter/updateBioAndName`,
+    { bio, username }, { headers: { authorizationrenter: localStorage.getItem('token') } })
     .then(response => {
       dispatch({
-        type: UserActionTypes.RENTER_CHANGE_BIO,
+        type: UserActionTypes.RENTER_CHANGE_BIO_AND_NAME,
         payload: response.data,
       });
     })
