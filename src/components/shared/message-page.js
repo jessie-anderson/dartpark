@@ -27,6 +27,7 @@ class MessagePage extends Component {
   }
   handleSendMessage() {
     this.props.sendMessage(this.state.currentConvoId, this.state.userId, { message: this.state.currentMessage, sender: this.state.role });
+    this.scrollBottom();
     // this.props.fetchConvoPreview(this.state.userId, 'renter');
   }
   renderFullConversation() {
