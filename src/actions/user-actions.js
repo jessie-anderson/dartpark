@@ -30,7 +30,7 @@ export function signinRenter({ email, password }) {
         payload: response.data.renter,
       });
       localStorage.setItem('token', response.data.token);
-      if (response.data.token) browserHistory.push('/renter');
+      if (typeof response.data.token !== 'undefined') browserHistory.push('/renter');
       else browserHistory.push('/'); // signin failed
     })
     .catch(err => {
@@ -48,7 +48,7 @@ export function signinVendor({ email, password }) {
         payload: response.data.vendor,
       });
       localStorage.setItem('token', response.data.token);
-      if (response.data.token) browserHistory.push('/vendor/manage');
+      if (typeof response.data.token !== 'undefined') browserHistory.push('/vendor/manage');
       else browserHistory.push('/'); // signin failed
     })
     .catch(err => {
@@ -66,7 +66,7 @@ export function signupRenter({ email, password, username }) {
         payload: response.data.renter,
       });
       localStorage.setItem('token', response.data.token);
-      if (response.data.token) browserHistory.push('/renter');
+      if (typeof response.data.token !== 'undefined') browserHistory.push('/renter');
       else browserHistory.push('/');
     })
     .catch(err => {
@@ -84,7 +84,7 @@ export function signupVendor({ email, password, username }) {
         payload: response.data.vendor,
       });
       localStorage.setItem('token', response.data.token);
-      if (response.data.token) browserHistory.push('/vendor/manage');
+      if (typeof response.data.token !== 'undefined') browserHistory.push('/vendor/manage');
       else browserHistory.push('/');
     })
     .catch(err => {
