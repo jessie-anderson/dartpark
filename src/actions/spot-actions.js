@@ -5,7 +5,6 @@ const ROOT_URL = 'http://localhost:9090/api'; // for testing
 
 export const SpotActionTypes = {
   CREATE_SPOT: 'CREATE_SPOT',
-  CREATE_TEMP_SPOTS: 'CREATE_TEMP_SPOTS',
   VENDOR_GET_SPOTS: 'VENDOR_GET_SPOTS',
   VENDOR_GET_SPOT: 'VENDOR_GET_SPOT',
   UPDATE_SPOT: 'UPDATE_SPOT',
@@ -15,19 +14,14 @@ export const SpotActionTypes = {
   RENTER_DELETE_SPOT: 'RENTER_DELETE_SPOT',
   BUY_SPOT: 'BUY_SPOT',
   SEARCH_LOCATION: 'SEARCH_LOCATION',
+  GET_ALL_SPOTS: 'GET_ALL_SPOTS',
 };
 
 export function saveSearch(searchRequest) {
   return (dispatch) => {
-    axios.post(`${ROOT_URL}/renter/select-spot`, {
-      searchTerm: searchRequest,
-    }, { headers: { authorizationrenter: localStorage.getItem('token') } })
-    .then(response => {
-      dispatch({
-        type: SpotActionTypes.SEARCH_LOCATION,
-        payload: response.data,
-      })
-      .catch(err => {});
+    dispatch({
+      type: SpotActionTypes.SEARCH_LOCATION,
+      payload: searchRequest,
     });
   };
 }
@@ -153,7 +147,7 @@ export function renterDeleteSpot(id) {
 
 export function buySpot(id) {
   return (dispatch) => {
-    axios.put(`${ROOT_URL}/buySpot/${id}`,
+    axios.put(`${ROOT_URL}/buySpot/${id}`, {},
     { headers: { authorizationrenter: localStorage.getItem('token') } })
     .then(response => {
       dispatch({
@@ -165,32 +159,29 @@ export function buySpot(id) {
   };
 }
 
-export function createTempSpots(spot) {
+export function getAllSpots() {
   return (dispatch) => {
-    let spotList = [];
-    const letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M',
-                     'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
-    const useLetters = (spot.spotOrdering.valueOf() === 'letter');
-    for (let i = 1; i <= spot.numberOfSpots; i ++) {
-      let number;
-      const times26 = Math.floor((i - 1) / 26);
-      if (useLetters) number = letters[i - 1 - times26 * 26];
-      else number = i;
-      const newSpot = {
-        address: spot.spotAddress,
-        price: spot.pricePerSpot,
-        startDate: spot.startDate,
-        endDate: spot.endDate,
-        number,
-        id: i,
-      };
-      console.log(newSpot);
-      spotList = spotList.concat([newSpot]);
-    }
-    browserHistory.push('/vendor/finalize-spots');
-    return dispatch({
-      type: SpotActionTypes.CREATE_TEMP_SPOTS,
-      payload: spotList,
-    });
+    axios.get(`${ROOT_URL}/spots`, { headers: { authorizationrenter: localStorage.getItem('token') } })
+    .then(response => {
+      dispatch({
+        type: SpotActionTypes.GET_ALL_SPOTS,
+        payload: response.data,
+      });
+    })
+    .catch(err => {});
   };
 }
+/*
+export function getDistances(address, allSpots) {
+  const service = new google.maps.DistanceMatrixService();
+  const spotAddresses = allSpots.map(spot => {
+    return spot.address;
+  });
+  service.getDistanceMatrix({
+    origins: [address],
+    destinations: spotAddresses,
+  }, response => {
+    console.log(response);
+  });
+}
+*/

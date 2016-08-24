@@ -26,6 +26,7 @@ import Messaging from './components/shared/message-page';
 import VendorManage from './components/vendor/manage';
 import EditSpot from './components/vendor/edit-spot';
 import VendorProfile from './components/vendor/profile';
+import CreateCar from './components/renter/create-car';
 
 export default(
   <Route path="/" component={App}>
@@ -40,6 +41,7 @@ export default(
     <Route path="/renter/select-spot" component={SelectItem} />
     <Route path="/renter/spot-detail" component={SpotDetail} />
     <Route path="/renter/buy-spot" component={BuyItem} />
+    <Route path="/renter/add-car" component={CreateCar} />
     <Route path="/renter" component={RenterHome} />
 
     <Route path="/vendor/manage" component={VendorManage} />
