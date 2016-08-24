@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { browserHistory } from 'react-router';
+// import { browserHistory } from 'react-router';
 
 export const ActionTypes = {
   FETCH_CONVO_PREVIEW: 'FETCH_CONVO_PREVIEW',

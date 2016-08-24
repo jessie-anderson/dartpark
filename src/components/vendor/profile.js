@@ -34,7 +34,6 @@ class VendorProfile extends Component {
   render() {
     return (
       <div>
-        <VendorNavBar />
         <h1>Edit Profile</h1>
         <label htmlFor="nameVendor">Name: </label>
         <input id="nameVendor" placeholder={this.vendorName}></input>

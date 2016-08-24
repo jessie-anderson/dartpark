@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 // import { Link } from 'react-router';
-import NavBar from '../vendor/navbar';
 import { fetchConvoPreview, fetchConvo, sendMessage } from '../../actions/message-actions';
 
 class MessagePage extends Component {
@@ -81,7 +80,6 @@ class MessagePage extends Component {
   render() {
     return (
       <div>
-        <NavBar />
         <div id="messages">
           <div id="conv-prev">
             <h3>Chats</h3>
@@ -110,10 +108,5 @@ const mapStateToProps = (state) => (
     conversation: state.conversations.conversation,
   }
 );
-
-// const checkStateToProps = (state) => {
-//   console.log(state);
-// };
-
 
 export default connect(mapStateToProps, { fetchConvoPreview, fetchConvo, sendMessage })(MessagePage);

@@ -27,7 +27,6 @@ class SignInVendor extends Component {
   render() {
     return (
       <div>
-        <div id="header-bar">dartPark</div>
         <div id="abs-center">
           <h1>Sign In</h1>
           <h3>Login</h3>

@@ -4,7 +4,6 @@ import { vendorGetSpot, vendorGetSpots } from '../../actions/spot-actions';
 import SpotItem from './spot-list-item';
 import { bootstrap } from 'react-bootstrap';
 import { Link } from 'react-router';
-import NavBar from './navbar';
 
 
 class VendorManage extends Component {
@@ -45,11 +44,13 @@ class VendorManage extends Component {
 
 
   render() {
+    return (
+      <div>
+        <div id="center-content">
     const spots = this.renderSpots();
     if (this.props.spots.length === 0) {
       return (
         <div>
-          <NavBar />
           <h1>Manage Spots</h1>
           <h2>You have not created any spots yet.  Click the button below to add some spots to your profile.</h2>
           <Link to="/vendor/create-spots" ><button onClick={this.onButtonPress}>+Add Spots</button></Link>
@@ -58,7 +59,6 @@ class VendorManage extends Component {
     } else {
       return (
         <div>
-          <NavBar />
           <h1>Manage Spots</h1>
           <div>{spots}</div>
           <Link to="/vendor/create-spots" ><button onClick={this.onButtonPress}>+Add Spots</button></Link>
