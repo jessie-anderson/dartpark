@@ -1,7 +1,7 @@
 import * as axios from 'axios';
 import { browserHistory } from 'react-router';
-const ROOT_URL = 'http://localhost:9090/api'; // for testing
-// const ROOT_URL = 'http://dartpark.herokuapp.com/api'; // for when it's connected to the server
+// const ROOT_URL = 'http://localhost:9090/api'; // for testing
+const ROOT_URL = 'http://dartpark.herokuapp.com/api'; // for when it's connected to the server
 
 export const CarActionTypes = {
   CREATE_CAR: 'CREATE_CAR',
@@ -30,7 +30,7 @@ export function createCar(car) {
         type: CarActionTypes.CREATE_CAR,
         payload: response.data,
       });
-      browserHistory.push('/renter/profile');
+      browserHistory.push('/renter');
     })
     .catch(err => {
       dispatch({
@@ -54,6 +54,7 @@ export function updateCar(car, id) {
         type: CarActionTypes.UPDATE_CAR,
         payload: response.data,
       });
+      browserHistory.push('/renter');
     })
     .catch(err => {
       dispatch({
@@ -72,6 +73,7 @@ export function deleteCar(id) {
         type: CarActionTypes.DELETE_CAR,
         payload: response.data,
       });
+      browserHistory.push('/renter');
     })
     .catch(err => {
       dispatch({
@@ -86,6 +88,7 @@ export function getCar(id) {
     axios.get(`${ROOT_URL}/cars/${id}`,
     { headers: { authorizationrenter: localStorage.getItem('token') } })
     .then(response => {
+      console.log(response.data);
       dispatch({
         type: CarActionTypes.GET_CAR,
         payload: response.data,

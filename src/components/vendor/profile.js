@@ -33,31 +33,32 @@ class VendorProfile extends Component {
 
   render() {
     return (
-      <div>
-        <h1>Edit Profile</h1>
-        <label htmlFor="nameVendor">Name: </label>
-        <input id="nameVendor" placeholder={this.vendorName}></input>
+      <div id="general-style">
+        <div id="center-content">
+          <h1>Edit Profile</h1>
+          <label htmlFor="nameVendor">Name: </label>
+          <input id="nameVendor" placeholder={this.vendorName}></input>
 
-        <label htmlFor="addressVendor">Spot Address: </label>
-        <input id="addressVendor" placeholder={this.vendorAddress}></input>
+          <label htmlFor="addressVendor">Spot Address: </label>
+          <input id="addressVendor" placeholder={this.vendorAddress}></input>
 
-        <label htmlFor="descriptionVendor">Spot Address: </label>
-        <input id="descriptionVendor" placeholder={this.vendorDescription}></input>
+          <label htmlFor="descriptionVendor">Spot Address: </label>
+          <input id="descriptionVendor" placeholder={this.vendorDescription}></input>
 
-        <button onClick={this.onButtonClick}>Change Profile Picture</button>
-        <Modal show={this.state.displayModal} onHide={this.onButtonClick}>
-          <Modal.Header closeButton>Add Picture</Modal.Header>
-          <Modal.Body>
-            <Tabs defaultActiveKey={1}>
-              <Tab eventKey={1} title="Upload Picture from Computer">
-                <Dropzone rev="dropzone" onDrop={this.onDropFunction}><div>test</div></Dropzone>
-              </Tab>
-              <Tab eventKey={2} title="Use Google Photo">lksd</Tab>
-            </Tabs>
-          </Modal.Body>
-          <Modal.Footer>ldkajs</Modal.Footer>
-        </Modal>
-
+          <button id="std-btn" onClick={this.onButtonClick}>Change Profile Picture</button>
+          <Modal show={this.state.displayModal} onHide={this.onButtonClick}>
+            <Modal.Header closeButton>Add Picture</Modal.Header>
+            <Modal.Body>
+              <Tabs defaultActiveKey={1}>
+                <Tab eventKey={1} title="Upload Picture from Computer">
+                  <Dropzone rev="dropzone" onDrop={this.onDropFunction}><div>test</div></Dropzone>
+                </Tab>
+                <Tab eventKey={2} title="Use Google Photo">lksd</Tab>
+              </Tabs>
+            </Modal.Body>
+            <Modal.Footer>ldkajs</Modal.Footer>
+          </Modal>
+        </div>
       </div>
     );
   }
