@@ -39,8 +39,8 @@ class SimpleSearchBar extends Component {
 
   render() {
     return (
-      <div>
-        <Geosuggest onSuggestSelect={this.suggestionSelection} onChange={this.onSearchBarChange} />
+      <div id="simpleSearch">
+        <Geosuggest id="geosuggest" onSuggestSelect={this.suggestionSelection} onChange={this.onSearchBarChange} />
       </div>
     );
   }
