@@ -11,7 +11,6 @@ class BuyItem extends Component {
     // init component state here
     this.state = {
       localNumber: '',
-      localExpirationDate: '',
       localExpirationMonth: '',
       localExpirationYear: '',
       localCvv: '',
@@ -31,12 +30,19 @@ class BuyItem extends Component {
       /* ... */
         },
         fields: {
-          number: {},
-          expirationDate: {},
-          expirationMonth: {},
-          expirationYear: {},
+          number: {
+            selector: '#cc-number',
+          },
+          expirationMonth: {
+            selector: '#expiration-month',
+          },
+          expirationYear: {
+            selector: '#expiration-year',
+          },
           cvv: {},
-          postalCode: {},
+          postalCode: {
+            selector: '#cvv',
+          },
         },
       };
 
@@ -69,9 +75,8 @@ class BuyItem extends Component {
           <label htmlFor="cvv">CVV</label>
           <div id="cvv"></div>
 
-          <label htmlFor="expiration-date">Expiration Date</label>
-          <input id="expiration-month" />
-          <div id="expiration-date"></div>
+          <lable htmlFor="expiration-month" />
+          <div id="expiration-month" />
 
           <input id="my-submit" type="submit" value="Pay" disabled />
         </form>
