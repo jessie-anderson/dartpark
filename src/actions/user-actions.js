@@ -30,7 +30,8 @@ export function signinRenter({ email, password }) {
         payload: response.data.renter,
       });
       localStorage.setItem('token', response.data.token);
-      browserHistory.push('/');
+      if (response.data.token) browserHistory.push('/renter');
+      else browserHistory.push('/'); // signin failed
     })
     .catch(err => {
       dispatch(authError(`Sign In Failed: ${err.response.data}`));
@@ -47,7 +48,8 @@ export function signinVendor({ email, password }) {
         payload: response.data.vendor,
       });
       localStorage.setItem('token', response.data.token);
-      browserHistory.push('/');
+      if (response.data.token) browserHistory.push('/vendor/manage');
+      else browserHistory.push('/'); // signin failed
     })
     .catch(err => {
       dispatch(authError(`Sign In Failed: ${err.response.data}`));
@@ -64,7 +66,8 @@ export function signupRenter({ email, password, username }) {
         payload: response.data.renter,
       });
       localStorage.setItem('token', response.data.token);
-      browserHistory.push('/');
+      if (response.data.token) browserHistory.push('/renter');
+      else browserHistory.push('/');
     })
     .catch(err => {
       dispatch(authError(`Sign Up Failed: ${err.response.data}`));
@@ -81,7 +84,8 @@ export function signupVendor({ email, password, username }) {
         payload: response.data.vendor,
       });
       localStorage.setItem('token', response.data.token);
-      browserHistory.push('/');
+      if (response.data.token) browserHistory.push('/vendor/manage');
+      else browserHistory.push('/');
     })
     .catch(err => {
       dispatch(authError(`Sign Up Failed: ${err.response.data}`));
