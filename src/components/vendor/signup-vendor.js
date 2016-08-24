@@ -38,7 +38,7 @@ class SignUpVendor extends Component {
           <div id="box">
             <h1>Sign Up</h1>
             <input onChange={this.onEmailChange} placeholder={"Email..."} />
-            <input onChange={this.onPasswordChange} placeholder={"Password..."} />
+            <input onChange={this.onPasswordChange} type="password" placeholder={"Password..."} />
             <input onChange={this.onNameChange} placeholder={"Name..."} />
             <div id="btn3">
               <button onClick={this.onSubmit}>Sign Up</button>

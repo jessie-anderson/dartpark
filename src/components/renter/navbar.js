@@ -26,7 +26,7 @@ class NavBar extends Component {
             />
             <span>Sign Out</span>
           </div>
-          <Link to="/renter/profile" id="nav-link">
+          <Link to="/renter" id="nav-link">
             <FontAwesome id="fa-icon"
               className="user"
               name="user"
