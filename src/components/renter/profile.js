@@ -3,7 +3,6 @@ import CardItemEdit from './carditem-edit';
 import { connect } from 'react-redux';
 import VehicleItemRender from './vehicle-render';
 import { changeRenterBio } from '../../actions/user-actions';
-import NavBar from './navbar';
 
 
 class Profile extends Component {
@@ -44,7 +43,6 @@ class Profile extends Component {
   render() {
     return (
       <div>
-        <NavBar />
         <div className="Profile">
           <div className="prof-header">
             <h3>Profile</h3>
