@@ -382,3 +382,62 @@ h1 {
     text-align: center;
   }
 }
+
+#create-spots {
+  h1 {
+    font-family: $title-font;
+    color: $main-color;
+  }
+  #btn {
+    border: none;
+    background-color: $main-color;
+    color: white;
+    padding: 0.5em;
+    font-size: 1.2em;
+    border-radius: 3px;
+  }
+  #box {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    margin: 1em;
+  }
+  #searchBar {
+    border: none;
+    background-color: lighten($accent-color, 10%);
+  }
+  #formOpt {
+    padding: 0.5em;
+    label {
+      margin-right: 0.5em;
+      font-size: 1.2em;
+      font-weight: 300;
+    }
+    input {
+      border: none;
+      border-bottom: 2px solid $main-color;
+    }
+    input:focus {
+      outline: none;
+    }
+  }
+}
+
+#geosuggest {
+  border: none;
+  padding: 0.5em;
+  background-color: $accent-color;
+  margin: 0;
+  width: 100%;
+}
+
+#simpleSearch {
+  border-radius: 3px;
+  background-color: lighten($accent-color, 10%);
+  height: 150px;
+  width: 300px;
+  overflow: auto;
+  ul {
+    list-style-type: none;
+  }
+}
