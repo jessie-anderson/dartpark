@@ -31,7 +31,7 @@ class SignInRenter extends Component {
             <h1>Sign In</h1>
             <div id="sign-in-form">
               <input onChange={this.onEmailChange} placeholder={"Email..."} />
-              <input onChange={this.onPasswordChange} placeholder={"Password..."} />
+              <input onChange={this.onPasswordChange} type="password" placeholder={"Password..."} />
             </div>
             <button id="btn1" onClick={this.signin}>Sign In</button>
           </div>
