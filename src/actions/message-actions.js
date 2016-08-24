@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { browserHistory } from 'react-router';
+// import { browserHistory } from 'react-router';
 
 export const ActionTypes = {
   FETCH_CONVO_PREVIEW: 'FETCH_CONVO_PREVIEW',
@@ -34,11 +34,23 @@ export function fetchConvo(convoId) {
     });
   };
 }
-
-export function sendMessage(convoId, { message, sender }) {
+export function popConvoToTop(convoId, { id, requester }) {
+  return (dispatch) => {
+    axios.put(`${ROOT_URL}/conversations/${convoId}`, { id, requester }, { headers: { authorization: localStorage.getItem('token') } }).then(response => {
+      dispatch(response);
+    }).catch(error => {
+        // hit an error
+    });
+  };
+}
+export function sendMessage(convoId, userId, { message, sender }) {
   return (dispatch) => {
     axios.post(`${ROOT_URL}/conversations/${convoId}`, { message, sender }, { headers: { authorization: localStorage.getItem('token') } }).then(response => {
-      dispatch(fetchConvo(convoId));
+      fetchConvo(convoId)(dispatch);
+      popConvoToTop(convoId, { id: userId, requester: sender })((res) => {
+        console.log(res);
+        fetchConvoPreview(userId, sender)(dispatch);
+      });
     }).catch(error => {
         // hit an error
     });

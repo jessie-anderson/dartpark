@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import RenterNavBar from './renter/navbar';
 import VendorNavBar from './vendor/navbar';
 
@@ -10,17 +11,43 @@ class App extends Component {
     // init component state here
     this.state = {};
   }
-
+  renderNavBar() {
+    if (this.props.role) {
+      if (this.props.role === 'renter') {
+        return (
+          <RenterNavBar />
+        );
+      } else if (this.props.role === 'vendor') { // vendor
+        return (
+          <VendorNavBar />
+        );
+      } else { // default non-specific bar
+        return (
+          <div id="header-bar">dartPark</div>
+        );
+      }
+    } else {
+      console.log('error finding usertype');
+      return (<div>Error</div>);
+    }
+  }
   render() {
     return (
       <div>
-        {/* NavBars will go here, depending on authentication*/}
+        {this.renderNavBar()}
         <div>
             {this.props.children}
+            {console.log(this.props.role)}
         </div>
       </div>
     );
   }
 }
 
-export default App;
+const mapStateToProps = (state) => (
+  {
+    role: state.auth.userType,
+  }
+);
+
+export default connect(mapStateToProps, null)(App);

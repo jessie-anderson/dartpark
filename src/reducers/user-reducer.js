@@ -30,9 +30,9 @@ const UserReducer = (auth = { user: null, userType: null, authenticated: false }
         user: null,
         userType: null,
       };
-    case UserActionTypes.VENDOR_CHANGE_BIO:
+    case UserActionTypes.VENDOR_CHANGE_BIO_AND_NAME:
       return Object.assign({}, auth, { user: action.payload });
-    case UserActionTypes.RENTER_CHANGE_BIO:
+    case UserActionTypes.RENTER_CHANGE_BIO_AND_NAME:
       return Object.assign({}, auth, { user: action.payload });
     case UserActionTypes.VENDOR_CHANGE_PASSWORD:
       return Object.assign({}, auth, { user: action.payload });

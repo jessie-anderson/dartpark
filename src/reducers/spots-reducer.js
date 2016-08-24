@@ -1,17 +1,17 @@
 import { SpotActionTypes } from '../actions/spot-actions';
 
-const SpotsReducer = (spots = { all: [], spot: null }, action) => {
+const SpotsReducer = (spots = { all: [], spot: null, searchTerm: '' }, action) => {
   switch (action.type) {
     case SpotActionTypes.SEARCH_LOCATION:
-      return Object.assign({}, );
+      return Object.assign({}, spots, { searchTerm: action.payload });
     case SpotActionTypes.CREATE_SPOT:
-      return {
-        all: action.payload.vendor.spots,
-        spot: action.payload.spot,
-      };
+      console.log(action.payload);
+      return Object.assign({}, spots, { all: action.payload.spots, spot: action.payload.spot });
     case SpotActionTypes.VENDOR_GET_SPOTS:
+      console.log(action.payload);
       return Object.assign({}, spots, { all: action.payload });
     case SpotActionTypes.UPDATE_SPOT:
+      console.log(action.payload);
       return {
         all: action.payload.vendor.spots,
         spot: action.payload.spot,
@@ -24,7 +24,7 @@ const SpotsReducer = (spots = { all: [], spot: null }, action) => {
     case SpotActionTypes.VENDOR_GET_SPOT:
       return Object.assign({}, spots, { spot: action.payload });
     case SpotActionTypes.RENTER_GET_SPOTS:
-      return Object.assign({}, spots, { spots: action.payload });
+      return Object.assign({}, spots, { all: action.payload });
     case SpotActionTypes.RENTER_GET_SPOT:
       return Object.assign({}, spots, { spot: action.payload });
     case SpotActionTypes.RENTER_DELETE_SPOT:
@@ -33,10 +33,14 @@ const SpotsReducer = (spots = { all: [], spot: null }, action) => {
         spot: null,
       };
     case SpotActionTypes.BUY_SPOT:
+      console.log(action.payload);
       return {
         all: action.payload.renter.spots,
         spot: action.payload.spot,
+        searchTerm: spots.searchTerm,
       };
+    case SpotActionTypes.GET_ALL_SPOTS:
+      return Object.assign({}, spots, { all: action.payload });
     default: return spots;
   }
 };

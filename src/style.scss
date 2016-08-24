@@ -163,6 +163,10 @@ h1 {
     display: flex;
     flex-flow: row nowrap;
   }
+  #left-align {
+    display: flex;
+    flex-flow: row nowrap;
+  }
 
   #nav-link {
     display: flex;
@@ -230,6 +234,9 @@ h1 {
   #full-conv {
     flex-grow: 2;
   }
+  #message-bar {
+    padding: 0.4em;
+  }
 }
 #msg-input {
   width: 90%;
@@ -278,4 +285,100 @@ h1 {
 #preview-msg {
   color: darken(white, 50%);
   margin-left: 0.3em;
+}
+#center-content {
+  margin: 0 auto;
+  display: flex;
+  height: 80vh;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-left: 2em;
+  padding-right: 2em;
+  h1 {
+    font-family: $title-font;
+    color: $main-color;
+  }
+  h2 {
+    font-size: 1.3em;
+    text-align: center;
+    margin-bottom: 2em;
+  }
+  #spots-btn {
+    border: none;
+    background-color: $main-color;
+    color: white;
+    font-size: 1.5em;
+    padding: 0.5em;
+    border-radius: 3px;
+  }
+}
+
+#select-act {
+  background-color: $accent-color;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  padding: 1em;
+  border-radius: 4px;
+  padding-bottom: 2em;
+  #sa-title {
+    font-size: 2em;
+    font-family: $title-font;
+    color: $main-color;
+  }
+}
+
+#spot-btn-div {
+  margin: 2em;
+}
+
+#sign-in-renter {
+  h1 {
+    font-family: $title-font;
+    color: $main-color;
+  }
+  input {
+    padding: 0.5em;
+    border-radius: 3px;
+    border: none;
+    margin: 0.2em;
+  }
+  input:focus {
+    background-color: lighten($accent-color, 10%);
+    outline: none;
+  }
+  button {
+    border: none;
+    border-radius: 3px;
+    background-color: $main-color;
+    padding: 0.5em;
+    color: white;
+  }
+  span {
+    margin: 1em;
+    margin-top: 3em;
+  }
+  #sign-in-form {
+    margin: 1em;
+    display: flex;
+    flex-flow: column nowrap;
+  }
+  #btn1 {
+    font-size: 1.2em;
+  }
+  #btn3 {
+    font-size: 1.2em;
+    margin-top: 0.5em;
+  }
+  #box {
+    background-color: $accent-color;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    padding: 3em;
+    border-radius: 4px;
+    text-align: center;
+  }
 }

@@ -14,37 +14,29 @@ export const SpotActionTypes = {
   RENTER_DELETE_SPOT: 'RENTER_DELETE_SPOT',
   BUY_SPOT: 'BUY_SPOT',
   SEARCH_LOCATION: 'SEARCH_LOCATION',
+  GET_ALL_SPOTS: 'GET_ALL_SPOTS',
 };
 
 export function saveSearch(searchRequest) {
   return (dispatch) => {
-    axios.post(`${ROOT_URL}/renter/select-spot`, {
-      searchTerm: searchRequest,
-    }, { headers: { authorizationrenter: localStorage.getItem('token') } })
-    .then(response => {
-      dispatch({
-        type: SpotActionTypes.SEARCH_LOCATION,
-        payload: response.data,
-      })
-      .catch(err => {});
+    dispatch({
+      type: SpotActionTypes.SEARCH_LOCATION,
+      payload: searchRequest,
     });
   };
 }
 
 export function createSpot(spot) {
   return (dispatch) => {
-    axios.post(`${ROOT_URL}/vendor/spots`, {
-      address: spot.address,
-      price: spot.price,
-      // startDate: spot.startDate,
-      // endDate: spot.endDate,
-      number: spot.number,
-    }, { headers: { authorizationvendor: localStorage.getItem('token') } })
+    axios.post(`${ROOT_URL}/vendor/spots`,
+      { spotName: spot.spotName, address: spot.spotAddress, startDate: spot.startDate, endDate: spot.endDate, price: spot.price },
+      { headers: { authorizationvendor: localStorage.getItem('token') } })
     .then(response => {
       dispatch({
         type: SpotActionTypes.CREATE_SPOT,
         payload: response.data,
       });
+      browserHistory.push('/vendor/manage');
     })
     .catch(err => {});
   };
@@ -81,13 +73,11 @@ export function vendorGetSpot(id) {
 export function updateSpot(spot, id) {
   return (dispatch) => {
     axios.put(`${ROOT_URL}/vendor/spots/${id}`, {
-      address: spot.spotAddress,
-      price: spot.spotPrice,
-      // startDate: spot.startDate,
-      // endDate: spot.endDate,
-      number: spot.number,
-      name: spot.spotName,
-      vendor: spot.vendorName,
+      address: spot.address,
+      price: spot.price,
+      startDate: spot.startDate,
+      endDate: spot.endDate,
+      spotName: spot.spotName,
     }, { headers: { authorizationvendor: localStorage.getItem('token') } })
     .then(response => {
       dispatch({
@@ -157,7 +147,7 @@ export function renterDeleteSpot(id) {
 
 export function buySpot(id) {
   return (dispatch) => {
-    axios.put(`${ROOT_URL}/buySpot/${id}`,
+    axios.put(`${ROOT_URL}/buySpot/${id}`, {},
     { headers: { authorizationrenter: localStorage.getItem('token') } })
     .then(response => {
       dispatch({
@@ -168,3 +158,30 @@ export function buySpot(id) {
     .catch(err => {});
   };
 }
+
+export function getAllSpots() {
+  return (dispatch) => {
+    axios.get(`${ROOT_URL}/spots`, { headers: { authorizationrenter: localStorage.getItem('token') } })
+    .then(response => {
+      dispatch({
+        type: SpotActionTypes.GET_ALL_SPOTS,
+        payload: response.data,
+      });
+    })
+    .catch(err => {});
+  };
+}
+/*
+export function getDistances(address, allSpots) {
+  const service = new google.maps.DistanceMatrixService();
+  const spotAddresses = allSpots.map(spot => {
+    return spot.address;
+  });
+  service.getDistanceMatrix({
+    origins: [address],
+    destinations: spotAddresses,
+  }, response => {
+    console.log(response);
+  });
+}
+*/

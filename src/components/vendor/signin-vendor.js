@@ -26,16 +26,18 @@ class SignInVendor extends Component {
   }
   render() {
     return (
-      <div>
-        <div id="header-bar">dartPark</div>
-        <div id="abs-center">
-          <h1>Sign In</h1>
-          <h3>Login</h3>
-          <input onChange={this.onEmailChange} placeholder={"Email..."} />
-          <input onChange={this.onPasswordChange} placeholder={"Password..."} />
-          <button onClick={this.signin}>Sign In</button>
+      <div id="sign-in-renter">
+        <div id="center-content">
+          <div id="box">
+            <h1>Sign In</h1>
+            <div id="sign-in-form">
+              <input onChange={this.onEmailChange} placeholder={"Email..."} />
+              <input onChange={this.onPasswordChange} placeholder={"Password..."} />
+            </div>
+            <button id="btn1" onClick={this.signin}>Sign In</button>
+          </div>
           <span>{'Don\'t have an account?'}</span>
-          <Link to={'/signup-vendor'}><button>Sign Up</button></Link>
+          <Link to={'/signup-vendor'} id="btn2"><button>Sign Up</button></Link>
         </div>
       </div>
     );

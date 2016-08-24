@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 // import { connect } from 'react-redux';
 import { Link } from 'react-router';
-import Geosuggest from 'react-geosuggest';
 // require('dotenv').config();
+
 
 class selectActType extends Component {
   constructor(props) {
@@ -10,26 +10,26 @@ class selectActType extends Component {
 
     // init component state here
     this.state = { };
-    this.onSearchBarChange = this.onSearchBarChange.bind(this);
   }
-  onSearchBarChange(value) {
-    console.log(value);
-  }
-
-  suggestionSelection() {
-    console.log('clicked');
-  }
-
   render() {
     return (
       <div>
-        <h1>Select Account Type</h1>
-        <Link to={'/signin-renter'}><button>Renter</button></Link>
-        <Link to={'/signin-vendor'}><button>Vendor</button></Link>
+        <div id="center-content">
+          <div id="select-act">
+            <div id="sa-title">Select Account Type</div>
+            <div id="spot-btn-div">
+              <Link to={'/signin-renter'}><button id="spots-btn">Renter</button></Link>
+            </div>
+            <div id="spot-btn-div">
+              <Link to={'/signin-vendor'}><button id="spots-btn">Vendor</button></Link>
+            </div>
+          </div>
+        </div>
       </div>
     );
   }
 }
+
 
 // react-redux glue -- outputs Container that know state in props
 export default selectActType;

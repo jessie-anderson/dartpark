@@ -15,6 +15,13 @@ class NavBar extends Component {
     return (
       <div id="nav-bar">
         <div id="left-align">
+          <Link to="#" id="nav-link">
+            <FontAwesome id="fa-icon"
+              className="sign-out"
+              name="sign-out"
+            />
+          <span>Sign Out</span>
+          </Link>
           <Link to="/vendor/profile" id="nav-link">
             <FontAwesome id="fa-icon"
               className="user"
@@ -22,6 +29,7 @@ class NavBar extends Component {
             />
             <span>Profile</span>
           </Link>
+
         </div>
         <div>
           dartPark
@@ -36,8 +44,8 @@ class NavBar extends Component {
           </Link>
           <Link to="/messaging" id="nav-link">
             <FontAwesome id="fa-icon"
-              className="home"
-              name="home"
+              className="commenting"
+              name="commenting"
             />
             <span>Messages</span>
           </Link>

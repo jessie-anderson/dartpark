@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 // import { Link } from 'react-router';
-import NavBar from '../vendor/navbar';
 import { fetchConvoPreview, fetchConvo, sendMessage } from '../../actions/message-actions';
 
 class MessagePage extends Component {
@@ -9,7 +8,7 @@ class MessagePage extends Component {
     super(props);
 
     // init component state here
-    this.state = { currentMessage: '', currentConvoId: '', role: 'renter' };
+    this.state = { currentMessage: '', currentConvoId: '', role: 'renter', userId: '57bb6f7cb459b705d81296b5' };
     this.handleConvoClick = this.handleConvoClick.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSendMessage = this.handleSendMessage.bind(this);
@@ -26,13 +25,13 @@ class MessagePage extends Component {
     this.setState({ currentMessage: event.target.value });
   }
   handleSendMessage() {
-    this.props.sendMessage(this.state.currentConvoId, { message: this.state.currentMessage, sender: this.state.role });
+    this.props.sendMessage(this.state.currentConvoId, this.state.userId, { message: this.state.currentMessage, sender: this.state.role });
+    this.scrollBottom();
+    // this.props.fetchConvoPreview(this.state.userId, 'renter');
   }
   renderFullConversation() {
-    console.log(this.props.conversation);
     if (this.props.conversation) {
       return this.props.conversation.messages.map((message) => {
-        console.log(message);
         if (message.sender === this.state.role) { // this is you
           return (
             <div key={message._id} id="right-msg">
@@ -52,7 +51,7 @@ class MessagePage extends Component {
         }
       });
     } else {
-      return <div>No messages</div>;
+      return <div>Select a conversation to view messages</div>;
     }
   }
   renderConversationPreview() {
@@ -81,7 +80,6 @@ class MessagePage extends Component {
   render() {
     return (
       <div>
-        <NavBar />
         <div id="messages">
           <div id="conv-prev">
             <h3>Chats</h3>
@@ -92,9 +90,9 @@ class MessagePage extends Component {
             <div id="conv-display">
               {this.renderFullConversation()}
             </div>
-            <div>
+            <div id="message-bar">
               <input placeholder="Message..." onChange={this.handleInputChange} id="msg-input" />
-              <button onClick={this.handleSendMessage} disabled={!this.props.conversation} id="send-btn">Send</button>
+              <button onClick={this.handleSendMessage} disabled={!this.props.conversation} type="submit" id="send-btn">Send</button>
             </div>
           </div>
         </div>
@@ -110,10 +108,5 @@ const mapStateToProps = (state) => (
     conversation: state.conversations.conversation,
   }
 );
-
-// const checkStateToProps = (state) => {
-//   console.log(state);
-// };
-
 
 export default connect(mapStateToProps, { fetchConvoPreview, fetchConvo, sendMessage })(MessagePage);
