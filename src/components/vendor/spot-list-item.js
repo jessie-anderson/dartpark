@@ -132,7 +132,7 @@ class SpotItem extends Component {
             <Modal.Body>
               <Tabs defaultActiveKey={1}>
                 <Tab eventKey={1} title="Upload Picture from Computer">
-                  <Dropzone rev="dropzone" onDrop={this.onDropFunction}><div>test</div></Dropzone>
+                  <Dropzone rev="dropzone" onDrop={this.onDropFunction}><div>Upload</div></Dropzone>
                 </Tab>
                 <Tab eventKey={2} title="Use Google Photo">lksd</Tab>
               </Tabs>
