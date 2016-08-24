@@ -25,14 +25,19 @@ class SignInRenter extends Component {
   }
   render() {
     return (
-      <div>
-        <h1>Sign In</h1>
-        <h3>Login</h3>
-        <input onChange={this.onEmailChange} placeholder={"Email..."} />
-        <input onChange={this.onPasswordChange} placeholder={"Password..."} />
-        <button onClick={this.signin}>Sign In</button>
-        <span>`Don't have an account?`</span>
-        <Link to={'/signup-renter'}><button>Sign Up</button></Link>
+      <div id="sign-in-renter">
+        <div id="center-content">
+          <div id="box">
+            <h1>Sign In</h1>
+            <div id="sign-in-form">
+              <input onChange={this.onEmailChange} placeholder={"Email..."} />
+              <input onChange={this.onPasswordChange} placeholder={"Password..."} />
+            </div>
+            <button id="btn1" onClick={this.signin}>Sign In</button>
+          </div>
+          <span>{'Don\'t have an account?'}</span>
+          <Link to={'/signup-renter'} id="btn2"><button>Sign Up</button></Link>
+        </div>
       </div>
     );
   }
