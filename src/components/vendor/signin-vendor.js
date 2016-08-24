@@ -27,7 +27,7 @@ class SignInVendor extends Component {
   render() {
     return (
       <div>
-        <div id="abs-center">
+        <div id="center-content">
           <h1>Sign In</h1>
           <h3>Login</h3>
           <input onChange={this.onEmailChange} placeholder={"Email..."} />

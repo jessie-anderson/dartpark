@@ -163,6 +163,10 @@ h1 {
     display: flex;
     flex-flow: row nowrap;
   }
+  #left-align {
+    display: flex;
+    flex-flow: row nowrap;
+  }
 
   #nav-link {
     display: flex;
@@ -285,7 +289,7 @@ h1 {
 #center-content {
   margin: 0 auto;
   display: flex;
-  height: 60vh;
+  height: 80vh;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -306,6 +310,7 @@ h1 {
     color: white;
     font-size: 1.5em;
     padding: 0.5em;
+    border-radius: 3px;
   }
 }
 
@@ -327,4 +332,48 @@ h1 {
 
 #spot-btn-div {
   margin: 2em;
+}
+
+#sign-in-renter {
+  h1 {
+    font-family: $title-font;
+    color: $main-color;
+  }
+  input {
+    padding: 0.5em;
+    border-radius: 3px;
+    border: none;
+    margin: 0.2em;
+  }
+  input:focus {
+    background-color: lighten($accent-color, 10%);
+    outline: none;
+  }
+  button {
+    border: none;
+    border-radius: 3px;
+    background-color: $main-color;
+    padding: 0.5em;
+    color: white;
+  }
+  span {
+    margin: 1em;
+    margin-top: 3em;
+  }
+  #sign-in-form {
+    margin: 1em;
+    display: flex;
+    flex-flow: column nowrap;
+  }
+  #btn1 {
+    font-size: 1.2em;
+  }
+  #box {
+    background-color: $accent-color;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    padding: 3em;
+    border-radius: 4px;
+  }
 }
