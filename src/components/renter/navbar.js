@@ -15,7 +15,7 @@ class NavBar extends Component {
     return (
       <div id="nav-bar">
         <div id="left-align">
-          <Link to="#" id="nav-link">
+          <Link to="" id="nav-link">
             <FontAwesome id="fa-icon"
               className="sign-out"
               name="sign-out"

@@ -289,7 +289,7 @@ h1 {
 #center-content {
   margin: 0 auto;
   display: flex;
-  height: 80vh;
+  height: 70vh;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -440,4 +440,54 @@ h1 {
   ul {
     list-style-type: none;
   }
+}
+
+#general-style {
+  #left-align {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+  }
+  h1 {
+    font-family: $title-font;
+    color: $main-color;
+  }
+  #addBtn {
+    padding: 0.5em;
+    border: none;
+    border-radius: 4px;
+    background-color: $main-color;
+    color: white;
+    font-size: 1.5em;
+  }
+  #btn {
+    border: none;
+    border-radius: 4px;
+    background-color: $main-color;
+    color: white;
+  }
+}
+
+#std-btn {
+  margin: 0.3em;
+  border: none;
+  border-radius: 4px;
+  background-color: $main-color;
+  color: white;
+}
+#std-light-btn {
+  margin: 0.3em;
+  border: none;
+  border-radius: 4px;
+  background-color: $highlight-color;
+  color: white;
+}
+#spot-item {
+  p {
+    font-size: 1.2em;
+  }
+}
+
+#back-box {
+  background-color: $accent-color;
 }

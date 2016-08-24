@@ -57,7 +57,7 @@ class CreateSpots extends Component {
             <h1>Create Spot</h1>
 
             <div id="formOpt">
-              <label htmlFor="spotName">Spot Address:</label>
+              <label htmlFor="spotName">Spot Name:</label>
               <input onChange={this.onSpotNameChange} id="spotName" placeholder="Enter Name..."></input>
             </div>
             <div id="formOpt">
