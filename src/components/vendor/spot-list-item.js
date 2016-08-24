@@ -80,14 +80,14 @@ class SpotItem extends Component {
   render() {
     if (!this.state.isEditing) {
       return (
-        <div>
-          <button onClick={this.onEditClick}>Edit</button>
+        <div id="spot-item">
+          <button id="std-btn" onClick={this.onEditClick}>Edit</button>
           <h1>{this.props.spotName}</h1>
           <p>Address: {this.props.address}</p>
           <p>Price: {this.props.price}</p>
           <p>Start date: {this.props.startDate}</p>
           <p>End date: {this.props.endDate}</p>
-          <button onClick={this.onButtonClick}>Upload Photo</button>
+          <button id="std-btn" onClick={this.onButtonClick}>Upload Photo</button>
 
           <Modal show={this.state.displayModal} onHide={this.onButtonClick}>
             <Modal.Header closeButton>Add Picture</Modal.Header>
@@ -106,9 +106,9 @@ class SpotItem extends Component {
       );
     } else {
       return (
-        <div>
-          <button onClick={this.onSave}>Save Changes</button>
-          <button onClick={this.onEditClick}>Cancel</button>
+        <div id="center-content">
+          <button id="std-btn" onClick={this.onSave}>Save Changes</button>
+          <button id="std-light-btn" onClick={this.onEditClick}>Cancel</button>
 
           <label htmlFor="spotName">Name:</label>
           <input value={this.state.spotName} onChange={this.onSpotNameChange} id="spotName" />
@@ -125,7 +125,7 @@ class SpotItem extends Component {
           <label htmlFor="endDate">End date:</label>
           <input value={this.state.endDate} onChange={this.onEndDateChange} id="endDate" />
 
-          <button onClick={this.onButtonClick}>Upload Photo</button>
+          <button id="std-btn" onClick={this.onButtonClick}>Upload Photo</button>
 
           <Modal show={this.state.displayModal} onHide={this.onButtonClick}>
             <Modal.Header closeButton>Add Picture</Modal.Header>
@@ -139,7 +139,6 @@ class SpotItem extends Component {
             </Modal.Body>
             <Modal.Footer>ldkajs</Modal.Footer>
           </Modal>
-
         </div>
       );
     }

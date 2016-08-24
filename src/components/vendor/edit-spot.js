@@ -48,16 +48,18 @@ class EditSpot extends Component {
 
   render() {
     return (
-      <div>
-        <h1>Edit Spot</h1>
-        <label htmlFor="spotLocation">Spot Address: </label>
-        <input id="spotLocation" placeholder={this.spotAddress}></input>
+      <div id="general-style">
+        <div id="left-align">
+          <h1>Edit Spot</h1>
+          <label htmlFor="spotLocation">Spot Address: </label>
+          <input id="spotLocation" placeholder={this.spotAddress}></input>
 
-        <label htmlFor="spotPrice">Spot Price: </label>
-        <input placeholder={this.spotPrice} id="numSpots" ></input>
-        <SpotItem />
+          <label htmlFor="spotPrice">Spot Price: </label>
+          <input placeholder={this.spotPrice} id="numSpots" ></input>
+          <SpotItem />
 
-        <Link to="/vendor/manage"><button onClick={this.onButtonPress}>Save Spot</button></Link>
+          <Link to="/vendor/manage"><button id="btn" onClick={this.onButtonPress}>Save Spot</button></Link>
+        </div>
       </div>
     );
   }
