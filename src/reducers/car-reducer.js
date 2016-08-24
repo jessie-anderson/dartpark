@@ -1,4 +1,5 @@
-import { CarActionTypes } from '../actions/car-actions.js';
+import { CarActionTypes } from '../actions/car-actions';
+import { UserActionTypes } from '../actions/user-actions';
 
 const CarReducer = (cars = { all: [], car: null }, action) => {
   switch (action.type) {
@@ -10,6 +11,7 @@ const CarReducer = (cars = { all: [], car: null }, action) => {
     case CarActionTypes.CAR_CREATE_ERR:
       return cars;
     case CarActionTypes.UPDATE_CAR:
+      console.log(action.payload);
       return {
         all: action.payload.renter.cars,
         car: action.payload.car,
@@ -37,6 +39,8 @@ const CarReducer = (cars = { all: [], car: null }, action) => {
       };
     case CarActionTypes.CARS_GET_ERR:
       return cars;
+    case UserActionTypes.RENTER_GET_SPOTS_AND_CARS:
+      return Object.assign({}, cars, { all: action.payload.cars });
     default: return cars;
   }
 };

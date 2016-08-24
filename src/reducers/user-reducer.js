@@ -54,6 +54,8 @@ const UserReducer = (auth = { user: null, userType: null, authenticated: false }
       return Object.assign({}, auth, { user: action.payload });
     case SpotActionTypes.BUY_SPOT:
       return Object.assign({}, auth, { user: action.payload.renter });
+    case UserActionTypes.RENTER_GET_SPOTS_AND_CARS:
+      return Object.assign({}, auth, { user: action.payload });
     default: return auth;
   }
 };

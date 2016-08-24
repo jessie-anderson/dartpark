@@ -8,6 +8,7 @@ export const UserActionTypes = {
   RENTER_CHANGE_BIO_AND_NAME: 'RENTER_CHANGE_BIO_AND_NAME',
   VENDOR_CHANGE_PASSWORD: 'VENDOR_CHANGE_PASSWORD',
   VENDOR_CHANGE_BIO_AND_NAME: 'VENDOR_CHANGE_BIO_AND_NAME',
+  RENTER_GET_SPOTS_AND_CARS: 'RENTER_GET_SPOTS_AND_CARS',
   AUTH_VENDOR: 'AUTH_VENDOR',
   AUTH_RENTER: 'AUTH_RENTER',
   DEAUTH_USER: 'DEAUTH_USER',
@@ -150,6 +151,19 @@ export function changeRenterBioAndName(bio, username) {
     .then(response => {
       dispatch({
         type: UserActionTypes.RENTER_CHANGE_BIO_AND_NAME,
+        payload: response.data,
+      });
+    })
+    .catch(err => {});
+  };
+}
+
+export function renterGetSpotsAndCars(id) {
+  return (dispatch) => {
+    axios.get(`${ROOT_URL}/carsAndSpots`, { headers: { authorizationrenter: localStorage.getItem('token') } })
+    .then(response => {
+      dispatch({
+        type: UserActionTypes.RENTER_GET_SPOTS_AND_CARS,
         payload: response.data,
       });
     })

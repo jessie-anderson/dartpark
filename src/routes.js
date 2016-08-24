@@ -10,7 +10,7 @@ import SignUpRenter from './components/renter/signup-renter';
 import SearchBar from './components/renter/searchbar';
 import BuyItem from './components/renter/buy-spot';
 import SelectItem from './components/renter/spot-select';
-import SpotDetail from './components/renter/spot-detail';
+// import SpotDetail from './components/renter/spot-detail';
 import RenterHome from './components/renter/renter-home';
 import Profile from './components/renter/profile';
 
@@ -27,6 +27,7 @@ import VendorManage from './components/vendor/manage';
 import EditSpot from './components/vendor/edit-spot';
 import VendorProfile from './components/vendor/profile';
 import CreateCar from './components/renter/create-car';
+import ViewCar from './components/renter/view-car';
 
 export default(
   <Route path="/" component={App}>
@@ -36,13 +37,12 @@ export default(
     <Route path="/signup-vendor" component={SignUpVendor} />
     <Route path="/signin-vendor" component={SignInVendor} />
 
-    <Route path="/renter/profile" component={Profile} />
     <Route path="/renter/search" component={SearchBar} />
     <Route path="/renter/select-spot" component={SelectItem} />
-    <Route path="/renter/spot-detail" component={SpotDetail} />
     <Route path="/renter/buy-spot" component={BuyItem} />
     <Route path="/renter/add-car" component={CreateCar} />
-    <Route path="/renter" component={RenterHome} />
+    <Route path="/renter/view-car" component={ViewCar} />
+    <Route path="/renter" component={Profile} />
 
     <Route path="/vendor/manage" component={VendorManage} />
     <Route path="/vendor/create-spots" component={CreateSpots} />

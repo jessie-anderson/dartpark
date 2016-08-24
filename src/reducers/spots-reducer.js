@@ -1,4 +1,5 @@
 import { SpotActionTypes } from '../actions/spot-actions';
+import { UserActionTypes } from '../actions/user-actions';
 
 const SpotsReducer = (spots = { all: [], spot: null, searchTerm: '' }, action) => {
   switch (action.type) {
@@ -24,6 +25,7 @@ const SpotsReducer = (spots = { all: [], spot: null, searchTerm: '' }, action) =
     case SpotActionTypes.VENDOR_GET_SPOT:
       return Object.assign({}, spots, { spot: action.payload });
     case SpotActionTypes.RENTER_GET_SPOTS:
+      console.log(action.payload);
       return Object.assign({}, spots, { all: action.payload });
     case SpotActionTypes.RENTER_GET_SPOT:
       return Object.assign({}, spots, { spot: action.payload });
@@ -41,6 +43,8 @@ const SpotsReducer = (spots = { all: [], spot: null, searchTerm: '' }, action) =
       };
     case SpotActionTypes.GET_ALL_SPOTS:
       return Object.assign({}, spots, { all: action.payload });
+    case UserActionTypes.RENTER_GET_SPOTS_AND_CARS:
+      return Object.assign({}, spots, { all: action.payload.spots });
     default: return spots;
   }
 };
