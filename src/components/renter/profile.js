@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import CardItemEdit from './carditem-edit';
 import { connect } from 'react-redux';
-import VehicleItemRender from './vehicle-render';
-import { changeRenterBioAndName } from '../../actions/user-actions';
-import { renterGetSpots } from '../../actions/spot-actions';
-import { getCars } from '../../actions/car-actions';
+import VehicleItem from './vehicle-item';
+import SpotItem from './spot-item';
+import { changeRenterBioAndName, renterGetSpotsAndCars } from '../../actions/user-actions';
 import { Link } from 'react-router';
 
 class Profile extends Component {
@@ -24,8 +23,7 @@ class Profile extends Component {
   }
 
   componentWillMount() {
-    this.props.renterGetSpots();
-    this.props.getCars();
+    this.props.renterGetSpotsAndCars();
   }
 
   onChangeUsername(event) {
@@ -51,14 +49,15 @@ class Profile extends Component {
       );
     } else {
       return this.props.spots.map(spot => {
-        console.log(spot);
         return (
-          <div id={spot._id} key={spot._id}>
-            <p>Address: {spot.address}</p>
-            <p>Price: {spot.price}</p>
-            <p>startDate: {spot.startDate}</p>
-            <p>endDate: {spot.endDate}</p>
-          </div>
+          <SpotItem
+            id={spot._id}
+            key={spot._id}
+            address={spot.address}
+            price={spot.price}
+            startDate={spot.startDate}
+            endDate={spot.endDate}
+          />
         );
       });
     }
@@ -71,13 +70,16 @@ class Profile extends Component {
       );
     } else {
       return this.props.cars.map(car => {
+        console.log(car);
         return (
-          <div id={car._id} key={car._id}>
-            <p>Make: {car.make}</p>
-            <p>Model: {car.model}</p>
-            <p>Year: {car.year}</p>
-            <p>Color: {car.paintcolor}</p>
-          </div>
+          <VehicleItem
+            _id={car._id}
+            key={car._id}
+            make={car.make}
+            model={car.model}
+            year={car.year}
+            paintcolor={car.paintcolor}
+          />
         );
       });
     }
@@ -130,4 +132,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { changeRenterBioAndName, renterGetSpots, getCars })(Profile);
+export default connect(mapStateToProps, { changeRenterBioAndName, renterGetSpotsAndCars })(Profile);
