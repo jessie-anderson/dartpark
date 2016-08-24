@@ -104,6 +104,7 @@ const mapStateToProps = (state) => (
   {
     conversations: state.conversations.all,
     conversation: state.conversations.conversation,
+    userType: state.auth.userType,
   }
 );
 
