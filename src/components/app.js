@@ -28,7 +28,7 @@ class App extends Component {
       }
     } else {
       console.log('error finding usertype');
-      return (<div>Error</div>);
+      return (<div id="header-bar">dartPark</div>);
     }
   }
   render() {

@@ -51,27 +51,37 @@ class CreateSpots extends Component {
 
   render() {
     return (
-      <div>
-        <h1>Create Spot(s)</h1>
+      <div id="create-spots">
+        <div id="center-content">
+          <div id="box">
+            <h1>Create Spot</h1>
 
-        <label htmlFor="spotName">Spot Address: </label>
-        <input onChange={this.onSpotNameChange} id="spotName" placeholder="Enter Name..."></input>
-
-        <label htmlFor="spotLocation">Spot Address: </label>
-        <input onChange={this.onAddressChange} id="spotLocation" placeholder="Enter Address..."></input>
-        <SimpleSearchBar />
-
-
-        <label htmlFor="spotPrice">Spot Price: </label>
-        <input onChange={this.onPriceChange} placeholder="Price in dollars (Ex. $x.xx)..." id="numSpots" ></input>
-
-        <label htmlFor="startDate">Start Date: </label>
-        <input onChange={this.onStartDateChange} placeholder="Start date..." id="startDate" ></input>
-
-        <label htmlFor="endDate">End Date: </label>
-        <input onChange={this.onEndDateChange} placeholder="End date..." id="endDate" ></input>
-
-        <button onClick={this.onButtonPress}>Create Spot</button>
+            <div id="formOpt">
+              <label htmlFor="spotName">Spot Address:</label>
+              <input onChange={this.onSpotNameChange} id="spotName" placeholder="Enter Name..."></input>
+            </div>
+            <div id="formOpt">
+              <label htmlFor="spotLocation">Spot Address: </label>
+              <input onChange={this.onAddressChange} id="spotLocation" placeholder="Enter Address..."></input>
+            </div>
+            <div id="searchBar">
+              <SimpleSearchBar />
+            </div>
+            <div id="formOpt">
+              <label htmlFor="spotPrice">Spot Price: </label>
+              <input onChange={this.onPriceChange} placeholder="Price in dollars (Ex. $x.xx)..." id="numSpots" ></input>
+            </div>
+            <div id="formOpt">
+              <label htmlFor="startDate">Start Date: </label>
+              <input onChange={this.onStartDateChange} placeholder="Start date..." id="startDate" ></input>
+            </div>
+            <div id="formOpt">
+              <label htmlFor="endDate">End Date: </label>
+              <input onChange={this.onEndDateChange} placeholder="End date..." id="endDate" ></input>
+            </div>
+            <button id="btn" onClick={this.onButtonPress}>Create Spot</button>
+          </div>
+        </div>
       </div>
     );
   }
