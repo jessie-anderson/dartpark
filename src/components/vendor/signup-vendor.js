@@ -34,7 +34,6 @@ class SignUpVendor extends Component {
   render() {
     return (
       <div>
-        <div id="header-bar">dartPark</div>
         <div id="abs-center">
           <h1>Sign Up</h1>
           <h4>Enter your email:</h4>

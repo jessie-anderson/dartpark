@@ -23,7 +23,6 @@ class VendorManage extends Component {
   render() {
     return (
       <div>
-        <NavBar />
         <div id="center-content">
           <h1>Manage Spots</h1>
           <h2>You have not created any spots yet.  Click the button below to add some spots to your profile.</h2>
