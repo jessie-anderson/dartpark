@@ -1,3 +1,7 @@
+// TODO: make spots that are bought appear different from those that are still available
+// TODO: implement delete button on spots that haven't been bought yet to allow vendor
+// to delete them
+
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { vendorGetSpot, vendorGetSpots } from '../../actions/spot-actions';

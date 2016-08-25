@@ -1,3 +1,5 @@
+// TODO: fix this to actually display vendor info
+
 import React, { Component } from 'react';
 // import { connect } from 'react-redux';
 import { Modal, Tab, Tabs } from 'react-bootstrap';

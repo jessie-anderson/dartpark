@@ -1,3 +1,5 @@
+// component that allows user to create a car
+
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { createCar } from '../../actions/car-actions';

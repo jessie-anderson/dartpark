@@ -1,3 +1,6 @@
+// detail of spot that renders when renter searches for spots
+// TODO: connect "buy" button to component that implements paying API
+
 import React, { Component } from 'react';
 import { buySpot } from '../../actions/spot-actions';
 import { connect } from 'react-redux';
