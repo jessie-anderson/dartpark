@@ -1,3 +1,5 @@
+// TODO: fix address bar to have google autocomplete
+
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bootstrap } from 'react-bootstrap';

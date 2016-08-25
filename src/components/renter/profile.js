@@ -1,3 +1,6 @@
+// TODO: fix card info stuff!! spots and cars are mostly taken care of
+// TODO: profile picture implementation!!
+
 import React, { Component } from 'react';
 import CardItemEdit from './carditem-edit';
 import { connect } from 'react-redux';

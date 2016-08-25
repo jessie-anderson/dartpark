@@ -1,10 +1,12 @@
+// summary of spot that renders on renter's profile page
+// TODO: create spot-detail component that the "View Spot Details"
+// button is supposed to link to!
+
 import React, { Component } from 'react';
 import { Link } from 'react-router';
 import { renterGetSpot } from '../../actions/spot-actions';
 import { connect } from 'react-redux';
 
-
-// corresponds to FindSpot-Search on mockups
 
 class SpotItem extends Component {
   constructor(props) {

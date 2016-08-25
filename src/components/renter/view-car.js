@@ -1,3 +1,6 @@
+// component with all car info that renders when renter clicks on "edit" button
+// for car on profile page. Allows renter to edit and delete car
+
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { updateCar, deleteCar } from '../../actions/car-actions';
@@ -20,7 +23,12 @@ class ViewCar extends Component {
     };
   }
 
+  componentWillReceiveProps(props) {
+    this.setState({ car: props.car });
+  }
+
   onSaveClick() {
+    /*
     let make, model, year, paintcolor, plateNumber;
     if (this.state.car === null) {
       make = this.props.car.make;
@@ -59,7 +67,14 @@ class ViewCar extends Component {
         plateNumber = this.state.car.plateNumber;
       }
     }
-    const car = { make, model, year, paintcolor, plateNumber };
+    */
+    const car = {
+      make: this.state.car.make,
+      model: this.state.car.model,
+      year: this.state.car.year,
+      paintcolor: this.state.car.paintcolor,
+      plateNumber: this.state.car.plateNumber,
+    };
     this.props.updateCar(car, this.props.car._id);
   }
 
@@ -110,39 +125,26 @@ class ViewCar extends Component {
           <p>Color: {this.props.car.paintcolor}</p>
           <p>Plate: {this.props.car.plateNumber}</p>
           <button onClick={this.onEdit}>Edit</button>
+          <button onClick={this.onDelete}>Delete Car</button>
         </div>
       );
     } else {
-      let make, model, year, paintColor, plateNumber;
-      if (this.state.car === null) {
-        make = this.props.car.make;
-        model = this.props.car.model;
-        year = this.props.car.year;
-        paintColor = this.props.car.paintColor;
-        plateNumber = this.props.car.plateNumber;
-      } else {
-        make = this.state.car.make;
-        model = this.state.car.model;
-        year = this.state.car.year;
-        paintColor = this.state.car.paintColor;
-        plateNumber = this.state.car.plateNumber;
-      }
       return (
         <div>
           <label htmlFor="make">Make:</label>
-          <input id="make" value={make} onChange={this.onMakeChange} />
+          <input id="make" value={this.state.car.make} onChange={this.onMakeChange} />
 
           <label htmlFor="model">Model:</label>
-          <input id="model" value={model} onChange={this.onModelChange} />
+          <input id="model" value={this.state.car.model} onChange={this.onModelChange} />
 
           <label htmlFor="year">Year:</label>
-          <input id="year" value={year} onChange={this.onYearChange} />
+          <input id="year" value={this.state.car.year} onChange={this.onYearChange} />
 
           <label htmlFor="color">Color:</label>
-          <input id="color" value={paintColor} onChange={this.onColorChange} />
+          <input id="color" value={this.state.car.paintcolor} onChange={this.onColorChange} />
 
           <label htmlFor="plate">Plate:</label>
-          <input id="plate" value={plateNumber} onChange={this.onPlateChange} />
+          <input id="plate" value={this.state.car.plateNumber} onChange={this.onPlateChange} />
 
           <button onClick={this.onSaveClick}>Save Changes</button>
           <button onClick={this.onEdit}>Cancel</button>

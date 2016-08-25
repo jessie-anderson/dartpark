@@ -1,3 +1,5 @@
+// car "summary" that renders on renter's profile page
+
 import React, { Component } from 'react';
 import { Link } from 'react-router';
 import { getCar } from '../../actions/car-actions';

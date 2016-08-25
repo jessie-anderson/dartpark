@@ -1,3 +1,6 @@
+// TODO: go over this carefully and make sure we only have the routes that are
+// necessary!!
+
 import React from 'react';
 import { Route, IndexRoute } from 'react-router';
 
@@ -11,7 +14,6 @@ import SearchBar from './components/renter/searchbar';
 import BuyItem from './components/renter/buy-spot';
 import SelectItem from './components/renter/spot-select';
 // import SpotDetail from './components/renter/spot-detail';
-import RenterHome from './components/renter/renter-home';
 import Profile from './components/renter/profile';
 
 // import Home from './components/home';
