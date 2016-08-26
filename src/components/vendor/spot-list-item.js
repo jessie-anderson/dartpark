@@ -1,15 +1,28 @@
 import React, { Component } from 'react';
 // import { connect } from 'react-redux';
 import { Modal, Tab, Tabs } from 'react-bootstrap';
-let Dropzone = require('react-dropzone');
+// let Dropzone = require('react-dropzone');  //    <Dropzone rev="dropzone" onDrop={this.onDropFunction}><div>Upload</div></Dropzone>
 import { connect } from 'react-redux';
 import { updateSpot } from '../../actions/spot-actions';
+const DropzoneComponent = require('react-dropzone-component');
+// import config from '../../../config';
+DropzoneComponent.autoDiscover = false;
+
+
+// http://cloudinary.com/documentation/node_image_upload#server_side_upload
+// http://www.dropzonejs.com/#dropzone-methods
+// http://www.dropzonejs.com/\
+// https://github.com/mapmeld/1batch/wiki/06.-Uploading-to-Cloudinary
+// https://github.com/cloudinary/cloudinary_npm
+// https://github.com/felixrieseberg/React-Dropzone-Component#usage-without-automatic-posting
+
 
 class SpotItem extends Component {
   constructor(props) {
     super(props);
 
     // init component state here
+
     this.state = {
       spotName: this.props.spotName,
       address: this.props.address,
@@ -18,9 +31,19 @@ class SpotItem extends Component {
       endDate: this.props.endDate,
       isEditing: false,
       displayModal: false,
+      dropzoneObject: '',
+      eventHandlers: { init: this.initCallback, drop: this.testFunction },
+      componentConfig: {
+        iconFiletypes: ['.jpg', '.png', '.gif'],
+        showFiletypeIcon: true,
+        // postUrl:  // config.upload_url,
+      },
+
     };
+    this.initCallback = this.initCallback.bind(this);
+    this.testFunction = this.testFunction.bind(this);
     this.onButtonClick = this.onButtonClick.bind(this);
-    this.onDropFunction = this.onDropFunction.bind(this);
+    // this.onDropFunction = this.onDropFunction.bind(this);
     this.onEditClick = this.onEditClick.bind(this);
     this.onAddressChange = this.onAddressChange.bind(this);
     this.onPriceChange = this.onPriceChange.bind(this);
@@ -28,7 +51,9 @@ class SpotItem extends Component {
     this.onEndDateChange = this.onEndDateChange.bind(this);
     this.onSpotNameChange = this.onSpotNameChange.bind(this);
     this.onSave = this.onSave.bind(this);
+    this.djsConfig = this.djsConfig.bind(this);
   }
+
 
   onEditClick() {
     this.setState({ isEditing: !this.state.isEditing });
@@ -73,9 +98,27 @@ class SpotItem extends Component {
       this.setState({ displayModal: true });
     }
   }
-  onDropFunction(files) {
-
+  testFunction(event) {
+    console.log('works! here is the event');
   }
+
+  djsConfig() {
+    return (<div className="dz-preview dz-file-preview">
+      <div className="dz-details">
+        <div className="dz-filename"><span data-dz-name="true"></span></div>
+        <img data-dz-thumbnail="true" />
+      </div>
+      <div className="dz-progress"><span className="dz-upload" data-dz-uploadprogress="true"></span></div>
+      <div className="dz-success-mark"><span>✔</span></div>
+      <div className="dz-error-mark"><span>✘</span></div>
+      <div className="dz-error-message"><span data-dz-errormessage="true"></span></div>
+    </div>);
+  }
+  initCallback(dropzone) {
+    console.log('WORKS');
+    this.dropzoneObject = dropzone;
+  }
+
 
   render() {
     if (!this.state.isEditing) {
@@ -94,7 +137,7 @@ class SpotItem extends Component {
             <Modal.Body>
               <Tabs defaultActiveKey={1}>
                 <Tab eventKey={1} title="Upload Picture from Computer">
-                  <Dropzone rev="dropzone" onDrop={this.onDropFunction}><div>test</div></Dropzone>
+                  <DropzoneComponent eventHandlers={this.state.eventHandlers} action="uploads.php" config={this.state.componentConfig} djsConfig={this.djsConfig} />
                 </Tab>
                 <Tab eventKey={2} title="Use Google Photo">lksd</Tab>
               </Tabs>
@@ -132,7 +175,7 @@ class SpotItem extends Component {
             <Modal.Body>
               <Tabs defaultActiveKey={1}>
                 <Tab eventKey={1} title="Upload Picture from Computer">
-                  <Dropzone rev="dropzone" onDrop={this.onDropFunction}><div>Upload</div></Dropzone>
+                  <DropzoneComponent eventHandlers={this.state.eventHandlers} action="uploads.php" config={this.state.componentConfig} djsConfig={this.djsConfig} />
                 </Tab>
                 <Tab eventKey={2} title="Use Google Photo">lksd</Tab>
               </Tabs>
