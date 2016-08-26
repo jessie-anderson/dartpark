@@ -8,7 +8,7 @@ class MessagePage extends Component {
     super(props);
 
     // init component state here
-    this.state = { currentMessage: '', currentConvoId: '', role: 'renter', userId: '57bb6f7cb459b705d81296b5' };
+    this.state = { currentMessage: '', currentConvoId: '', role: 'vnedor', userId: '57bb6f7cb459b705d81296b5' };
     this.handleConvoClick = this.handleConvoClick.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSendMessage = this.handleSendMessage.bind(this);

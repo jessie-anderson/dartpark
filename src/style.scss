@@ -170,7 +170,7 @@ h1 {
 
   #nav-link {
     display: flex;
-    flex-flow: column nowrap;
+    flex-flow: column wrap;
     justify-content: center;
     padding: 0.5em;
     padding-left: 0.7em;
@@ -317,7 +317,7 @@ h1 {
 #select-act {
   background-color: $accent-color;
   display: flex;
-  flex-flow: column nowrap;
+  flex-flow: column wrap;
   justify-content: center;
   align-items: center;
   padding: 1em;
@@ -363,7 +363,7 @@ h1 {
   #sign-in-form {
     margin: 1em;
     display: flex;
-    flex-flow: column nowrap;
+    flex-flow: column wrap;
   }
   #btn1 {
     font-size: 1.2em;
@@ -375,7 +375,7 @@ h1 {
   #box {
     background-color: $accent-color;
     display: flex;
-    flex-flow: column nowrap;
+    flex-flow: column wrap;
     justify-content: center;
     padding: 3em;
     border-radius: 4px;
@@ -398,7 +398,7 @@ h1 {
   }
   #box {
     display: flex;
-    flex-flow: column nowrap;
+    flex-flow: column wrap;
     justify-content: center;
     margin: 1em;
   }
@@ -445,7 +445,7 @@ h1 {
 #general-style {
   #left-align {
     display: flex;
-    flex-flow: column nowrap;
+    flex-flow: column wrap;
     justify-content: flex-start;
   }
   h1 {
@@ -490,4 +490,14 @@ h1 {
 
 #back-box {
   background-color: $accent-color;
+}
+
+#scroll {
+  height: 100%;
+  overflow-y: scroll;
+}
+
+#view-spots {
+  display: flex;
+  flex-flow: row wrap;
 }
