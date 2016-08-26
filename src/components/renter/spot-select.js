@@ -1,7 +1,9 @@
-// import SimpleSearchBar from './simple-bar';
+// Component that renders all available spots when renter searches for spots
+// TODO: implement sorting by distance using the google maps api
+// TODO: implement sorting by price
+
 import React from 'react';
 import ResultItem from './spot-list-item';
-// import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import { getAllSpots } from '../../actions/spot-actions';
 

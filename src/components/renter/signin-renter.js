@@ -1,3 +1,6 @@
+// renter signin component
+// TODO: Dartmouth auth system?? Email verification??
+
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';

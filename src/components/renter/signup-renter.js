@@ -1,3 +1,5 @@
+// renter signup component
+
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { signupRenter } from '../../actions/user-actions';
