@@ -4,3 +4,4 @@ node_modules
 .npm
 example_code
 .env
+uploads.php

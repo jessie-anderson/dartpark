@@ -53,10 +53,18 @@ class BuyItem extends Component {
             selector: '#cvv',
             placeholder: '123',
           },
-          expirationDate: {
-            selector: '#expiration-date',
-            placeholder: '10 / 2019',
+          expirationYear: {
+            selector: '#expiration-year',
+            placeholder: '2020',
           },
+          expirationMonth: {
+            selector: '#expiration-month',
+            placeholder: '6',
+          },
+          // expirationDate: {
+          //   selector: '#expiration-date',
+          //   placeholder: '10 / 2019',
+          // },
         },
       }, function (hostedFieldsErr, hostedFieldsInstance) {
         if (hostedFieldsErr) {
@@ -100,11 +108,14 @@ class BuyItem extends Component {
           <label htmlFor="cvv">CVV</label>
           <div className="hosted-field" id="cvv"></div>
 
-          <label htmlFor="expiration-date">Expiration Date</label>
-          <div className="hosted-field" id="expiration-date"></div>
+          <label htmlFor="expiration-month">Expiration Month</label>
+          <div className="hosted-field" id="expiration-month"></div>
+
+          <label htmlFor="expiration-year">Expiration Year</label>
+          <div className="hosted-field" id="expiration-year"></div>
 
           <input type="hidden" name="payment-method-nonce" />
-          <input type="submit" value="Pay $10" disabled />
+          <input type="submit" value="Pay" disabled />
         </form>
       </div>
     );
