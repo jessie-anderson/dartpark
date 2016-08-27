@@ -133,8 +133,7 @@ class SpotItem extends Component {
 
 
   render() {
-    if (!this.state.isEditing) {
-      return (
+    return (
         <div id="spot-item">
           <button id="std-btn" onClick={this.onEditClick}>Edit</button>
           <h1>{this.props.spotName}</h1>
@@ -159,44 +158,6 @@ class SpotItem extends Component {
 
         </div>
       );
-    } else {
-      return (
-        <div id="center-content">
-          <button id="std-btn" onClick={this.onSave}>Save Changes</button>
-          <button id="std-light-btn" onClick={this.onEditClick}>Cancel</button>
-
-          <label htmlFor="spotName">Name:</label>
-          <input value={this.state.spotName} onChange={this.onSpotNameChange} id="spotName" />
-
-          <label htmlFor="address">Address:</label>
-          <input value={this.state.address} onChange={this.onAddressChange} id="address" />
-
-          <label htmlFor="price">Price:</label>
-          <input value={this.state.price} onChange={this.onPriceChange} id="price" />
-
-          <label htmlFor="startDate">Start date:</label>
-          <input value={this.state.startDate} onChange={this.onStartDateChange} id="startDate" />
-
-          <label htmlFor="endDate">End date:</label>
-          <input value={this.state.endDate} onChange={this.onEndDateChange} id="endDate" />
-
-          <button id="std-btn" onClick={this.onButtonClick}>Upload Photo</button>
-
-          <Modal show={this.state.displayModal} onHide={this.onButtonClick}>
-            <Modal.Header closeButton>Add Picture</Modal.Header>
-            <Modal.Body>
-              <Tabs defaultActiveKey={1}>
-                <Tab eventKey={1} title="Upload Picture from Computer">
-                  <DropzoneComponent eventHandlers={this.state.eventHandlers} config={this.state.componentConfig} djsConfig={this.djsConfig} />
-                </Tab>
-                <Tab eventKey={2} title="Use Google Photo">lksd</Tab>
-              </Tabs>
-            </Modal.Body>
-            <Modal.Footer>ldkajs</Modal.Footer>
-          </Modal>
-        </div>
-      );
-    }
   }
 }
 export default connect(null, { updateSpot })(SpotItem);
