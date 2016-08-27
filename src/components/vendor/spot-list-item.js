@@ -5,8 +5,11 @@ import { Modal, Tab, Tabs } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { updateSpot } from '../../actions/spot-actions';
 const DropzoneComponent = require('react-dropzone-component');
+
 // import config from '../../../config';
-DropzoneComponent.autoDiscover = false;
+// DropzoneComponent.autoDiscover = false;
+// import cloudinary from 'cloudinary';
+// const cloudinary = require('cloudinary');
 
 
 // http://cloudinary.com/documentation/node_image_upload#server_side_upload
@@ -32,14 +35,17 @@ class SpotItem extends Component {
       isEditing: false,
       displayModal: false,
       dropzoneObject: '',
-      eventHandlers: { init: this.initCallback, drop: this.testFunction },
+      eventHandlers: { init: this.initCallback, drop: this.testFunction, addedfile: this.uploadFile },
       componentConfig: {
         iconFiletypes: ['.jpg', '.png', '.gif'],
         showFiletypeIcon: true,
-        // postUrl:  // config.upload_url,
+        // postUrl: 'https://api.cloudinary.com/v1_1/dartpark/image/upload',
+// cloudinary signed url
+        // postUrl: config.upload_url,
       },
 
     };
+    this.uploadFile = this.uploadFile.bind(this);
     this.initCallback = this.initCallback.bind(this);
     this.testFunction = this.testFunction.bind(this);
     this.onButtonClick = this.onButtonClick.bind(this);
@@ -54,7 +60,12 @@ class SpotItem extends Component {
     this.djsConfig = this.djsConfig.bind(this);
   }
 
-
+  uploadFile(file) {
+    console.log('upload');
+    cloudinary.uploader.upload(file, (result) => {
+      console.log(result);
+    });
+  }
   onEditClick() {
     this.setState({ isEditing: !this.state.isEditing });
   }

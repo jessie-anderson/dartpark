@@ -21,6 +21,7 @@ class ResultItem extends Component {
       <div>
         <ul className="result-details">
           <li className="address">Address: {this.props.address}</li>
+          <li>Distance: {this.props.distance}</li>
           <li>Vendor: {this.props.vendor}</li>
           <li>Price: {this.props.price}</li>
           <li>Start date: {this.props.startDate}</li>
