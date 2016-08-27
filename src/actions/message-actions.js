@@ -35,6 +35,7 @@ export function fetchConvo(convoId) {
     });
   };
 }
+
 export function popConvoToTop(convoId, { id, requester }) {
   return (dispatch) => {
     axios.put(`${ROOT_URL}/conversations/${convoId}`, { id, requester }, { headers: { authorization: localStorage.getItem('token') } }).then(response => {
