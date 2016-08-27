@@ -21,6 +21,7 @@ const SelectSpot = (props) => {
         <ResultItem
           address={spot.address}
           vendor={spot.vendor.username}
+          vendorId={spot.vendor._id}
           price={spot.price}
           startDate={spot.startDate}
           endDate={spot.endDate}

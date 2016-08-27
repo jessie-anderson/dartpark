@@ -106,9 +106,9 @@ class Profile extends Component {
         <div>
           <h1>Profile Information</h1>
           <label htmlFor="name">Name:</label>
-          <input value={this.state.username} onChange={this.onChangeUsername} id="name" />
+          <input value={this.props.username} onChange={this.onChangeUsername} id="name" />
           <label htmlFor="bio">Bio:</label>
-          <input value={this.state.bio} onChange={this.onChangeBio} id="bio" />
+          <input value={this.props.bio} onChange={this.onChangeBio} id="bio" />
           <button onClick={this.onEditClick}>Cancel</button>
           <button onClick={this.saveChanges}>Save Changes</button>
         </div>
@@ -127,10 +127,15 @@ class Profile extends Component {
 }
 
 const mapStateToProps = (state) => {
+  const userBio = localStorage.getItem('userBio') ? localStorage.getItem('userBio') : state.auth.user.bio;
+  const userName = localStorage.getItem('userName') ? localStorage.getItem('userName') : state.auth.user.username;
+
+
+  console.log(userBio);
   return {
-    bio: state.auth.user.bio,
-    username: state.auth.user.username,
-    cars: state.auth.user.cars,
+    bio: userBio,
+    username: userName,
+    cars: state.cars,
     spots: state.spots.all,
   };
 };

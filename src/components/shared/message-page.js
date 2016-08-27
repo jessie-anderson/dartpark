@@ -8,14 +8,17 @@ class MessagePage extends Component {
     super(props);
 
     // init component state here
-    this.state = { currentMessage: '', currentConvoId: '', role: 'vnedor', userId: '57bb6f7cb459b705d81296b5' };
+    this.state = {
+      currentMessage: '',
+      currentConvoId: '',
+      userType: this.props.userType,
+      userId: '57bb6f7cb459b705d81296b5' };
     this.handleConvoClick = this.handleConvoClick.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSendMessage = this.handleSendMessage.bind(this);
   }
   componentWillMount() {
-    this.props.fetchConvoPreview('57bb6f7cb459b705d81296b5', 'renter');
-    localStorage.setItem('token', 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1N2JiNmY3Y2I0NTliNzA1ZDgxMjk2YjUiLCJpYXQiOjE0NzE5MDE1NjQ2MjB9.i9AcFPjRvjxOLVtSdmJtSkHGBbAcfwK65EPRo8kXaFM');
+    this.props.fetchConvoPreview(this.state.userType);
   }
   handleConvoClick(convoId) {
     this.props.fetchConvo(convoId);

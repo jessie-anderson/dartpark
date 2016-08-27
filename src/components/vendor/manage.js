@@ -6,7 +6,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { vendorGetSpot, vendorGetSpots } from '../../actions/spot-actions';
 import SpotItem from './spot-list-item';
-import { bootstrap } from 'react-bootstrap';
+// import { bootstrap } from 'react-bootstrap';
 import { Link } from 'react-router';
 
 

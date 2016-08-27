@@ -1,5 +1,5 @@
 import axios from 'axios';
-// import { browserHistory } from 'react-router';
+import { browserHistory } from 'react-router';
 
 export const ActionTypes = {
   FETCH_CONVO_PREVIEW: 'FETCH_CONVO_PREVIEW',
@@ -10,10 +10,10 @@ const ROOT_URL = 'http://localhost:9090/api';
 // const ROOT_URL = 'http://dartpark.herokuapp.com/api';
 
 
-export function fetchConvoPreview(userId, userType) {
+export function fetchConvoPreview(userType) {
   return (dispatch) => {
       // can now dispatch stuff
-    axios.get(`${ROOT_URL}/conversations/${userId}/requester/${userType}`, { headers: { authorization: localStorage.getItem('token') } }).then(response => {
+    axios.get(`${ROOT_URL}/conversations/requester/${userType}`, { headers: { authorization: localStorage.getItem('token') } }).then(response => {
       console.log(`response.data.conversations: ${response.data.conversations}`);
       dispatch({ type: 'FETCH_CONVO_PREVIEW', payload: { conversations: response.data.conversations } });
     }).catch(error => {
@@ -53,6 +53,17 @@ export function sendMessage(convoId, userId, { message, sender }) {
         console.log(res);
         fetchConvoPreview(userId, sender)(dispatch);
       });
+    }).catch(error => {
+        // hit an error
+    });
+  };
+}
+
+export function createConversation(vendorId) {
+  return (dispatch) => {
+    axios.put(`${ROOT_URL}/conversations/`, { vendorId }, { headers: { authorization: localStorage.getItem('token') } }).then(response => {
+      browserHistory.push('/messages');
+      fetchConvoPreview('renter')(dispatch);
     }).catch(error => {
         // hit an error
     });
