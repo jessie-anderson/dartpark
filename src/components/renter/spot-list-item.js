@@ -10,7 +10,6 @@ class ResultItem extends Component {
   constructor(props) {
     super(props);
     this.getSpotDetail = this.getSpotDetail.bind(this);
-    this.onBuy = this.onBuy.bind(this);
   }
 
   getSpotDetail() {
