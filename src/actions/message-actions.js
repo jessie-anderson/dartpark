@@ -25,7 +25,7 @@ export function fetchConvoPreview(userType) {
 export function fetchConvo(convoId) {
   return (dispatch) => {
       // can now dispatch stuff
-    axios.get(`${ROOT_URL}/conversations/${convoId}`).then(response => {
+    axios.get(`${ROOT_URL}/conversations/${convoId}/requester/${localStorage.getItem('userRole')}`, { headers: { authorization: localStorage.getItem('token') } }).then(response => {
       // do something with response.data  (some json)
       // console.log('fetchConvo');
       console.log(response.data.conversations);
@@ -36,22 +36,22 @@ export function fetchConvo(convoId) {
   };
 }
 
-export function popConvoToTop(convoId, { id, requester }) {
+export function popConvoToTop(convoId) {
   return (dispatch) => {
-    axios.put(`${ROOT_URL}/conversations/${convoId}`, { id, requester }, { headers: { authorization: localStorage.getItem('token') } }).then(response => {
+    axios.put(`${ROOT_URL}/conversations/${convoId}/requester/${localStorage.getItem('userRole')}`, { headers: { authorization: localStorage.getItem('token') } }).then(response => {
       dispatch(response);
     }).catch(error => {
         // hit an error
     });
   };
 }
-export function sendMessage(convoId, userId, { message, sender }) {
+export function sendMessage(convoId, { message }) {
   return (dispatch) => {
-    axios.post(`${ROOT_URL}/conversations/${convoId}`, { message, sender }, { headers: { authorization: localStorage.getItem('token') } }).then(response => {
+    axios.post(`${ROOT_URL}/conversations/${convoId}/requester/${localStorage.getItem('userRole')}`, { message }, { headers: { authorization: localStorage.getItem('token') } }).then(response => {
       fetchConvo(convoId)(dispatch);
-      popConvoToTop(convoId, { id: userId, requester: sender })((res) => {
+      popConvoToTop(convoId)((res) => {
         console.log(res);
-        fetchConvoPreview(userId, sender)(dispatch);
+        fetchConvoPreview(localStorage.getItem('userRole'))(dispatch);
       });
     }).catch(error => {
         // hit an error
@@ -61,9 +61,10 @@ export function sendMessage(convoId, userId, { message, sender }) {
 
 export function createConversation(vendorId) {
   return (dispatch) => {
-    axios.put(`${ROOT_URL}/conversations/`, { vendorId }, { headers: { authorization: localStorage.getItem('token') } }).then(response => {
-      browserHistory.push('/messages');
-      fetchConvoPreview('renter')(dispatch);
+    console.log(vendorId);
+    axios.put(`${ROOT_URL}/conversations`, { vendorId }, { headers: { authorizationrenter: localStorage.getItem('token') } }).then(response => {
+      browserHistory.push('/messaging');
+      // fetchConvoPreview('renter')(dispatch);
     }).catch(error => {
         // hit an error
     });

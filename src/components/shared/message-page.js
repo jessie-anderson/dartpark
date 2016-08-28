@@ -11,8 +11,7 @@ class MessagePage extends Component {
     this.state = {
       currentMessage: '',
       currentConvoId: '',
-      userType: this.props.userType,
-      userId: '57bb6f7cb459b705d81296b5' };
+      userType: this.props.userType };
     this.handleConvoClick = this.handleConvoClick.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSendMessage = this.handleSendMessage.bind(this);
@@ -28,12 +27,12 @@ class MessagePage extends Component {
     this.setState({ currentMessage: event.target.value });
   }
   handleSendMessage() {
-    this.props.sendMessage(this.state.currentConvoId, this.state.userId, { message: this.state.currentMessage, sender: this.state.role });
+    this.props.sendMessage(this.state.currentConvoId, { message: this.state.currentMessage });
   }
   renderFullConversation() {
     if (this.props.conversation) {
       return this.props.conversation.messages.map((message) => {
-        if (message.sender === this.state.role) { // this is you
+        if (message.sender === this.state.userType) { // this is you
           return (
             <div key={message._id} id="right-msg">
               <div id="your-msg">
@@ -107,7 +106,7 @@ const mapStateToProps = (state) => (
   {
     conversations: state.conversations.all,
     conversation: state.conversations.conversation,
-    userType: state.auth.userType,
+    userType: typeof localStorage.getItem('userRole') !== 'undefined' ? localStorage.getItem('userRole') : state.auth.userType,
   }
 );
 
