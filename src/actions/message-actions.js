@@ -6,8 +6,8 @@ export const ActionTypes = {
   FETCH_CONVO: 'FETCH_CONVO',
 };
 
-const ROOT_URL = 'http://localhost:9090/api';
-// const ROOT_URL = 'http://dartpark.herokuapp.com/api';
+// const ROOT_URL = 'http://localhost:9090/api';
+const ROOT_URL = 'http://dartpark.herokuapp.com/api';
 
 
 export function fetchConvoPreview(userType) {
@@ -38,7 +38,7 @@ export function fetchConvo(convoId) {
 
 export function popConvoToTop(convoId) {
   return (dispatch) => {
-    axios.put(`${ROOT_URL}/conversations/${convoId}/requester/${localStorage.getItem('userRole')}`, { headers: { authorization: localStorage.getItem('token') } }).then(response => {
+    axios.put(`${ROOT_URL}/conversations/${convoId}/requester/${localStorage.getItem('userRole')}`, {}, { headers: { authorization: localStorage.getItem('token') } }).then(response => {
       dispatch(response);
     }).catch(error => {
         // hit an error
@@ -51,6 +51,7 @@ export function sendMessage(convoId, { message }) {
       fetchConvo(convoId)(dispatch);
       popConvoToTop(convoId)((res) => {
         console.log(res);
+        console.log('im here');
         fetchConvoPreview(localStorage.getItem('userRole'))(dispatch);
       });
     }).catch(error => {

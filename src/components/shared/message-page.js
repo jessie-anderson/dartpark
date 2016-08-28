@@ -2,33 +2,62 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 // import { Link } from 'react-router';
 import { fetchConvoPreview, fetchConvo, sendMessage } from '../../actions/message-actions';
+import io from 'socket.io-client';
+
+const socketserver = 'http://dartpark.herokuapp.com/';
 
 class MessagePage extends Component {
   constructor(props) {
     super(props);
 
+    this.socket = io(socketserver);
+
     // init component state here
     this.state = {
       currentMessage: '',
       currentConvoId: '',
-      userType: this.props.userType };
+      userType: this.props.userType,
+    };
+
     this.handleConvoClick = this.handleConvoClick.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSendMessage = this.handleSendMessage.bind(this);
+    this.onIncomingMessage = this.onIncomingMessage.bind(this);
+
+    this.socket.on('connect', () => { console.log('socket.io connected'); });
+    this.socket.on('disconnect', () => { console.log('socket.io disconnected'); });
+    this.socket.on('reconnect', () => { console.log('socket.io reconnected'); });
+    this.socket.on('error', (error) => { console.log(error); });
+    this.socket.on('incomingMessage', this.onIncomingMessage);
   }
   componentWillMount() {
     this.props.fetchConvoPreview(this.state.userType);
   }
+
+  onIncomingMessage(involvedParties) {
+    const userId = this.state.userType === 'renter' ? this.props.conversation.renter : this.props.conversation.vendor;
+    const socketUserId = this.state.userType === 'renter' ? involvedParties.renterId : involvedParties.vendorId;
+
+    if (userId === socketUserId) {
+      this.props.fetchConvoPreview(this.state.userType);
+      this.props.fetchConvo(involvedParties.conversationId);
+    }
+  }
+
   handleConvoClick(convoId) {
     this.props.fetchConvo(convoId);
     this.setState({ currentConvoId: convoId });
   }
+
   handleInputChange(event) {
     this.setState({ currentMessage: event.target.value });
   }
+
   handleSendMessage() {
     this.props.sendMessage(this.state.currentConvoId, { message: this.state.currentMessage });
+    this.socket.emit('sendMessage', this.props.conversation);
   }
+
   renderFullConversation() {
     if (this.props.conversation) {
       return this.props.conversation.messages.map((message) => {
@@ -54,20 +83,21 @@ class MessagePage extends Component {
       return <div>Select a conversation to view messages</div>;
     }
   }
+
   renderConversationPreview() {
     if (this.props.conversations) {
       return this.props.conversations.map((convo) => {
         if (convo.id === this.state.currentConvoId) {
           return (
             <div id="convo-preview-active" key={convo.id} onClick={(event) => { this.handleConvoClick(convo.id); }}>
-              <div id="chat-with">Convo with: {convo.usernameRenter}</div>
+              <div id="chat-with">Convo with: {this.state.userType === 'renter' ? convo.usernameVendor : convo.usernameRenter}</div>
               <div id="preview-msg">Message: {convo.messages[0].text}</div>
             </div>
           );
         } else {
           return (
             <div id="convo-preview" key={convo.id} onClick={(event) => { this.handleConvoClick(convo.id); }}>
-              <div id="chat-with">Convo with: {convo.usernameRenter}</div>
+              <div id="chat-with">Convo with: {this.state.userType === 'renter' ? convo.usernameVendor : convo.usernameRenter}</div>
               <div id="preview-msg">Message: {convo.messages[0].text}</div>
             </div>
           );
@@ -77,6 +107,7 @@ class MessagePage extends Component {
       return <div>No conversations</div>;
     }
   }
+
   render() {
     return (
       <div>
