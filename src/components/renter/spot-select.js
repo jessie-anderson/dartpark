@@ -16,7 +16,7 @@ const SelectSpot = (props) => {
       <div>Loading Spots...</div>
     );
   } else {
-    props.spots;
+    // (props.spots);
 
     const allSpots = props.spots.map(spot => {
       return (
