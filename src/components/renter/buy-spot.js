@@ -5,6 +5,8 @@ import React, { Component } from 'react';
 import braintree from 'braintree-web';
 import { connect } from 'react-redux';
 import { getAuthorization, sendPayment } from '../../actions/payment-actions';
+import { buySpot } from '../../actions/spot-actions';
+import { createConversation } from '../../actions/message-actions';
 
 
 class BuyItem extends Component {
@@ -12,11 +14,9 @@ class BuyItem extends Component {
     super(props);
 
     this.onPaymentSubmit = this.onPaymentSubmit.bind(this);
-    this.onAmountChange = this.onAmountChange.bind(this);
     // init component state here
     this.state = {
       nonce: null,
-      amount: '',
     };
 
     this.hostedFieldsInstance = null;
@@ -108,15 +108,11 @@ class BuyItem extends Component {
   }
 
   onPaymentSubmit() {
-    if (this.state.nonce !== null) {
-      this.props.sendPayment(this.state.nonce, this.state.amount);
+    if (this.state.nonce !== null && typeof this.props.spot !== 'undefined') {
+      this.props.sendPayment(this.state.nonce, this.props.spot.price);
+      this.props.buySpot(this.props.spot._id);
+      this.props.createConversation(this.props.spot.vendor);
     }
-  }
-
-  onAmountChange(event) {
-    this.setState({
-      amount: event.target.value,
-    });
   }
 
   render() {
@@ -137,9 +133,6 @@ class BuyItem extends Component {
           <label htmlFor="expiration-year">Expiration Year</label>
           <div className="hosted-field" id="expiration-year"></div>
 
-          <label htmlFor="amount">Amount</label>
-          <input id="amount" type="text" value={this.state.amount} onChange={this.onAmountChange} />
-
           <input type="hidden" name="payment-method-nonce" />
           <input type="submit" value="Pay" />
         </form>
@@ -151,7 +144,8 @@ class BuyItem extends Component {
 const mapStateToProps = (state) => {
   return {
     paymentToken: state.paymentToken,
+    spot: state.spots.spot,
   };
 };
 
-export default connect(mapStateToProps, { getAuthorization, sendPayment })(BuyItem);
+export default connect(mapStateToProps, { getAuthorization, sendPayment, buySpot, createConversation })(BuyItem);
