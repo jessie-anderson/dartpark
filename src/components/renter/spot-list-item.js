@@ -3,6 +3,7 @@
 
 import React, { Component } from 'react';
 import { buySpot } from '../../actions/spot-actions';
+import { createConversation } from '../../actions/message-actions';
 import { connect } from 'react-redux';
 
 class ResultItem extends Component {
@@ -13,6 +14,7 @@ class ResultItem extends Component {
 
   onBuy() {
     this.props.buySpot(this.props._id);
+    this.props.createConversation(this.props.vendorId);
   }
 
   render() {
@@ -34,4 +36,4 @@ class ResultItem extends Component {
   }
 }
 
-export default connect(null, { buySpot })(ResultItem);
+export default connect(null, { buySpot, createConversation })(ResultItem);

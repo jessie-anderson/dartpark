@@ -13,7 +13,8 @@ import SignUpRenter from './components/renter/signup-renter';
 import SearchBar from './components/renter/searchbar';
 import BuyItem from './components/renter/buy-spot';
 import SelectItem from './components/renter/spot-select';
-// import SpotDetail from './components/renter/spot-detail';
+// import RenterHome from './components/renter/renter-home';
+
 import Profile from './components/renter/profile';
 
 // import Home from './components/home';

@@ -8,14 +8,16 @@ class MessagePage extends Component {
     super(props);
 
     // init component state here
-    this.state = { currentMessage: '', currentConvoId: '', role: 'renter', userId: '57bb6f7cb459b705d81296b5' };
+    this.state = {
+      currentMessage: '',
+      currentConvoId: '',
+      userType: this.props.userType };
     this.handleConvoClick = this.handleConvoClick.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSendMessage = this.handleSendMessage.bind(this);
   }
   componentWillMount() {
-    this.props.fetchConvoPreview('57bb6f7cb459b705d81296b5', 'renter');
-    localStorage.setItem('token', 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1N2JiNmY3Y2I0NTliNzA1ZDgxMjk2YjUiLCJpYXQiOjE0NzE5MDE1NjQ2MjB9.i9AcFPjRvjxOLVtSdmJtSkHGBbAcfwK65EPRo8kXaFM');
+    this.props.fetchConvoPreview(this.state.userType);
   }
   handleConvoClick(convoId) {
     this.props.fetchConvo(convoId);
@@ -25,12 +27,12 @@ class MessagePage extends Component {
     this.setState({ currentMessage: event.target.value });
   }
   handleSendMessage() {
-    this.props.sendMessage(this.state.currentConvoId, this.state.userId, { message: this.state.currentMessage, sender: this.state.role });
+    this.props.sendMessage(this.state.currentConvoId, { message: this.state.currentMessage });
   }
   renderFullConversation() {
     if (this.props.conversation) {
       return this.props.conversation.messages.map((message) => {
-        if (message.sender === this.state.role) { // this is you
+        if (message.sender === this.state.userType) { // this is you
           return (
             <div key={message._id} id="right-msg">
               <div id="your-msg">
@@ -104,6 +106,7 @@ const mapStateToProps = (state) => (
   {
     conversations: state.conversations.all,
     conversation: state.conversations.conversation,
+    userType: typeof localStorage.getItem('userRole') !== 'undefined' ? localStorage.getItem('userRole') : state.auth.userType,
   }
 );
 

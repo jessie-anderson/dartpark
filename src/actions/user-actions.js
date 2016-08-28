@@ -1,7 +1,7 @@
 import * as axios from 'axios';
 import { browserHistory } from 'react-router';
-// const ROOT_URL = 'http://localhost:9090/api'; // for testing
-const ROOT_URL = 'http://dartpark.herokuapp.com/api'; // for when it's connected to the server
+const ROOT_URL = 'http://localhost:9090/api'; // for testing
+// const ROOT_URL = 'http://dartpark.herokuapp.com/api'; // for when it's connected to the server
 
 export const UserActionTypes = {
   RENTER_CHANGE_PASSWORD: 'RENTER_CHANGE_PASSWORD',
@@ -31,6 +31,9 @@ export function signinRenter({ email, password }) {
         payload: response.data.renter,
       });
       localStorage.setItem('token', response.data.token);
+      localStorage.setItem('userRole', 'renter');
+      localStorage.setItem('userBio', response.data.renter.bio);
+      localStorage.setItem('userName', response.data.renter.username);
       if (typeof response.data.token !== 'undefined') browserHistory.push('/renter');
       else browserHistory.push('/'); // signin failed
     })
@@ -49,6 +52,9 @@ export function signinVendor({ email, password }) {
         payload: response.data.vendor,
       });
       localStorage.setItem('token', response.data.token);
+      localStorage.setItem('userRole', 'vendor');
+      localStorage.setItem('userBio', response.data.vendor.bio);
+      localStorage.setItem('userName', response.data.vendor.username);
       if (typeof response.data.token !== 'undefined') browserHistory.push('/vendor/manage');
       else browserHistory.push('/'); // signin failed
     })
@@ -66,12 +72,16 @@ export function signupRenter({ email, password, username }) {
         type: UserActionTypes.AUTH_RENTER,
         payload: response.data.renter,
       });
+      console.log(response.data.renter);
       localStorage.setItem('token', response.data.token);
+      localStorage.setItem('userRole', 'renter');
+      localStorage.setItem('userBio', response.data.renter.bio);
+      localStorage.setItem('userName', response.data.renter.username);
       if (typeof response.data.token !== 'undefined') browserHistory.push('/renter');
       else browserHistory.push('/');
     })
     .catch(err => {
-      dispatch(authError(`Sign Up Failed: ${err.response.data}`));
+      dispatch(authError(`Sign Up Failed: ${err}`));
     });
   };
 }
@@ -81,10 +91,14 @@ export function signupVendor({ email, password, username }) {
     axios.post(`${ROOT_URL}/vendor/signup`, { email, password, username })
     .then(response => {
       dispatch({
-        type: UserActionTypes.AUTH_RENTER,
+        type: UserActionTypes.AUTH_VENDOR,
         payload: response.data.vendor,
       });
       localStorage.setItem('token', response.data.token);
+      localStorage.setItem('userRole', 'vendor');
+      localStorage.setItem('userBio', response.data.vendor.bio);
+      localStorage.setItem('userName', response.data.vendor.username);
+
       if (typeof response.data.token !== 'undefined') browserHistory.push('/vendor/manage');
       else browserHistory.push('/');
     })
@@ -97,6 +111,9 @@ export function signupVendor({ email, password, username }) {
 export function signoutUser() {
   return (dispatch) => {
     localStorage.removeItem('token');
+    localStorage.removeItem('userRole');
+    localStorage.removeItem('userBio');
+    localStorage.removeItem('userName');
     dispatch({ type: UserActionTypes.DEAUTH_USER });
     browserHistory.push('/');
   };
@@ -135,6 +152,9 @@ export function changeVendorBioAndName(bio, username) {
     axios.put(`${ROOT_URL}/vendor/updateBioAndName`,
     { bio, username }, { headers: { authorizationvendor: localStorage.getItem('token') } })
     .then(response => {
+      localStorage.setItem('userBio', response.data.bio);
+      localStorage.setItem('userName', response.data.username);
+
       dispatch({
         type: UserActionTypes.VENDOR_CHANGE_BIO_AND_NAME,
         payload: response.data,
@@ -149,6 +169,9 @@ export function changeRenterBioAndName(bio, username) {
     axios.put(`${ROOT_URL}/renter/updateBioAndName`,
     { bio, username }, { headers: { authorizationrenter: localStorage.getItem('token') } })
     .then(response => {
+      localStorage.setItem('userBio', response.data.bio);
+      localStorage.setItem('userName', response.data.username);
+
       dispatch({
         type: UserActionTypes.RENTER_CHANGE_BIO_AND_NAME,
         payload: response.data,

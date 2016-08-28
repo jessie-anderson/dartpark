@@ -38,6 +38,7 @@ class Profile extends Component {
   }
 
   onChangeBio(event) {
+    console.log(event.target.value);
     this.setState({ bio: event.target.value });
   }
   saveChanges() {
@@ -127,10 +128,15 @@ class Profile extends Component {
 }
 
 const mapStateToProps = (state) => {
+  const userBio = typeof localStorage.getItem('userBio') !== 'undefined' ? localStorage.getItem('userBio') : state.auth.user.bio;
+  const userName = typeof localStorage.getItem('userName') !== 'undefined' ? localStorage.getItem('userName') : state.auth.user.username;
+
+
+  console.log(userBio);
   return {
-    bio: state.auth.user.bio,
-    username: state.auth.user.username,
-    cars: state.auth.user.cars,
+    bio: userBio,
+    username: userName,
+    cars: state.cars.all,
     spots: state.spots.all,
   };
 };

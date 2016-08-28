@@ -9,15 +9,18 @@ class App extends Component {
     super(props);
 
     // init component state here
-    this.state = {};
+    this.state = {
+      // role: localStorage.getItem('userRole'),
+    };
   }
   renderNavBar() {
-    if (this.props.role) {
-      if (this.props.role === 'renter') {
+    const role = localStorage.getItem('userRole') ? localStorage.getItem('userRole') : this.props.role;
+    if (role) {
+      if (role === 'renter') {
         return (
           <RenterNavBar />
         );
-      } else if (this.props.role === 'vendor') { // vendor
+      } else if (role === 'vendor') { // vendor
         return (
           <VendorNavBar />
         );
@@ -37,7 +40,6 @@ class App extends Component {
         {this.renderNavBar()}
         <div>
             {this.props.children}
-            {console.log(this.props.role)}
         </div>
       </div>
     );
