@@ -16,13 +16,14 @@ const SelectSpot = (props) => {
       <div>Loading Spots...</div>
     );
   } else {
-    props.spots;
+    // (props.spots);
 
     const allSpots = props.spots.map(spot => {
       return (
         <ResultItem
           address={spot.address}
           vendor={spot.vendor.username}
+          vendorId={spot.vendor._id}
           price={spot.price}
           startDate={spot.startDate}
           endDate={spot.endDate}

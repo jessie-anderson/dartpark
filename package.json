@@ -47,9 +47,11 @@
   },
   "dependencies": {
     "axios": "^0.13.1",
+    "blueimp-file-upload": "^9.12.5",
     "braintree-web": "^3.0.1",
     "cloudinary": "^1.4.1",
     "dotenv": "^2.0.0",
+    "jquery": "^3.1.0",
     "marked": "^0.3.6",
     "react": "^15.2.1",
     "react-dom": "^15.2.1",

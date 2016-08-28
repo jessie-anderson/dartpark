@@ -1,7 +1,7 @@
 import * as axios from 'axios';
-// import { browserHistory } from 'react-router';
-// const ROOT_URL = 'http://localhost:9090/api'; // for testing
-const ROOT_URL = 'http://dartpark.herokuapp.com/api'; // for when it's connected to the server
+import { browserHistory } from 'react-router';
+const ROOT_URL = 'http://localhost:9090/api'; // for testing
+// const ROOT_URL = 'http://dartpark.herokuapp.com/api'; // for when it's connected to the server
 
 export const PictureActionTypes = {
   GET_PICTURE_URL: 'GET_PICTURE_URL',

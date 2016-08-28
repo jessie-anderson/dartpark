@@ -40,6 +40,8 @@ class SignInRenter extends Component {
           </div>
           <span>{'Don\'t have an account?'}</span>
           <Link to={'/signup-renter'} id="btn2"><button>Sign Up</button></Link>
+          <span></span>
+          <Link to={'/'} id="btn2"><button>Back</button></Link>
         </div>
       </div>
     );
