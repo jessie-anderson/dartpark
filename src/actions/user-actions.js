@@ -32,7 +32,8 @@ export function signinRenter({ email, password }) {
       });
       localStorage.setItem('token', response.data.token);
       localStorage.setItem('userRole', 'renter');
-      localStorage.setItem('user', response.data.renter);
+      localStorage.setItem('userBio', response.data.renter.bio);
+      localStorage.setItem('userName', response.data.renter.username);
       if (typeof response.data.token !== 'undefined') browserHistory.push('/renter');
       else browserHistory.push('/'); // signin failed
     })
@@ -52,7 +53,8 @@ export function signinVendor({ email, password }) {
       });
       localStorage.setItem('token', response.data.token);
       localStorage.setItem('userRole', 'vendor');
-      localStorage.setItem('user', response.data.vendor);
+      localStorage.setItem('userBio', response.data.vendor.bio);
+      localStorage.setItem('userName', response.data.vendor.username);
       if (typeof response.data.token !== 'undefined') browserHistory.push('/vendor/manage');
       else browserHistory.push('/'); // signin failed
     })
@@ -94,6 +96,9 @@ export function signupVendor({ email, password, username }) {
       });
       localStorage.setItem('token', response.data.token);
       localStorage.setItem('userRole', 'vendor');
+      localStorage.setItem('userBio', response.data.vendor.bio);
+      localStorage.setItem('userName', response.data.vendor.username);
+
       if (typeof response.data.token !== 'undefined') browserHistory.push('/vendor/manage');
       else browserHistory.push('/');
     })
@@ -107,7 +112,8 @@ export function signoutUser() {
   return (dispatch) => {
     localStorage.removeItem('token');
     localStorage.removeItem('userRole');
-    localStorage.removeItem('user');
+    localStorage.removeItem('userBio');
+    localStorage.removeItem('userName');
     dispatch({ type: UserActionTypes.DEAUTH_USER });
     browserHistory.push('/');
   };
@@ -146,6 +152,9 @@ export function changeVendorBioAndName(bio, username) {
     axios.put(`${ROOT_URL}/vendor/updateBioAndName`,
     { bio, username }, { headers: { authorizationvendor: localStorage.getItem('token') } })
     .then(response => {
+      localStorage.setItem('userBio', response.data.bio);
+      localStorage.setItem('userName', response.data.username);
+
       dispatch({
         type: UserActionTypes.VENDOR_CHANGE_BIO_AND_NAME,
         payload: response.data,
@@ -160,6 +169,9 @@ export function changeRenterBioAndName(bio, username) {
     axios.put(`${ROOT_URL}/renter/updateBioAndName`,
     { bio, username }, { headers: { authorizationrenter: localStorage.getItem('token') } })
     .then(response => {
+      localStorage.setItem('userBio', response.data.bio);
+      localStorage.setItem('userName', response.data.username);
+
       dispatch({
         type: UserActionTypes.RENTER_CHANGE_BIO_AND_NAME,
         payload: response.data,

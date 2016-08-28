@@ -38,6 +38,7 @@ class Profile extends Component {
   }
 
   onChangeBio(event) {
+    console.log(event.target.value);
     this.setState({ bio: event.target.value });
   }
   saveChanges() {
@@ -106,9 +107,9 @@ class Profile extends Component {
         <div>
           <h1>Profile Information</h1>
           <label htmlFor="name">Name:</label>
-          <input value={this.props.username} onChange={this.onChangeUsername} id="name" />
+          <input value={this.state.username} onChange={this.onChangeUsername} id="name" />
           <label htmlFor="bio">Bio:</label>
-          <input value={this.props.bio} onChange={this.onChangeBio} id="bio" />
+          <input value={this.state.bio} onChange={this.onChangeBio} id="bio" />
           <button onClick={this.onEditClick}>Cancel</button>
           <button onClick={this.saveChanges}>Save Changes</button>
         </div>
@@ -127,15 +128,15 @@ class Profile extends Component {
 }
 
 const mapStateToProps = (state) => {
-  const userBio = localStorage.getItem('userBio') ? localStorage.getItem('userBio') : state.auth.user.bio;
-  const userName = localStorage.getItem('userName') ? localStorage.getItem('userName') : state.auth.user.username;
+  const userBio = typeof localStorage.getItem('userBio') !== 'undefined' ? localStorage.getItem('userBio') : state.auth.user.bio;
+  const userName = typeof localStorage.getItem('userName') !== 'undefined' ? localStorage.getItem('userName') : state.auth.user.username;
 
 
   console.log(userBio);
   return {
     bio: userBio,
     username: userName,
-    cars: state.cars,
+    cars: state.cars.all,
     spots: state.spots.all,
   };
 };
