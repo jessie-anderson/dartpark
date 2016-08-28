@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { fetchConvoPreview, fetchConvo, sendMessage } from '../../actions/message-actions';
 import io from 'socket.io-client';
 
+// socket
 const socketserver = 'http://dartpark.herokuapp.com/';
 
 class MessagePage extends Component {
