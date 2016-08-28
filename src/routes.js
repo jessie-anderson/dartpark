@@ -4,6 +4,9 @@
 import React from 'react';
 import { Route, IndexRoute } from 'react-router';
 
+import VendorSpotDetail from './components/vendor/spot-detail';
+import RenterSpotDetail from './components/renter/spot-detail';
+
 import App from './components/app';
 import SignInVendor from './components/vendor/signin-vendor';
 import SignUpVendor from './components/vendor/signup-vendor';
@@ -46,7 +49,9 @@ export default(
     <Route path="/renter/add-car" component={CreateCar} />
     <Route path="/renter/view-car" component={ViewCar} />
     <Route path="/renter" component={Profile} />
+    <Route path="/renter/spot-detail" component={RenterSpotDetail} />
 
+    <Route path="/vendor/spot-detail" component={VendorSpotDetail} />
     <Route path="/vendor/manage" component={VendorManage} />
     <Route path="/vendor/create-spots" component={CreateSpots} />
     <Route path="/vendor/spot-list-item" component={SpotItem} />
