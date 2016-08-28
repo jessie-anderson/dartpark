@@ -1,6 +1,6 @@
 import axios from 'axios';
-// const ROOT_URL = 'http://localhost:9090/api';
-const ROOT_URL = 'http://dartpark.herokuapp.com/api'; // for when it's connected to the server
+const ROOT_URL = 'http://localhost:9090/api';
+// const ROOT_URL = 'http://dartpark.herokuapp.com/api'; // for when it's connected to the server
 import { browserHistory } from 'react-router';
 
 export const PaymentActionTypes = {
@@ -9,7 +9,9 @@ export const PaymentActionTypes = {
 
 export function getAuthorization() {
   return (dispatch) => {
-    axios.get(`${ROOT_URL}/renter/payment`, { headers: { authorizationrenter: localStorage.getItem('token') } })
+    console.log(localStorage.getItem('token'));
+    axios.get(`${ROOT_URL}/renter/payment`,
+              { headers: { authorizationrenter: localStorage.getItem('token') } })
     .then(response => {
       console.log(response.data.token);
       dispatch({
