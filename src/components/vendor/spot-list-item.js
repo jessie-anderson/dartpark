@@ -6,7 +6,9 @@ import { connect } from 'react-redux';
 import { updateSpot } from '../../actions/spot-actions';
 import { sendSpotPictureName } from '../../actions/picture-actions';
 
+
 const DropzoneComponent = require('react-dropzone-component');
+// const cl = cloudinary.Cloudinary.new({ cloud_name: 'demo' });
 
 // import config from '../../../config';
 // DropzoneComponent.autoDiscover = false;
@@ -42,8 +44,10 @@ class SpotItem extends Component {
       componentConfig: {
         iconFiletypes: ['.jpg', '.png', '.gif'],
         showFiletypeIcon: true,
+
         // postUrl: this.props.sendSpotPictureName(this.props),
         postUrl: 'https://api.cloudinary.com/v1_1/dartpark/image/upload',
+        // postUrl: this.uploadFile(),
 // cloudinary signed url
         // postUrl: config.upload_url,
       },
@@ -64,6 +68,17 @@ class SpotItem extends Component {
     this.djsConfig = this.djsConfig.bind(this);
   }
 
+<<<<<<< HEAD
+=======
+  uploadFile(file) {
+    if (file) {
+      console.log(file);
+      const fileName = file.name;
+      return 'https://api.cloudinary.com/v1_1/thedartpark/image/upload/' + fileName;
+    }
+    return 'https://api.cloudinary.com/v1_1/thedartpark/image/upload/';
+  }
+>>>>>>> c7c56ed44f0f370bf4a0fe880872aaae2ed4e6a4
   onEditClick() {
     this.setState({ isEditing: !this.state.isEditing });
   }
