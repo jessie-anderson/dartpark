@@ -47,6 +47,8 @@ class SpotItem extends Component {
 
         // postUrl: this.props.sendSpotPictureName(this.props),
         postUrl: 'https://api.cloudinary.com/v1_1/dartpark/image/upload',
+
+        postUrl: '/test',
         // postUrl: this.uploadFile(),
 // cloudinary signed url
         // postUrl: config.upload_url,
@@ -68,8 +70,6 @@ class SpotItem extends Component {
     this.djsConfig = this.djsConfig.bind(this);
   }
 
-<<<<<<< HEAD
-=======
   uploadFile(file) {
     if (file) {
       console.log(file);
@@ -78,7 +78,7 @@ class SpotItem extends Component {
     }
     return 'https://api.cloudinary.com/v1_1/thedartpark/image/upload/';
   }
->>>>>>> c7c56ed44f0f370bf4a0fe880872aaae2ed4e6a4
+
   onEditClick() {
     this.setState({ isEditing: !this.state.isEditing });
   }
@@ -150,7 +150,7 @@ class SpotItem extends Component {
 
 
   render() {
-    console.log("hi");
+    console.log('hi');
     if (!this.state.isEditing) {
       return (
         <div id="spot-item">
