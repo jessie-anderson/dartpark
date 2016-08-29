@@ -1,12 +1,16 @@
 import React, { Component } from 'react';
 // import { connect } from 'react-redux';
 import { Modal, Tab, Tabs } from 'react-bootstrap';
-// let Dropzone = require('react-dropzone');  //    <Dropzone rev="dropzone" onDrop={this.onDropFunction}><div>Upload</div></Dropzone>
+// let Dropzone = require('react-dropzone');  //                    <DropzoneComponent eventHandlers={this.state.eventHandlers} config={this.state.componentConfig} djsConfig={this.djsConfig} />
+//  <Dropzone rev="dropzone" onDrop={this.onDropFunction}><div>Upload</div></Dropzone>
 import { connect } from 'react-redux';
 import { updateSpot } from '../../actions/spot-actions';
-// import { sendSpotPictureName } from '../../actions/picture-actions';
+import { sendSpotPictureName } from '../../actions/picture-actions';
+import Dropzone from 'react-dropzone';
+import request from 'superagent';
 
-const DropzoneComponent = require('react-dropzone-component');
+
+// const DropzoneComponent = require('react-dropzone-component');
 
 // import config from '../../../config';
 // DropzoneComponent.autoDiscover = false;
@@ -38,6 +42,9 @@ class SpotItem extends Component {
       displayModal: false,
       dropzoneObject: '',
       pictureName: '',
+      eventHandlers: { init: this.initCallback, drop: this.testFunction, addedfile: this.uploadFile },
+
+
     };
     this.uploadFile = this.uploadFile.bind(this);
     this.initCallback = this.initCallback.bind(this);
@@ -138,7 +145,13 @@ class SpotItem extends Component {
             <Modal.Body>
               <Tabs defaultActiveKey={1}>
                 <Tab eventKey={1} title="Upload Picture from Computer">
-                  <DropzoneComponent eventHandlers={this.state.eventHandlers} config={this.state.componentConfig} djsConfig={this.djsConfig} />
+                <Dropzone
+                  multiple={false}
+                  accept="image/*"
+                  onDrop={this.onImageDrop.bind(this)}
+                >
+                  <p>Drop an image or click to select a file to upload.</p>
+                  </Dropzone>
                 </Tab>
                 <Tab eventKey={2} title="Use Google Photo">lksd</Tab>
               </Tabs>
