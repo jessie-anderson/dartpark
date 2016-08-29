@@ -28,20 +28,40 @@ class VendorManage extends Component {
       );
     } else {
       const spotItems = this.props.spots.map(spot => {
-        return (
-          <div id="spotDisp">
-            <SpotItem
-              spotName={spot.spotName}
-              address={spot.address}
-              vendor={spot.vendor}
-              price={spot.price}
-              startDate={spot.startDate}
-              endDate={spot.endDate}
-              key={spot._id}
-              _id={spot._id}
-            />
-          </div>
-        );
+        console.log(spot.renter);
+        if (spot.renter) {
+          return (
+            <div id="spotDisp-bought">
+              <span>SOLD</span>
+              <SpotItem
+                spotName={spot.spotName}
+                address={spot.address}
+                vendor={spot.vendor}
+                price={spot.price}
+                startDate={spot.startDate}
+                endDate={spot.endDate}
+                key={spot._id}
+                _id={spot._id}
+              />
+            </div>
+          );
+        } else {
+          return (
+            <div id="spotDisp">
+              <span>AVAILABLE</span>
+              <SpotItem
+                spotName={spot.spotName}
+                address={spot.address}
+                vendor={spot.vendor}
+                price={spot.price}
+                startDate={spot.startDate}
+                endDate={spot.endDate}
+                key={spot._id}
+                _id={spot._id}
+              />
+            </div>
+          );
+        }
       });
       console.log(spotItems);
       return spotItems;
@@ -67,7 +87,7 @@ class VendorManage extends Component {
           <div id="columns">
             <h1>Manage Spots</h1>
             <div>
-              <Link to="/vendor/create-spots" ><button id="std-light-btn" onClick={this.onButtonPress}>+Add Spot</button></Link>
+              <Link to="/vendor/create-spots" ><button id="std-light-btn-lg" onClick={this.onButtonPress}>+Add Spot</button></Link>
             </div>
             <div id="spotsMain">
               {spots}
