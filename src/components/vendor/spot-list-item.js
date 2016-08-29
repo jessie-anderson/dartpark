@@ -26,6 +26,8 @@ const DropzoneComponent = require('react-dropzone-component');
 // https://github.com/felixrieseberg/React-Dropzone-Component#usage-without-automatic-posting
 
 
+// https://css-tricks.com/image-upload-manipulation-react/
+
 class SpotItem extends Component {
   constructor(props) {
     super(props);
