@@ -118,37 +118,41 @@ class ViewCar extends Component {
       );
     } else if (!this.state.isEditing) {
       return (
-        <div>
-          <p>Make: {this.props.car.make}</p>
-          <p>Model: {this.props.car.model}</p>
-          <p>Year: {this.props.car.year}</p>
-          <p>Color: {this.props.car.paintcolor}</p>
-          <p>Plate: {this.props.car.plateNumber}</p>
-          <button onClick={this.onEdit}>Edit</button>
-          <button onClick={this.onDelete}>Delete Car</button>
+        <div id="center-content">
+          <div id="editCarItem">
+            <p>Make: {this.props.car.make}</p>
+            <p>Model: {this.props.car.model}</p>
+            <p>Year: {this.props.car.year}</p>
+            <p>Color: {this.props.car.paintcolor}</p>
+            <p>Plate: {this.props.car.plateNumber}</p>
+            <button id="std-btn" onClick={this.onEdit}>Edit</button>
+            <button id="std-btn" onClick={this.onDelete}>Delete Car</button>
+          </div>
         </div>
       );
     } else {
       return (
         <div>
-          <label htmlFor="make">Make:</label>
-          <input id="make" value={this.state.car.make} onChange={this.onMakeChange} />
+          <div id="center-content">
+            <label htmlFor="make">Make:</label>
+            <input id="make" value={this.state.car.make} onChange={this.onMakeChange} />
 
-          <label htmlFor="model">Model:</label>
-          <input id="model" value={this.state.car.model} onChange={this.onModelChange} />
+            <label htmlFor="model">Model:</label>
+            <input id="model" value={this.state.car.model} onChange={this.onModelChange} />
 
-          <label htmlFor="year">Year:</label>
-          <input id="year" value={this.state.car.year} onChange={this.onYearChange} />
+            <label htmlFor="year">Year:</label>
+            <input id="year" value={this.state.car.year} onChange={this.onYearChange} />
 
-          <label htmlFor="color">Color:</label>
-          <input id="color" value={this.state.car.paintcolor} onChange={this.onColorChange} />
+            <label htmlFor="color">Color:</label>
+            <input id="color" value={this.state.car.paintcolor} onChange={this.onColorChange} />
 
-          <label htmlFor="plate">Plate:</label>
-          <input id="plate" value={this.state.car.plateNumber} onChange={this.onPlateChange} />
+            <label htmlFor="plate">Plate:</label>
+            <input id="plate" value={this.state.car.plateNumber} onChange={this.onPlateChange} />
 
-          <button onClick={this.onSaveClick}>Save Changes</button>
-          <button onClick={this.onEdit}>Cancel</button>
-          <button onClick={this.onDelete}>Delete Car</button>
+            <button id="std-btn" onClick={this.onSaveClick}>Save Changes</button>
+            <button id="std-btn" onClick={this.onEdit}>Cancel</button>
+            <button id="std-btn" onClick={this.onDelete}>Delete Car</button>
+          </div>
         </div>
       );
     }

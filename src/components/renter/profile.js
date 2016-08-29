@@ -2,7 +2,7 @@
 // TODO: profile picture implementation!!
 
 import React, { Component } from 'react';
-import CardItemEdit from './carditem-edit';
+// import CardItemEdit from './carditem-edit';
 import { connect } from 'react-redux';
 import VehicleItem from './vehicle-item';
 import SpotItem from './spot-item';
@@ -76,14 +76,16 @@ class Profile extends Component {
       return this.props.cars.map(car => {
         console.log(car);
         return (
-          <VehicleItem
-            _id={car._id}
-            key={car._id}
-            make={car.make}
-            model={car.model}
-            year={car.year}
-            paintcolor={car.paintcolor}
-          />
+          <div>
+            <VehicleItem
+              _id={car._id}
+              key={car._id}
+              make={car.make}
+              model={car.model}
+              year={car.year}
+              paintcolor={car.paintcolor}
+            />
+          </div>
         );
       });
     }
@@ -95,33 +97,38 @@ class Profile extends Component {
     let profile;
     if (!this.state.isEditing) {
       profile = (
-        <div>
+        <div id="general-style">
           <h1>Profile Information</h1>
-          <p>Name: {this.props.username}</p>
-          <p>Bio: {this.props.bio}</p>
-          <button onClick={this.onEditClick}>Edit Profile</button>
+          <div id="renter-bio">
+            <p>Name: {this.props.username}</p>
+            <p>Bio: {this.props.bio}</p>
+            <button id="std-btn" onClick={this.onEditClick}>Edit Profile</button>
+          </div>
         </div>
       );
     } else {
       profile = (
-        <div>
-          <h1>Profile Information</h1>
-          <label htmlFor="name">Name:</label>
-          <input value={this.state.username} onChange={this.onChangeUsername} id="name" />
-          <label htmlFor="bio">Bio:</label>
-          <input value={this.state.bio} onChange={this.onChangeBio} id="bio" />
-          <button onClick={this.onEditClick}>Cancel</button>
-          <button onClick={this.saveChanges}>Save Changes</button>
+        <div id="general-style">
+          <div id="center-content-np">
+            <h1>Profile Information</h1>
+            <label htmlFor="name">Name:</label>
+            <input value={this.state.username} onChange={this.onChangeUsername} id="name" />
+            <label htmlFor="bio">Bio:</label>
+            <input value={this.state.bio} onChange={this.onChangeBio} id="bio" />
+            <button id="std-btn" onClick={this.onEditClick}>Cancel</button>
+            <button id="std-btn" onClick={this.saveChanges}>Save Changes</button>
+          </div>
         </div>
       );
     }
     return (
-      <div>
+      <div id="center-content-np">
         {profile}
-        <CardItemEdit />
-        <div>{cars}</div>
-        <Link to="/renter/add-car"><button>Add Car</button></Link>
-        <div>{spots}</div>
+        <span id="divider-label"> Cars </span>
+        <div id="spotsMain">{cars}</div>
+        <Link to="/renter/add-car"><button id="std-light-btn">Add Car</button></Link>
+        <span id="divider-label"> Rented Spots </span>
+        <div id="spotsMain">{spots}</div>
       </div>
     );
   }
@@ -131,8 +138,6 @@ const mapStateToProps = (state) => {
   const userBio = typeof localStorage.getItem('userBio') !== 'undefined' ? localStorage.getItem('userBio') : state.auth.user.bio;
   const userName = typeof localStorage.getItem('userName') !== 'undefined' ? localStorage.getItem('userName') : state.auth.user.username;
 
-
-  console.log(userBio);
   return {
     bio: userBio,
     username: userName,

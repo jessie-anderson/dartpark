@@ -289,7 +289,7 @@ h1 {
 #center-content {
   margin: 0 auto;
   display: flex;
-  height: 70vh;
+  margin-top: 40px;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -312,6 +312,52 @@ h1 {
     padding: 0.5em;
     border-radius: 3px;
   }
+  input {
+    padding: 0.5em;
+    border: none;
+    border-bottom: 1px solid $accent-color;
+    margin: 0.2em;
+  }
+  input:focus {
+    background-color: lighten($accent-color, 10%);
+    outline: none;
+  }
+}
+
+#center-content-np {
+  margin: 0 auto;
+  display: flex;
+  margin-top: 40px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  h1 {
+    font-family: $title-font;
+    color: $main-color;
+  }
+  h2 {
+    font-size: 1.3em;
+    text-align: center;
+    margin-bottom: 2em;
+  }
+  #spots-btn {
+    border: none;
+    background-color: $main-color;
+    color: white;
+    font-size: 1.5em;
+    padding: 0.5em;
+    border-radius: 3px;
+  }
+  input {
+    padding: 0.5em;
+    border: none;
+    border-bottom: 1px solid $accent-color;
+    margin: 0.2em;
+  }
+  input:focus {
+    background-color: lighten($accent-color, 10%);
+    outline: none;
+  }
 }
 
 #select-act {
@@ -329,6 +375,7 @@ h1 {
     color: $main-color;
   }
 }
+
 
 #spot-btn-div {
   margin: 2em;
@@ -363,7 +410,7 @@ h1 {
   #sign-in-form {
     margin: 1em;
     display: flex;
-    flex-flow: column wrap;
+    flex-flow: column nowrap;
   }
   #btn1 {
     font-size: 1.2em;
@@ -525,6 +572,29 @@ h1 {
     width: 100%;
   }
 }
+#carDisp {
+  background-color: $highlight-color;
+  margin: 0.5em;
+  width: 200px;
+  padding: 0.5em;
+  border-radius: 4px;
+  color: white;
+  span {
+    color: lighten(black, 50%);
+    text-align: right;
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+  }
+  button {
+    color: $main-color;
+    border: none;
+    background-color: $accent-color;
+    border-radius: 2px;
+    padding: 0.2em;
+    width: 100%;
+  }
+}
 #spotDisp-bought {
   background-color: lighten(red, 30%);
   margin: 0.5em;
@@ -549,5 +619,34 @@ h1 {
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
+}
+#renter-bio {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  p {
+    font-size: 1.5em;
+    color: $highlight-color;
+    font-family: $title-font;
+    font-weight: lighter;
+  }
+}
+
+#editCarItem {
+  text-align: center;
+  font-size: 1.3em;
+  color: $highlight-color;
+  font-family: $main-font;
+}
+
+#divider-label {
+  margin: 10px 0px 10px 0px;
+  width: 100%;
+  background-color: lighten($accent-color, 10%);
+  text-align: center;
+  font-family: $title-font;
+  color: $main-color;
+  font-size: 1.5em;
 }
 /* Bootstrap below here*/

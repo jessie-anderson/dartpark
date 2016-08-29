@@ -38,8 +38,7 @@ class SignInVendor extends Component {
           </div>
           <span>{'Don\'t have an account?'}</span>
           <Link to={'/signup-vendor'} id="btn2"><button>Sign Up</button></Link>
-          <span></span>
-          <Link to={'/'} id="btn2"><button> Back</button></Link>
+          <Link to={'/'} id="std-light-btn"><button> Back</button></Link>
         </div>
       </div>
     );
