@@ -1,67 +1,51 @@
-# DartPark
+# DartPark - front end
+## Authors: Mau Esquivel, Jessie Anderson, Luisa Vasquez, Ben Cooper, Divya Kalidindi
 
-DartPark is an application that allows users to buy and sell parking spots on and around Dartmouth’s campus. Users can register as either renters or vendors; renters must be Dartmouth students, but vendors can be residents of Hanover, students, student organizations, the town of Hanover, or anyone else with spots available in Hanover. If a user is a student, they will have the option to create a vendor profile as well.
+### The App
+DartPark is an application that allows users to buy and sell parking spots in and around Dartmouth’s campus. The front end provides a simple, user-friendly interface where renters can search for and buy parking spots based on location, and vendors can list spots with a location, description, and price. The app implements a Google Search Box API, which matches a search query with available locations, and also allows for messaging between renters and vendors. Additionally, payment is supported with the Braintree payment API.
 
-The app will allow renters to search for and buy parking spots based on location and price. Vendors will be able to list spots with location, description, and price. Payment will occur through the app.
+### Usage
+#### Installation:
+`npm install`
+#### Deployment:
+  deployed using surge at http://dartpark.surge.sh/
 
-### Mockups
+#### Components and Models
 
-**Sign Up!**
-![alt text](Mockups/Sign Up.png)
+##### Renter Model
+The main components of the renter model included:
+- Search Bar: implemented Google Maps API to filter and store a valid location
+- Spot Detail: organized information about spots including price, location, and vendors, as well as being editable to include images of the spot
+- Search Spots: based on a specific query, allows for a display of spots populated by the database
+- Profile: includes basic information about renter as well as payment and vehicle details
+- Payment: [Braintree](https://github.com/braintree)
 
-Renter or Vendor?
-![alt text](Mockups/SelectAccountType.png)
+##### Vendor model
+The main components of the vendor model included:
+- Create Spots: vendor can create and customize spots based on location and price
+- Edit Spots: allows for the ability to change information of spots at any time
+- Manage Spots: a real time view of the status of all vendor spots
+- Profile: includes basic details about vendor and contact information
 
-**Or login if you already have an account:**
-![alt text](Mockups/Log In.png)
+##### Shared components
+- Messaging between renter and vendor
+- Sign in/sign up
+- Authentication using [Passport](https://github.com/jaredhanson/passport)
 
-**Vendor Stuff:**
+#### What Worked!
+- Successful implementation of Braintree API
+- Conversation messaging between renter and vendor
+- Google Autocorrect Search Bar for valid locations
 
-Don't have any spots yet?
-![alt text](Mockups/DefaultVendor-FTU.png)
-
-Create spots to sell...
-![alt text](Mockups/AddSpots.png)
-
-And then review the spots you made...
-![alt text](Mockups/ViewSpots.png)
-
-And then edit info as needed...
-![alt text](Mockups/AddPicPopUp.png)
-
-And now this is your homepage:
-![alt text](Mockups/DefaultVendor.png)
-
-And you can click on spots to view/ edit them!
-![alt text](Mockups/SpotDetails.png)
-
-Sample profile page:
-![alt text](Mockups/EditProfile.png)
-
-**Renter Stuff**
-
-Dartmouth Students Only!
-![alt text](Mockups/StudentAuth.png)
-
-Search for spots...
-![alt text](Mockups/FindSpot-Select.png)
-
-And click on one you're interested in...
-![alt text](Mockups/FindSpot-Search.png)
-
-And pay!
-![alt text](Mockups/PayForSpot.png)
-
-Here's a sample profile:
-![alt text](Mockups/ProfileRenter.png)
+#### What Didn't Work
+1. Web Authentication for Dartmouth students: as of now, the app allows any individual to become a renter or vendor; ideally, Dartmouth students can only rent spots.
+2. Email verification: In the future, we could change the user schema to include a check for a verified email. This would be useful in ensuring that each email has been validated before allowing users to create an account and sign in. (Perhaps look more into [SendGrid](https://github.com/sendgrid/sendgrid-nodejs) example to send verification codes to inputed emails).
+3. Error handling/Better UI Experience: As of now, the app does not verify input type, so errors can potentially arise when sending wrong information to the backend (i.e. letters when inputing price). Additionally, errors occurring in the backend do not display for the user, so in the future, we would like to work on a more efficient user interface where notifications of errors are more apparent.
+4. Advanced filtering: Being able to sort by price, distance, and vendor in addition to location
 
 
-**Shared stuff**
 
-Messaging
-![alt text](Mockups/Messaging.png)
-
-**Flow Charts**
+**Original Flow Charts**
 
 Vendor
 ![alt text](Mockups/FLOW_CHART.png)
@@ -70,89 +54,8 @@ Renter
 ![alt text](Mockups/Renter_FLOWCHART.png)
 
 
-## Architecture
-
-### Code organization
-
-* Two repos
-  * Frontend: [dartpark](https://github.com/jessie-anderson/dartpark)
-  * Backend: [dartpark-server](https://github.com/jessie-anderson/dartpark-server)
-* Frontend: see src/ file for components
-  * Renter-specific components
-  * Vendor-specific components
-  * Shared components
-
-### Tools and Libraries
-* Bootstrap
-* Heroku
-* mongodb
-* mongoose
-* Google Maps API
-* react-router
-* eslint
-* Sass
-* Express
-* Redux
-* react
-* babel
-* npm
-* github
-* atom
-* this guy
-
-![](http://i.imgur.com/B8qZnEO.gif)
-
-### Mongoose Schemas (Rough Ideas)
-
-**Users**
-
-* first name
-* last name
-* renter or vendor?
-* password
-* Dartmouth email?
-
-**Spots**
-
-* Name
-* Price
-* Occupied (boolean, false by default)
-* Address
-* Path to photo: (url/path)
-
-**Payment**
-
-![](https://www.braintreepayments.com/images/bt-logo-2f17cea0.svg)
-
-## Setup
-
-* npm install
-* npm start (frontend)
-* mongod (backend)
-* mongo (if you want the mongo command line)
-* npm start dev (backend)
-
-
-## Deployment
-
-`git push heroku master` (backend)
-
-`npm run deploy` (frontend)
-
-Also, deploys automatically using Travis CI whenever master branch is updated.
-
-Screenshot of Travis CI at work:
-![travis](travis.png)
-
-
-## Authors
-
-* Luisa Vasquez
-* Jessie Anderson
-* Benjamin Cooper
-* Mau Esquivel
-* Divya Kalidindi
-
 ## Acknowledgments
 
 Thanks, Tim!
+
+![](http://i.imgur.com/B8qZnEO.gif)
