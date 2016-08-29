@@ -4,7 +4,7 @@ import { Modal, Tab, Tabs } from 'react-bootstrap';
 // let Dropzone = require('react-dropzone');  //    <Dropzone rev="dropzone" onDrop={this.onDropFunction}><div>Upload</div></Dropzone>
 import { connect } from 'react-redux';
 import { updateSpot } from '../../actions/spot-actions';
-import { sendSpotPictureName } from '../../actions/picture-actions';
+// import { sendSpotPictureName } from '../../actions/picture-actions';
 
 const DropzoneComponent = require('react-dropzone-component');
 
@@ -38,16 +38,6 @@ class SpotItem extends Component {
       displayModal: false,
       dropzoneObject: '',
       pictureName: '',
-      eventHandlers: { init: this.initCallback, drop: this.testFunction, addedfile: this.uploadFile },
-      componentConfig: {
-        iconFiletypes: ['.jpg', '.png', '.gif'],
-        showFiletypeIcon: true,
-        postUrl: this.props.sendSpotPictureName(this.props),
-        // postUrl: 'https://api.cloudinary.com/v1_1/dartpark/image/upload',
-// cloudinary signed url
-        // postUrl: config.upload_url,
-      },
-
     };
     this.uploadFile = this.uploadFile.bind(this);
     this.initCallback = this.initCallback.bind(this);

@@ -1,68 +1,136 @@
 // TODO: fix this to actually display vendor info
 
-import React, { Component } from 'react';
-// import { connect } from 'react-redux';
-import { Modal, Tab, Tabs } from 'react-bootstrap';
-let Dropzone = require('react-dropzone');
-import VendorNavBar from './navbar';
 
-class VendorProfile extends Component {
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { changeVendorBioAndName } from '../../actions/user-actions';
+
+class Profile extends Component {
   constructor(props) {
     super(props);
-
-    // init component state here
     this.state = {
-      vendorName: '',
-      vendorAddress: '',
-      vendorProfilePic: '',
-      vendorDescription: '',
-      displayModal: false,
+      username: this.props.username,
+      bio: this.props.bio,
+      isEditing: false,
     };
-    this.onButtonClick = this.onButtonClick.bind(this);
-    this.onDropFunction = this.onDropFunction.bind(this);
+    this.onChangeUsername = this.onChangeUsername.bind(this);
+    this.onChangeBio = this.onChangeBio.bind(this);
+    this.saveChanges = this.saveChanges.bind(this);
+    this.onEditClick = this.onEditClick.bind(this);
+    this.renderSpots = this.renderSpots.bind(this);
+    this.renderCars = this.renderCars.bind(this);
   }
 
-  onButtonClick(event) {
-    if (this.state.displayModal) {
-      this.setState({ displayModal: false });
+  componentWillMount() {
+    // this.props.renterGetSpotsAndCars();
+  }
+
+  onChangeUsername(event) {
+    this.setState({ username: event.target.value });
+  }
+
+  onEditClick() {
+    this.setState({ isEditing: !this.state.isEditing });
+  }
+
+  onChangeBio(event) {
+    console.log(event.target.value);
+    this.setState({ bio: event.target.value });
+  }
+  saveChanges() {
+    this.props.changeVendorBioAndName(this.state.bio, this.state.username);
+    this.setState({ isEditing: !this.state.isEditing });
+  }
+
+  renderSpots() {
+    if (this.props.spots === undefined) {
+      return (
+        <p>Loading spots...</p>
+      );
     } else {
-      this.setState({ displayModal: true });
+      return this.props.spots.map(spot => {
+        return (
+          <SpotItem
+            id={spot._id}
+            key={spot._id}
+            address={spot.address}
+            price={spot.price}
+            startDate={spot.startDate}
+            endDate={spot.endDate}
+          />
+        );
+      });
     }
   }
-  onDropFunction(files) {
 
+  renderCars() {
+    if (this.props.cars === undefined) {
+      return (
+        <p>Loading cars...</p>
+      );
+    } else {
+      return this.props.cars.map(car => {
+        console.log(car);
+        return (
+          <VehicleItem
+            _id={car._id}
+            key={car._id}
+            make={car.make}
+            model={car.model}
+            year={car.year}
+            paintcolor={car.paintcolor}
+          />
+        );
+      });
+    }
   }
 
   render() {
-    return (
-      <div id="general-style">
-        <div id="center-content">
-          <h1>Edit Profile</h1>
-          <label htmlFor="nameVendor">Name: </label>
-          <input id="nameVendor" placeholder={this.vendorName}></input>
-
-          <label htmlFor="addressVendor">Spot Address: </label>
-          <input id="addressVendor" placeholder={this.vendorAddress}></input>
-
-          <label htmlFor="descriptionVendor">Spot Address: </label>
-          <input id="descriptionVendor" placeholder={this.vendorDescription}></input>
-
-          <button id="std-btn" onClick={this.onButtonClick}>Change Profile Picture</button>
-          <Modal show={this.state.displayModal} onHide={this.onButtonClick}>
-            <Modal.Header closeButton>Add Picture</Modal.Header>
-            <Modal.Body>
-              <Tabs defaultActiveKey={1}>
-                <Tab eventKey={1} title="Upload Picture from Computer">
-                  <Dropzone rev="dropzone" onDrop={this.onDropFunction}><div>test</div></Dropzone>
-                </Tab>
-                <Tab eventKey={2} title="Use Google Photo">lksd</Tab>
-              </Tabs>
-            </Modal.Body>
-            <Modal.Footer>ldkajs</Modal.Footer>
-          </Modal>
+    const spots = this.renderSpots();
+    const cars = this.renderCars();
+    let profile;
+    if (!this.state.isEditing) {
+      profile = (
+        <div>
+          <h1>Profile Information</h1>
+          <p>Name: {this.props.username}</p>
+          <p>Bio: {this.props.bio}</p>
+          <button onClick={this.onEditClick}>Edit Profile</button>
         </div>
+      );
+    } else {
+      profile = (
+        <div>
+          <h1>Profile Information</h1>
+          <label htmlFor="name">Name:</label>
+          <input value={this.state.username} onChange={this.onChangeUsername} id="name" />
+          <label htmlFor="bio">Bio:</label>
+          <input value={this.state.bio} onChange={this.onChangeBio} id="bio" />
+          <button onClick={this.onEditClick}>Cancel</button>
+          <button onClick={this.saveChanges}>Save Changes</button>
+        </div>
+      );
+    }
+    return (
+      <div>
+        {profile}
       </div>
     );
   }
 }
-export default VendorProfile;
+
+const mapStateToProps = (state) => {
+  const userBio = typeof localStorage.getItem('userBio') !== 'undefined' ? localStorage.getItem('userBio') : state.auth.user.bio;
+  const userName = typeof localStorage.getItem('userName') !== 'undefined' ? localStorage.getItem('userName') : state.auth.user.username;
+
+
+  console.log(userBio);
+  return {
+    bio: userBio,
+    username: userName,
+    cars: state.cars.all,
+    spots: state.spots.all,
+  };
+};
+
+export default connect(mapStateToProps, { changeVendorBioAndName })(Profile);

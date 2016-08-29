@@ -25,9 +25,6 @@ class SpotItem extends Component {
         <p>Price: {this.props.price}</p>
         <p>startDate: {this.props.startDate}</p>
         <p>endDate: {this.props.endDate}</p>
-        <Link to="/renter/spot-detail">
-          <button onClick={this.onViewClick}>View Spot Details</button>
-        </Link>
       </div>
       );
   }

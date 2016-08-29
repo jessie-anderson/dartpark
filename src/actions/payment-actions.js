@@ -9,7 +9,9 @@ export const PaymentActionTypes = {
 
 export function getAuthorization() {
   return (dispatch) => {
-    axios.get(`${ROOT_URL}/renter/payment`, { headers: { authorizationrenter: localStorage.getItem('token') } })
+    console.log(localStorage.getItem('token'));
+    axios.get(`${ROOT_URL}/renter/payment`,
+              { headers: { authorizationrenter: localStorage.getItem('token') } })
     .then(response => {
       console.log(response.data.token);
       dispatch({

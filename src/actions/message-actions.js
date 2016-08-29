@@ -6,8 +6,8 @@ export const ActionTypes = {
   FETCH_CONVO: 'FETCH_CONVO',
 };
 
-const ROOT_URL = 'http://localhost:9090/api';
-// const ROOT_URL = 'http://dartpark.herokuapp.com/api';
+// const ROOT_URL = 'http://localhost:9090/api';
+const ROOT_URL = 'http://dartpark.herokuapp.com/api';
 
 
 export function fetchConvoPreview(userType) {
