@@ -161,21 +161,32 @@ class SpotItem extends Component {
       return (
         <div id="spot-item">
           <button id="std-btn" onClick={this.onEditClick}>Edit</button>
+          <button id="std-btn" onClick={this.onButtonClick}>Upload Photo</button>
           <h1>{this.props.spotName}</h1>
           <p>Address: {this.props.address}</p>
           <p>Price: {this.props.price}</p>
           <p>Start date: {this.props.startDate}</p>
           <p>End date: {this.props.endDate}</p>
-          <button id="std-btn" onClick={this.onButtonClick}>Upload Photo</button>
 
           <Modal show={this.state.displayModal} onHide={this.onButtonClick}>
             <Modal.Header closeButton>Add Picture</Modal.Header>
             <Modal.Body>
               <Tabs defaultActiveKey={1}>
                 <Tab eventKey={1} title="Upload Picture from Computer">
+<<<<<<< HEAD
                   <DropzoneComponent eventHandlers={this.state.eventHandlers} config={this.state.componentConfig} djsConfig={this.djsConfig} />
                 </Tab>
                 <Tab eventKey={2} title="Use Google Photo">lksd</Tab>
+=======
+                <Dropzone
+                  multiple={false}
+                  accept="image/jpg,image/png"
+                  onDrop={this.uploadFile}
+                >
+                      <p>Drop an image or click to select a file to upload.</p>
+                    </Dropzone>                                                                                                                                                  </Tab>
+                <Tab eventKey={2} title="Use Google Photo"></Tab>
+>>>>>>> cae2d0a267599317c2f1cc6ed8d55eded289361c
               </Tabs>
             </Modal.Body>
             <Modal.Footer>ldkajs</Modal.Footer>

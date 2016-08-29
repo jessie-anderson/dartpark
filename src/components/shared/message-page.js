@@ -3,8 +3,11 @@ import { connect } from 'react-redux';
 // import { Link } from 'react-router';
 import { fetchConvoPreview, fetchConvo, sendMessage } from '../../actions/message-actions';
 import io from 'socket.io-client';
+import { Button, FormControl, Form } from 'react-bootstrap';
 
 const socketserver = 'http://dartpark.herokuapp.com/';
+
+// TODO: Make chat scroll to bottom when message is sent
 
 class MessagePage extends Component {
   constructor(props) {
@@ -22,6 +25,7 @@ class MessagePage extends Component {
     this.handleConvoClick = this.handleConvoClick.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSendMessage = this.handleSendMessage.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
     this.onIncomingMessage = this.onIncomingMessage.bind(this);
 
     this.socket.on('connect', () => { console.log('socket.io connected'); });
@@ -33,7 +37,6 @@ class MessagePage extends Component {
   componentWillMount() {
     this.props.fetchConvoPreview(this.state.userType);
   }
-
   onIncomingMessage(involvedParties) {
     const userId = this.state.userType === 'renter' ? this.props.conversation.renter : this.props.conversation.vendor;
     const socketUserId = this.state.userType === 'renter' ? involvedParties.renterId : involvedParties.vendorId;
@@ -43,21 +46,21 @@ class MessagePage extends Component {
       this.props.fetchConvo(involvedParties.conversationId);
     }
   }
-
   handleConvoClick(convoId) {
     this.props.fetchConvo(convoId);
     this.setState({ currentConvoId: convoId });
   }
-
   handleInputChange(event) {
     this.setState({ currentMessage: event.target.value });
   }
-
   handleSendMessage() {
     this.props.sendMessage(this.state.currentConvoId, { message: this.state.currentMessage });
     this.socket.emit('sendMessage', this.props.conversation);
   }
-
+  handleSubmit(e) {
+    e.preventDefault();
+    this.setState({ currentMessage: ' ' });
+  }
   renderFullConversation() {
     if (this.props.conversation) {
       return this.props.conversation.messages.map((message) => {
@@ -111,6 +114,9 @@ class MessagePage extends Component {
   render() {
     return (
       <div>
+        <div>
+
+        </div>
         <div id="messages">
           <div id="conv-prev">
             <h3>Chats</h3>
@@ -122,8 +128,10 @@ class MessagePage extends Component {
               {this.renderFullConversation()}
             </div>
             <div id="message-bar">
-              <input placeholder="Message..." onChange={this.handleInputChange} id="msg-input" />
-              <button onClick={this.handleSendMessage} disabled={!this.props.conversation} type="submit" id="send-btn">Send</button>
+              <Form inline onSubmit={this.handleSubmit}>
+                <FormControl onChange={this.handleInputChange} value={this.state.currentMessage} type="text" placeholder="Your message..." />
+                <Button type="submit" onClick={this.handleSendMessage} disabled={!this.props.conversation}>Send</Button>
+              </Form>
             </div>
           </div>
         </div>

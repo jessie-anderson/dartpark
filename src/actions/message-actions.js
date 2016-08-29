@@ -50,8 +50,6 @@ export function sendMessage(convoId, { message }) {
     axios.post(`${ROOT_URL}/conversations/${convoId}/requester/${localStorage.getItem('userRole')}`, { message }, { headers: { authorization: localStorage.getItem('token') } }).then(response => {
       fetchConvo(convoId)(dispatch);
       popConvoToTop(convoId)((res) => {
-        console.log(res);
-        console.log('im here');
         fetchConvoPreview(localStorage.getItem('userRole'))(dispatch);
       });
     }).catch(error => {
