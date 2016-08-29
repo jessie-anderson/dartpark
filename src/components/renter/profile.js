@@ -129,6 +129,7 @@ class Profile extends Component {
         <Link to="/renter/add-car"><button id="std-light-btn">Add Car</button></Link>
         <span id="divider-label"> Rented Spots </span>
         <div id="spotsMain">{spots}</div>
+        <Link to="/renter/search"><button id="std-light-btn">Find a Spot</button></Link>
       </div>
     );
   }

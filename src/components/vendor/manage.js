@@ -74,7 +74,7 @@ class VendorManage extends Component {
     if (this.props.spots.length === 0) {
       return (
         <div id="general-style">
-          <div>
+          <div id="center-content">
             <h1>Manage Spots</h1>
             <h2>You have not created any spots yet.  Click the button below to add some spots to your profile.</h2>
             <Link to="/vendor/create-spots" ><button id="addBtn" onClick={this.onButtonPress}>+Add Spots</button></Link>

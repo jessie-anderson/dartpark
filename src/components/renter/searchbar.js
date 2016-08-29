@@ -43,7 +43,7 @@ class SearchBar extends Component {
 
   render() {
     return (
-      <div>
+      <div id="general-style">
         <h1>Find a Spot</h1>
         <div id="search">
           <div id="searchbar"><Geosuggest onSuggestSelect={this.suggestionSelection} onChange={this.onSearchBarChange} /></div>
