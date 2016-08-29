@@ -15,6 +15,7 @@ class SignUpRenter extends Component {
     this.onPasswordChange = this.onPasswordChange.bind(this);
     this.onNameChange = this.onNameChange.bind(this);
     this.signupRenter = this.signupRenter.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
   onEmailChange(event) {
     this.setState({ email: event.target.value });
@@ -27,6 +28,9 @@ class SignUpRenter extends Component {
   }
   signupRenter() {
     this.props.signupRenter(this.state);
+  }
+  handleSubmit(e) {
+    e.preventDefault();
   }
   render() {
     return (

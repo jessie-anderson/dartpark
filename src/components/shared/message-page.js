@@ -56,6 +56,7 @@ class MessagePage extends Component {
   handleSendMessage() {
     this.props.sendMessage(this.state.currentConvoId, { message: this.state.currentMessage });
     this.socket.emit('sendMessage', this.props.conversation);
+    this.scrollDown();
   }
   handleSubmit(e) {
     e.preventDefault();
