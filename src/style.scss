@@ -502,4 +502,22 @@ h1 {
   flex-flow: row wrap;
 }
 
+#spotDisp {
+  background-color: $accent-color;
+  margin: 0.5em;
+  width: 300px;
+  padding: 0.5em;
+  border-radius: 4px;
+}
+#columns{
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+}
+#spotsMain{
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+}
 /* Bootstrap below here*/
