@@ -129,8 +129,8 @@ class MessagePage extends Component {
             </div>
             <div id="message-bar">
               <Form inline onSubmit={this.handleSubmit}>
-                <FormControl onChange={this.handleInputChange} value={this.state.currentMessage} type="text" placeholder="Your message..." />
-                <Button type="submit" onClick={this.handleSendMessage} disabled={!this.props.conversation}>Send</Button>
+                <FormControl id="msg-input" onChange={this.handleInputChange} value={this.state.currentMessage} type="text" placeholder="Your message..." />
+                <Button id="send-btn" type="submit" onClick={this.handleSendMessage} disabled={!this.props.conversation}>Send</Button>
               </Form>
             </div>
           </div>
