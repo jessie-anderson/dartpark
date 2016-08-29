@@ -29,16 +29,18 @@ class VendorManage extends Component {
     } else {
       const spotItems = this.props.spots.map(spot => {
         return (
-          <SpotItem
-            spotName={spot.spotName}
-            address={spot.address}
-            vendor={spot.vendor}
-            price={spot.price}
-            startDate={spot.startDate}
-            endDate={spot.endDate}
-            key={spot._id}
-            _id={spot._id}
-          />
+          <div id="spotDisp">
+            <SpotItem
+              spotName={spot.spotName}
+              address={spot.address}
+              vendor={spot.vendor}
+              price={spot.price}
+              startDate={spot.startDate}
+              endDate={spot.endDate}
+              key={spot._id}
+              _id={spot._id}
+            />
+          </div>
         );
       });
       console.log(spotItems);
@@ -52,7 +54,7 @@ class VendorManage extends Component {
     if (this.props.spots.length === 0) {
       return (
         <div id="general-style">
-          <div id="center-content">
+          <div>
             <h1>Manage Spots</h1>
             <h2>You have not created any spots yet.  Click the button below to add some spots to your profile.</h2>
             <Link to="/vendor/create-spots" ><button id="addBtn" onClick={this.onButtonPress}>+Add Spots</button></Link>
@@ -61,11 +63,15 @@ class VendorManage extends Component {
       );
     } else {
       return (
-        <div id="vendor-manage">
-          <div id="center-content">
+        <div id="general-style">
+          <div id="columns">
             <h1>Manage Spots</h1>
-            <div>{spots}</div>
-            <Link to="/vendor/create-spots" ><button id="std-btn" onClick={this.onButtonPress}>+Add Spots</button></Link>
+            <div>
+              <Link to="/vendor/create-spots" ><button id="std-light-btn" onClick={this.onButtonPress}>+Add Spot</button></Link>
+            </div>
+            <div id="spotsMain">
+              {spots}
+            </div>
           </div>
         </div>
       );

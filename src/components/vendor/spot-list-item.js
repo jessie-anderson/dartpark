@@ -154,12 +154,12 @@ class SpotItem extends Component {
       return (
         <div id="spot-item">
           <button id="std-btn" onClick={this.onEditClick}>Edit</button>
+          <button id="std-btn" onClick={this.onButtonClick}>Upload Photo</button>
           <h1>{this.props.spotName}</h1>
           <p>Address: {this.props.address}</p>
           <p>Price: {this.props.price}</p>
           <p>Start date: {this.props.startDate}</p>
           <p>End date: {this.props.endDate}</p>
-          <button id="std-btn" onClick={this.onButtonClick}>Upload Photo</button>
 
           <Modal show={this.state.displayModal} onHide={this.onButtonClick}>
             <Modal.Header closeButton>Add Picture</Modal.Header>
@@ -172,7 +172,7 @@ class SpotItem extends Component {
                   onDrop={this.uploadFile}
                 >
                       <p>Drop an image or click to select a file to upload.</p>
-                    </Dropzone>                                                                                                                              </Tab>
+                    </Dropzone>                                                                                                                                                  </Tab>
                 <Tab eventKey={2} title="Use Google Photo"></Tab>
               </Tabs>
             </Modal.Body>
