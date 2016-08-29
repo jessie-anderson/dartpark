@@ -4,7 +4,7 @@ import { Modal, Tab, Tabs } from 'react-bootstrap';
 // let Dropzone = require('react-dropzone');  //    <Dropzone rev="dropzone" onDrop={this.onDropFunction}><div>Upload</div></Dropzone>
 import { connect } from 'react-redux';
 import { updateSpot } from '../../actions/spot-actions';
-import { sendSpotPictureName } from '../../actions/picture-actions';
+// import { sendSpotPictureName } from '../../actions/picture-actions';
 import request from 'superagent';
 
 const CLOUDINARY_UPLOAD_PRESET = 'cymb407a';
@@ -35,7 +35,7 @@ class SpotItem extends Component {
     // init component state here
 
     this.state = {
-      theUploadedURL: '',
+      picUrl: '???',
       spotName: this.props.spotName,
       address: this.props.address,
       price: this.props.price,
@@ -69,7 +69,6 @@ class SpotItem extends Component {
     this.djsConfig = this.djsConfig.bind(this);
   }
 
-
   onEditClick() {
     this.setState({ isEditing: !this.state.isEditing });
   }
@@ -81,6 +80,7 @@ class SpotItem extends Component {
       price: this.state.price,
       startDate: this.state.startDate,
       endDate: this.state.endDate,
+      picUrl: this.state.picUrl,
     };
     this.props.updateSpot(spot, this.props._id);
     this.setState({ isEditing: !this.state.isEditing });
@@ -115,25 +115,37 @@ class SpotItem extends Component {
   }
 
   uploadFile(file) {
-    this.savePictureURL('test START');
+    console.log('UPLOADING...');
     console.log(file);
-    const upload = request.post(CLOUDINARY_UPLOAD_URL).field('upload_preset', CLOUDINARY_UPLOAD_PRESET).field('file', file);
-    upload.end((err, response) => {
-      if (err) {
-        console.log(err);
-      }
-      if (response.body.secure_url !== '') {
-        console.log(response.body.secure_url);
-        this.savePictureURL(response.body.secure_url);
-      }
-    });
-    this.savePictureURL('test END');
+    // const upload = request.post(CLOUDINARY_UPLOAD_URL).field('upload_preset', CLOUDINARY_UPLOAD_PRESET).field('file', file);
+    // upload.end((err, response) => {
+    //   if (err) {
+    //     console.log(err);
+    //   }
+    //   if (response.body.secure_url !== '') {
+    //     console.log(response.body.secure_url);
+    //     this.savePictureURL(response.body.secure_url);
+    //   }``
+    // });
+    this.savePictureURL('THE PICTURE LINK');
   }
 
   savePictureURL(url) {
+    this.setState({ picUrl: url });
+    const spot = {
+      spotName: this.state.spotName,
+      address: this.state.address,
+      price: this.state.price,
+      startDate: this.state.startDate,
+      endDate: this.state.endDate,
+      picUrl: this.state.picUrl,
+    };
+    this.props.updateSpot(spot, this.props._id);
     console.log(url);
-    this.setState({ theUploadedURL: url });
-    console.log(this.state.theUploadedURL);
+    console.log(this.state.picUrl);
+    console.log(this.props.picUrl);
+    console.log(this.props.address);
+    // this.props.sendSpotPictureName(url, this.props._id);
   }
 
   testFunction(event) {
@@ -169,6 +181,7 @@ class SpotItem extends Component {
           <p>Price: {this.props.price}</p>
           <p>Start date: {this.props.startDate}</p>
           <p>End date: {this.props.endDate}</p>
+          <p>Spot Picture: {this.props.picUrl}</p>
 
           <Modal show={this.state.displayModal} onHide={this.onButtonClick}>
             <Modal.Header closeButton>Add Picture</Modal.Header>
@@ -215,10 +228,10 @@ class SpotItem extends Component {
                 <Tab eventKey={1} title="Upload Picture from Computer">
                   <DropzoneComponent eventHandlers={this.state.eventHandlers} config={this.state.componentConfig} djsConfig={this.djsConfig} />
                 </Tab>
-                <Tab eventKey={2} title="Use Google Photo">lksd</Tab>
+                <Tab eventKey={2} title="Use Google Photo"></Tab>
               </Tabs>
             </Modal.Body>
-            <Modal.Footer>ldkajs</Modal.Footer>
+            <Modal.Footer></Modal.Footer>
           </Modal>
         </div>
       );

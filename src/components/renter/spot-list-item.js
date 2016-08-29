@@ -16,6 +16,10 @@ class ResultItem extends Component {
     this.props.renterGetSpot(this.props._id);
   }
 
+  renderSpotPhoto() {
+    return (<a href={this.props.picUrl} />);
+  }
+
   render() {
     console.log(this.props.address);
     return (
@@ -27,6 +31,7 @@ class ResultItem extends Component {
           <li>Price: {this.props.price}</li>
           <li>Start date: {this.props.startDate}</li>
           <li>End date: {this.props.endDate}</li>
+          <li>Picture: {this.renderSpotPhoto}</li>
           <img src={'http://greport.gru.edu/wp-content/uploads/2013/12/parkingspot.jpg'} alt="video" />
         </ul>
         <Link to="/renter/buy-spot">
