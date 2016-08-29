@@ -35,7 +35,7 @@ export function signinRenter({ email, password }) {
       localStorage.setItem('userBio', response.data.renter.bio);
       localStorage.setItem('userName', response.data.renter.username);
       if (typeof response.data.token !== 'undefined') browserHistory.push('/renter');
-      else browserHistory.push('/'); // signin failed
+      else browserHistory.push('/signup-renter'); // signin failed
     })
     .catch(err => {
       dispatch(authError(`Sign In Failed: ${err.response.data}`));
@@ -56,7 +56,7 @@ export function signinVendor({ email, password }) {
       localStorage.setItem('userBio', response.data.vendor.bio);
       localStorage.setItem('userName', response.data.vendor.username);
       if (typeof response.data.token !== 'undefined') browserHistory.push('/vendor/manage');
-      else browserHistory.push('/'); // signin failed
+      else browserHistory.push('/signup-vendor'); // signin failed
     })
     .catch(err => {
       dispatch(authError(`Sign In Failed: ${err.response.data}`));
