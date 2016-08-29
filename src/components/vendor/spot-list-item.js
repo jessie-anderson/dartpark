@@ -5,14 +5,12 @@ import { Modal, Tab, Tabs } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { updateSpot } from '../../actions/spot-actions';
 import { sendSpotPictureName } from '../../actions/picture-actions';
-import Dropzone from 'react-dropzone';
 import request from 'superagent';
 
 const CLOUDINARY_UPLOAD_PRESET = 'cymb407a';
-const CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/your_cloudinary_app_name/upload';
+const CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/thedartpark/upload';
 
-
-// const cl = cloudinary.Cloudinary.new({ cloud_name: 'demo' });
+const DropzoneComponent = require('react-dropzone-component');
 
 // import config from '../../../config';
 // DropzoneComponent.autoDiscover = false;
@@ -36,7 +34,6 @@ class SpotItem extends Component {
 
     this.state = {
       theUploadedURL: '',
-
       spotName: this.props.spotName,
       address: this.props.address,
       price: this.props.price,
@@ -46,20 +43,16 @@ class SpotItem extends Component {
       displayModal: false,
       dropzoneObject: '',
       pictureName: '',
-      eventHandlers: { init: this.initCallback, drop: this.testFunction, addedfile: this.uploadFile },
+      eventHandlers: { init: this.initCallback.bind(this), addedfile: this.uploadFile.bind(this) },
       componentConfig: {
         iconFiletypes: ['.jpg', '.png', '.gif'],
         showFiletypeIcon: true,
-
-        // postUrl: this.props.sendSpotPictureName(this.props),
-        postUrl: 'https://api.cloudinary.com/v1_1/dartpark/image/upload',
-        // postUrl: this.uploadFile(),
-// cloudinary signed url
-        // postUrl: config.upload_url,
+        postUrl: 'https://api.cloudinary.com/v1_1/thedartpark/image/upload',
       },
 
     };
-    this.uploadFile = this.uploadFile.bind(this);
+    this.savePictureURL = this.savePictureURL.bind(this);
+    // this.uploadFile = this.uploadFile.bind(this);
     this.initCallback = this.initCallback.bind(this);
     this.testFunction = this.testFunction.bind(this);
     this.onButtonClick = this.onButtonClick.bind(this);
@@ -74,9 +67,6 @@ class SpotItem extends Component {
     this.djsConfig = this.djsConfig.bind(this);
   }
 
-  uploadFile(file) {
-    console.log(file);
-  }
 
   onEditClick() {
     this.setState({ isEditing: !this.state.isEditing });
@@ -123,7 +113,25 @@ class SpotItem extends Component {
   }
 
   uploadFile(file) {
-    console.log('upload');
+    this.savePictureURL('test START');
+    console.log(file);
+    const upload = request.post(CLOUDINARY_UPLOAD_URL).field('upload_preset', CLOUDINARY_UPLOAD_PRESET).field('file', file);
+    upload.end((err, response) => {
+      if (err) {
+        console.log(err);
+      }
+      if (response.body.secure_url !== '') {
+        console.log(response.body.secure_url);
+        this.savePictureURL(response.body.secure_url);
+      }
+    });
+    this.savePictureURL('test END');
+  }
+
+  savePictureURL(url) {
+    console.log(url);
+    this.setState({ theUploadedURL: url });
+    console.log(this.state.theUploadedURL);
   }
 
   testFunction(event) {
@@ -134,7 +142,7 @@ class SpotItem extends Component {
     return (<div className="dz-preview dz-file-preview">
       <div className="dz-details">
         <div className="dz-filename"><span data-dz-name="true"></span></div>
-        <img role="presentation" data-dz-thumbnail="true" />
+        <img data-dz-thumbnail="true" />
       </div>
       <div className="dz-progress"><span className="dz-upload" data-dz-uploadprogress="true"></span></div>
       <div className="dz-success-mark"><span>✔</span></div>
@@ -149,7 +157,6 @@ class SpotItem extends Component {
 
 
   render() {
-    console.log('hi');
     if (!this.state.isEditing) {
       return (
         <div id="spot-item">
@@ -166,17 +173,12 @@ class SpotItem extends Component {
             <Modal.Body>
               <Tabs defaultActiveKey={1}>
                 <Tab eventKey={1} title="Upload Picture from Computer">
-                <Dropzone
-                  multiple={false}
-                  accept="image/jpg,image/png"
-                  onDrop={this.uploadFile}
-                >
-                      <p>Drop an image or click to select a file to upload.</p>
-                    </Dropzone>                                                                                                                              </Tab>
-                <Tab eventKey={2} title="Use Google Photo"></Tab>
+                  <DropzoneComponent eventHandlers={this.state.eventHandlers} config={this.state.componentConfig} djsConfig={this.djsConfig} />
+                </Tab>
+                <Tab eventKey={2} title="Use Google Photo">lksd</Tab>
               </Tabs>
             </Modal.Body>
-            <Modal.Footer></Modal.Footer>
+            <Modal.Footer>ldkajs</Modal.Footer>
           </Modal>
 
         </div>
@@ -209,18 +211,12 @@ class SpotItem extends Component {
             <Modal.Body>
               <Tabs defaultActiveKey={1}>
                 <Tab eventKey={1} title="Upload Picture from Computer">
-                <Dropzone
-                  multiple={false}
-                  accept="image/jpg,image/png"
-                  onDrop={this.uploadFile}
-                >
-                  <p>Drop an image or click to select a file to upload.</p>
-                  </Dropzone>
+                  <DropzoneComponent eventHandlers={this.state.eventHandlers} config={this.state.componentConfig} djsConfig={this.djsConfig} />
                 </Tab>
-                <Tab eventKey={2} title="Use Google Photo"></Tab>
+                <Tab eventKey={2} title="Use Google Photo">lksd</Tab>
               </Tabs>
             </Modal.Body>
-            <Modal.Footer></Modal.Footer>
+            <Modal.Footer>ldkajs</Modal.Footer>
           </Modal>
         </div>
       );
