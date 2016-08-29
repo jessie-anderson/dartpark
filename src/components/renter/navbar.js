@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 let FontAwesome = require('react-fontawesome');
 import { Link } from 'react-router';
 import { signoutUser } from '../../actions/user-actions';
+import MediaQuery from 'react-responsive';
 
 // example class based component (smart component)
 class NavBar extends Component {
@@ -17,42 +18,82 @@ class NavBar extends Component {
   }
   render() {
     return (
-      <div id="nav-bar">
-        <div id="left-align">
-          <div onClick={this.handleSignOut} id="nav-link">
-            <FontAwesome id="fa-icon"
-              className="sign-out"
-              name="sign-out"
-            />
-            <span>Sign Out</span>
+      <div>
+        <MediaQuery minWidth={601}>
+          <div id="nav-bar">
+            <div id="left-align">
+              <div onClick={this.handleSignOut} id="nav-link">
+                <FontAwesome id="fa-icon"
+                  className="sign-out"
+                  name="sign-out"
+                />
+                <span>Sign Out</span>
+              </div>
+              <Link to="/renter" id="nav-link">
+                <FontAwesome id="fa-icon"
+                  className="user"
+                  name="user"
+                />
+                <span>Profile</span>
+              </Link>
+            </div>
+            <div>
+              dartPark
+            </div>
+            <div id="right-align">
+              <Link to="/renter/search" id="nav-link">
+                <FontAwesome id="fa-icon"
+                  className="search"
+                  name="search"
+                />
+                <span>Search</span>
+              </Link>
+              <Link to="/messaging" id="nav-link">
+                <FontAwesome id="fa-icon"
+                  className="home"
+                  name="home"
+                />
+                <span>Messages</span>
+              </Link>
+            </div>
           </div>
-          <Link to="/renter" id="nav-link">
-            <FontAwesome id="fa-icon"
-              className="user"
-              name="user"
-            />
-            <span>Profile</span>
-          </Link>
-        </div>
-        <div>
-          dartPark
-        </div>
-        <div id="right-align">
-          <Link to="/renter/search" id="nav-link">
-            <FontAwesome id="fa-icon"
-              className="search"
-              name="search"
-            />
-            <span>Search</span>
-          </Link>
-          <Link to="/messaging" id="nav-link">
-            <FontAwesome id="fa-icon"
-              className="home"
-              name="home"
-            />
-            <span>Messages</span>
-          </Link>
-        </div>
+        </MediaQuery>
+        <MediaQuery maxWidth={600}>
+          <div id="nav-bar">
+            <div id="left-align">
+              <div onClick={this.handleSignOut} id="nav-link">
+                <FontAwesome id="fa-icon"
+                  className="sign-out"
+                  name="sign-out"
+                />
+                <span>Sign Out</span>
+              </div>
+              <Link to="/renter" id="nav-link">
+                <FontAwesome id="fa-icon"
+                  className="user"
+                  name="user"
+                />
+                <span>Profile</span>
+              </Link>
+            </div>
+            <div id="right-align">
+              <Link to="/renter/search" id="nav-link">
+                <FontAwesome id="fa-icon"
+                  className="search"
+                  name="search"
+                />
+                <span>Search</span>
+              </Link>
+              <Link to="/messaging" id="nav-link">
+                <FontAwesome id="fa-icon"
+                  className="home"
+                  name="home"
+                />
+                <span>Messages</span>
+              </Link>
+            </div>
+          </div>
+        </MediaQuery>
       </div>
     );
   }

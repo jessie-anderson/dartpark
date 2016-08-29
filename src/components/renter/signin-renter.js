@@ -16,6 +16,7 @@ class SignInRenter extends Component {
     this.onEmailChange = this.onEmailChange.bind(this);
     this.onPasswordChange = this.onPasswordChange.bind(this);
     this.signin = this.signin.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
   onEmailChange(event) {
     this.setState({ email: event.target.value });
@@ -26,6 +27,9 @@ class SignInRenter extends Component {
   signin() {
     this.props.signinRenter(this.state);
   }
+  handleSubmit(e) {
+    e.preventDefault();
+  }
   render() {
     return (
       <div id="sign-in-renter">
@@ -33,14 +37,13 @@ class SignInRenter extends Component {
           <div id="box">
             <h1>Sign In</h1>
             <div id="sign-in-form">
-              <input onChange={this.onEmailChange} placeholder={"Email..."} />
+              <input onChange={this.onEmailChange} type="email" placeholder={"Email..."} />
               <input onChange={this.onPasswordChange} type="password" placeholder={"Password..."} />
             </div>
             <button id="btn1" onClick={this.signin}>Sign In</button>
           </div>
           <span>{'Don\'t have an account?'}</span>
           <Link to={'/signup-renter'} id="btn2"><button>Sign Up</button></Link>
-          <span></span>
           <Link to={'/'} id="std-light-btn"><button>Back</button></Link>
         </div>
       </div>
