@@ -11,7 +11,7 @@ class SignInRenter extends Component {
     super(props);
 
     // init component state here
-    this.state = { email: '', password: '' };
+    this.state = { email: '', password: '', loginFail: false };
 
     this.onEmailChange = this.onEmailChange.bind(this);
     this.onPasswordChange = this.onPasswordChange.bind(this);
@@ -25,10 +25,27 @@ class SignInRenter extends Component {
     this.setState({ password: event.target.value });
   }
   signin() {
-    this.props.signinRenter(this.state);
+    if (this.props.signinRenter(this.state)) {
+      this.setState({ loginFail: false });
+    } else {
+      this.setState({ loginFail: true });
+    }
   }
   handleSubmit(e) {
     e.preventDefault();
+  }
+  renderLoginError() {
+    if (this.state.loginFail) {
+      return (
+        <div id="login-fail">
+          {'It seems that you don\'t have an account, try signing up!'}
+        </div>
+      );
+    } else {
+      return (
+        <div></div>
+      );
+    }
   }
   render() {
     return (
@@ -42,6 +59,7 @@ class SignInRenter extends Component {
             </div>
             <button id="btn1" onClick={this.signin}>Sign In</button>
           </div>
+          <div>{this.renderLoginError()}</div>
           <span>{'Don\'t have an account?'}</span>
           <Link to={'/signup-renter'} id="btn2"><button>Sign Up</button></Link>
           <Link to={'/'} id="std-light-btn"><button>Back</button></Link>
