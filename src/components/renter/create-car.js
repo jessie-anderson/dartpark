@@ -49,7 +49,7 @@ class CreateCar extends Component {
 
   render() {
     return (
-      <div>
+      <div id="center-content">
         <label htmlFor="make">Make:</label>
         <input id="make" onChange={this.onMakeChange} value={this.state.make} />
 
@@ -65,7 +65,7 @@ class CreateCar extends Component {
         <label htmlFor="plate">Plate number:</label>
         <input id="plate" onChange={this.onPlateNumberChange} value={this.state.plateNumber} />
 
-        <button onClick={this.onSave}>Save Car</button>
+        <button onClick={this.onSave} id="std-btn">Save Car</button>
       </div>
     );
   }

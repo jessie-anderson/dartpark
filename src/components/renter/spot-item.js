@@ -20,8 +20,8 @@ class SpotItem extends Component {
 
   render() {
     return (
-      <div>
-        <p>Address: {this.props.address}</p>
+      <div id="spotDisp">
+        <h2>{this.props.address}</h2>
         <p>Price: {this.props.price}</p>
         <p>startDate: {this.props.startDate}</p>
         <p>endDate: {this.props.endDate}</p>

@@ -18,8 +18,8 @@ class VehicleItem extends Component {
   render() {
     console.log(this.props);
     return (
-      <div>
-        <p>Make: {this.props.make}</p>
+      <div id="carDisp">
+        <h2>{this.props.make}</h2>
         <p>Model: {this.props.model}</p>
         <p>Year: {this.props.year}</p>
         <p>Color: {this.props.paintcolor}</p>
