@@ -561,6 +561,7 @@ h1 {
 #view-spots {
   display: flex;
   flex-flow: row wrap;
+  justify-content: center;
 }
 
 #spotDisp {
@@ -595,6 +596,31 @@ h1 {
     color: $main-color;
     border: none;
     background-color: $accent-color;
+    border-radius: 2px;
+    padding: 0.2em;
+    width: 100%;
+  }
+}
+#buySpotDisp {
+  display: flex;
+  flex-flow: column nowrap;
+  background-color: $accent-color;
+  margin: 0.5em;
+  width: 300px;
+  padding: 0.5em;
+  border-radius: 4px;
+  justify-content: center;
+  text-align: center;
+  #spot-img {
+    margin: 0.5em;
+  }
+  h1 {
+    font-size: 1.3em;
+  }
+  button {
+    color: white;
+    border: none;
+    background-color: $highlight-color;
     border-radius: 2px;
     padding: 0.2em;
     width: 100%;
@@ -658,5 +684,10 @@ h1 {
 #home-link {
   text-decoration: none;
   color: white;
+}
+
+#login-fail{
+  margin-top: 1em;
+  color: darken(red, 10%);
 }
 /* Bootstrap below here*/

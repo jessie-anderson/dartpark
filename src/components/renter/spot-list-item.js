@@ -19,19 +19,20 @@ class ResultItem extends Component {
   render() {
     console.log(this.props.address);
     return (
-      <div>
-        <ul className="result-details">
-          <li className="address">Address: {this.props.address}</li>
-          <li>Distance: {this.props.distance}</li>
-          <li>Vendor: {this.props.vendor}</li>
-          <li>Price: {this.props.price}</li>
-          <li>Start date: {this.props.startDate}</li>
-          <li>End date: {this.props.endDate}</li>
-          <img src={'http://greport.gru.edu/wp-content/uploads/2013/12/parkingspot.jpg'} alt="video" />
-        </ul>
-        <Link to="/renter/buy-spot">
-          <button onClick={this.getSpotDetail}>Buy Spot</button>
-        </Link>
+      <div id="general-style">
+        <div id="buySpotDisp">
+          <h1>Address: {this.props.address}</h1>
+          <div>Distance: {this.props.distance}</div>
+          <div>Vendor: {this.props.vendor}</div>
+          <div>Price: {this.props.price}</div>
+          <div>Start date: {this.props.startDate}</div>
+          <div>End date: {this.props.endDate}</div>
+          <div id="spot-img"><img src={'http://greport.gru.edu/wp-content/uploads/2013/12/parkingspot.jpg'} alt="parking-spot-img" /></div>
+          <Link to="/renter/buy-spot">
+            <button onClick={this.getSpotDetail}>Buy Spot</button>
+          </Link>
+        </div>
+
       </div>
     );
   }

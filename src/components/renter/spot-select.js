@@ -32,7 +32,10 @@ const SelectSpot = (props) => {
         />
       );
     });
-    return (<div>{allSpots}</div>);
+    return (
+      <div id="view-spots">
+        {allSpots}
+      </div>);
   }
 };
 
