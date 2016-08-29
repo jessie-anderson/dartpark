@@ -120,6 +120,10 @@ Renter
 * Address
 * Path to photo: (url/path)
 
+**Payment**
+
+![](https://www.braintreepayments.com/images/bt-logo-2f17cea0.svg)
+
 ## Setup
 
 * npm install

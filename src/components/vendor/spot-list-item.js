@@ -5,9 +5,13 @@ import { Modal, Tab, Tabs } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { updateSpot } from '../../actions/spot-actions';
 import { sendSpotPictureName } from '../../actions/picture-actions';
+import Dropzone from 'react-dropzone';
+import request from 'superagent';
+
+const CLOUDINARY_UPLOAD_PRESET = 'cymb407a';
+const CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/your_cloudinary_app_name/upload';
 
 
-const DropzoneComponent = require('react-dropzone-component');
 // const cl = cloudinary.Cloudinary.new({ cloud_name: 'demo' });
 
 // import config from '../../../config';
@@ -31,6 +35,8 @@ class SpotItem extends Component {
     // init component state here
 
     this.state = {
+      theUploadedURL: '',
+
       spotName: this.props.spotName,
       address: this.props.address,
       price: this.props.price,
@@ -47,8 +53,6 @@ class SpotItem extends Component {
 
         // postUrl: this.props.sendSpotPictureName(this.props),
         postUrl: 'https://api.cloudinary.com/v1_1/dartpark/image/upload',
-
-        postUrl: '/test',
         // postUrl: this.uploadFile(),
 // cloudinary signed url
         // postUrl: config.upload_url,
@@ -71,12 +75,7 @@ class SpotItem extends Component {
   }
 
   uploadFile(file) {
-    if (file) {
-      console.log(file);
-      const fileName = file.name;
-      return 'https://api.cloudinary.com/v1_1/thedartpark/image/upload/' + fileName;
-    }
-    return 'https://api.cloudinary.com/v1_1/thedartpark/image/upload/';
+    console.log(file);
   }
 
   onEditClick() {
@@ -167,12 +166,17 @@ class SpotItem extends Component {
             <Modal.Body>
               <Tabs defaultActiveKey={1}>
                 <Tab eventKey={1} title="Upload Picture from Computer">
-                  <DropzoneComponent eventHandlers={this.state.eventHandlers} config={this.state.componentConfig} djsConfig={this.djsConfig} />
-                </Tab>
-                <Tab eventKey={2} title="Use Google Photo">lksd</Tab>
+                <Dropzone
+                  multiple={false}
+                  accept="image/jpg,image/png"
+                  onDrop={this.uploadFile}
+                >
+                      <p>Drop an image or click to select a file to upload.</p>
+                    </Dropzone>                                                                                                                              </Tab>
+                <Tab eventKey={2} title="Use Google Photo"></Tab>
               </Tabs>
             </Modal.Body>
-            <Modal.Footer>ldkajs</Modal.Footer>
+            <Modal.Footer></Modal.Footer>
           </Modal>
 
         </div>
@@ -205,12 +209,18 @@ class SpotItem extends Component {
             <Modal.Body>
               <Tabs defaultActiveKey={1}>
                 <Tab eventKey={1} title="Upload Picture from Computer">
-                  <DropzoneComponent eventHandlers={this.state.eventHandlers} config={this.state.componentConfig} djsConfig={this.djsConfig} />
+                <Dropzone
+                  multiple={false}
+                  accept="image/jpg,image/png"
+                  onDrop={this.uploadFile}
+                >
+                  <p>Drop an image or click to select a file to upload.</p>
+                  </Dropzone>
                 </Tab>
-                <Tab eventKey={2} title="Use Google Photo">lksd</Tab>
+                <Tab eventKey={2} title="Use Google Photo"></Tab>
               </Tabs>
             </Modal.Body>
-            <Modal.Footer>ldkajs</Modal.Footer>
+            <Modal.Footer></Modal.Footer>
           </Modal>
         </div>
       );
