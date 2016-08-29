@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import RenterNavBar from './renter/navbar';
 import VendorNavBar from './vendor/navbar';
+import { Link } from 'react-router';
 
 // example class based component (smart component)
 class App extends Component {
@@ -26,12 +27,22 @@ class App extends Component {
         );
       } else { // default non-specific bar
         return (
-          <div id="header-bar">dartPark</div>
+          <div id="header-bar">
+            <Link to="/" id="home-link">
+            dartPark
+            </Link>
+          </div>
         );
       }
     } else {
       console.log('error finding usertype');
-      return (<div id="header-bar">dartPark</div>);
+      return (
+        <div id="header-bar">
+          <Link to="/" id="home-link">
+          dartPark
+          </Link>
+        </div>
+      );
     }
   }
   render() {
