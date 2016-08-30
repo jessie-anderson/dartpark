@@ -16,6 +16,10 @@ class ResultItem extends Component {
     this.props.renterGetSpot(this.props._id);
   }
 
+  renderSpotPhoto() {
+    return (<a href={this.props.picUrl} />);
+  }
+
   render() {
     console.log(this.props.address);
     return (
@@ -32,7 +36,6 @@ class ResultItem extends Component {
             <button onClick={this.getSpotDetail}>Buy Spot</button>
           </Link>
         </div>
-
       </div>
     );
   }

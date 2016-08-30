@@ -4,7 +4,7 @@ import { Modal, Tab, Tabs } from 'react-bootstrap';
 // let Dropzone = require('react-dropzone');  //    <Dropzone rev="dropzone" onDrop={this.onDropFunction}><div>Upload</div></Dropzone>
 import { connect } from 'react-redux';
 import { updateSpot } from '../../actions/spot-actions';
-import { sendSpotPictureName } from '../../actions/picture-actions';
+// import { sendSpotPictureName } from '../../actions/picture-actions';
 import request from 'superagent';
 
 const CLOUDINARY_UPLOAD_PRESET = 'cymb407a';
@@ -26,6 +26,8 @@ const DropzoneComponent = require('react-dropzone-component');
 // https://github.com/felixrieseberg/React-Dropzone-Component#usage-without-automatic-posting
 
 
+// https://css-tricks.com/image-upload-manipulation-react/
+
 class SpotItem extends Component {
   constructor(props) {
     super(props);
@@ -33,7 +35,7 @@ class SpotItem extends Component {
     // init component state here
 
     this.state = {
-      theUploadedURL: '',
+      picUrl: this.props.picUrl,
       spotName: this.props.spotName,
       address: this.props.address,
       price: this.props.price,
@@ -57,30 +59,41 @@ class SpotItem extends Component {
     this.testFunction = this.testFunction.bind(this);
     this.onButtonClick = this.onButtonClick.bind(this);
     // this.onDropFunction = this.onDropFunction.bind(this);
-    this.onEditClick = this.onEditClick.bind(this);
+    this.Click = this.onEditClick.bind(this);
     this.onAddressChange = this.onAddressChange.bind(this);
     this.onPriceChange = this.onPriceChange.bind(this);
     this.onStartDateChange = this.onStartDateChange.bind(this);
     this.onEndDateChange = this.onEndDateChange.bind(this);
     this.onSpotNameChange = this.onSpotNameChange.bind(this);
     this.onSave = this.onSave.bind(this);
+    this.onEditClick = this.onEditClick.bind(this);
     this.djsConfig = this.djsConfig.bind(this);
   }
 
-
   onEditClick() {
+    console.log('picUrl pre update: ' + this.props.picUrl);
+    console.log('address pre update: ' + this.props.address);
+    console.log('EDITING...');
     this.setState({ isEditing: !this.state.isEditing });
   }
 
   onSave() {
+    console.log('SAVING');
+    console.log('pre update: ' + this.props.address);
+    console.log('state' + this.state.address);
+
     const spot = {
       spotName: this.state.spotName,
       address: this.state.address,
       price: this.state.price,
       startDate: this.state.startDate,
       endDate: this.state.endDate,
+      picUrl: this.state.picUrl,
     };
     this.props.updateSpot(spot, this.props._id);
+    console.log('post update: ' + this.props.address);
+    console.log('state' + this.state.address);
+
     this.setState({ isEditing: !this.state.isEditing });
   }
 
@@ -113,25 +126,38 @@ class SpotItem extends Component {
   }
 
   uploadFile(file) {
-    this.savePictureURL('test START');
+    console.log('UPLOADING...');
     console.log(file);
-    const upload = request.post(CLOUDINARY_UPLOAD_URL).field('upload_preset', CLOUDINARY_UPLOAD_PRESET).field('file', file);
-    upload.end((err, response) => {
-      if (err) {
-        console.log(err);
-      }
-      if (response.body.secure_url !== '') {
-        console.log(response.body.secure_url);
-        this.savePictureURL(response.body.secure_url);
-      }
-    });
-    this.savePictureURL('test END');
+    // const upload = request.post(CLOUDINARY_UPLOAD_URL).field('upload_preset', CLOUDINARY_UPLOAD_PRESET).field('file', file);
+    // upload.end((err, response) => {
+    //   if (err) {
+    //     console.log(err);
+    //   }
+    //   if (response.body.secure_url !== '') {
+    //     console.log(response.body.secure_url);
+    //     this.savePictureURL(response.body.secure_url);
+    //   }``
+    // });
+    this.savePictureURL('THE PICTURE LINK');
+  //  this.setState({ picUrl: 'updated!' });
   }
 
   savePictureURL(url) {
+    // this.setState({ picUrl: url });
+    const updatedSpot = {
+      spotName: this.state.spotName,
+      address: this.state.address,
+      price: this.state.price,
+      startDate: this.state.startDate,
+      endDate: this.state.endDate,
+      picUrl: url,
+    };
+    this.props.updateSpot(updatedSpot, this.props._id);
     console.log(url);
-    this.setState({ theUploadedURL: url });
-    console.log(this.state.theUploadedURL);
+    console.log(this.state.picUrl);
+    console.log(this.props.picUrl);
+    console.log(this.props.address);
+    // this.props.sendSpotPictureName(url, this.props._id);
   }
 
   testFunction(event) {
@@ -161,26 +187,12 @@ class SpotItem extends Component {
       return (
         <div id="spot-item">
           <button id="std-btn" onClick={this.onEditClick}>Edit</button>
-          <button id="std-btn" onClick={this.onButtonClick}>Upload Photo</button>
           <h1>{this.props.spotName}</h1>
           <p>Address: {this.props.address}</p>
           <p>Price: {this.props.price}</p>
           <p>Start date: {this.props.startDate}</p>
           <p>End date: {this.props.endDate}</p>
-
-          <Modal show={this.state.displayModal} onHide={this.onButtonClick}>
-            <Modal.Header closeButton>Add Picture</Modal.Header>
-            <Modal.Body>
-              <Tabs defaultActiveKey={1}>
-                <Tab eventKey={1} title="Upload Picture from Computer">
-                  <DropzoneComponent eventHandlers={this.state.eventHandlers} config={this.state.componentConfig} djsConfig={this.djsConfig} />
-                </Tab>
-                <Tab eventKey={2} title="Use Google Photo">lksd</Tab>
-              </Tabs>
-            </Modal.Body>
-            <Modal.Footer>ldkajs</Modal.Footer>
-          </Modal>
-
+          <p>Spot Picture: {this.props.picUrl}</p>
         </div>
       );
     } else {
@@ -213,10 +225,10 @@ class SpotItem extends Component {
                 <Tab eventKey={1} title="Upload Picture from Computer">
                   <DropzoneComponent eventHandlers={this.state.eventHandlers} config={this.state.componentConfig} djsConfig={this.djsConfig} />
                 </Tab>
-                <Tab eventKey={2} title="Use Google Photo">lksd</Tab>
+                <Tab eventKey={2} title="Use Google Photo"></Tab>
               </Tabs>
             </Modal.Body>
-            <Modal.Footer>ldkajs</Modal.Footer>
+            <Modal.Footer></Modal.Footer>
           </Modal>
         </div>
       );

@@ -42,7 +42,19 @@ The main components of the vendor model included:
 2. Email verification: In the future, we could change the user schema to include a check for a verified email. This would be useful in ensuring that each email has been validated before allowing users to create an account and sign in. (Perhaps look more into [SendGrid](https://github.com/sendgrid/sendgrid-nodejs) example to send verification codes to inputed emails).
 3. Error handling/Better UI Experience: As of now, the app does not verify input type, so errors can potentially arise when sending wrong information to the backend (i.e. letters when inputing price). Additionally, errors occurring in the backend do not display for the user, so in the future, we would like to work on a more efficient user interface where notifications of errors are more apparent.
 4. Advanced filtering: Being able to sort by price, distance, and vendor in addition to location
+5. Photo upload (see below)
 
+
+#### Photos
+- In implementing a photo uploading system, we used two libraries/systems.  The first, [`dropzone.js`](http://www.dropzonejs.com/) and the second, [`Cloudinary`](http://cloudinary.com/).  **Dropzone** is used to transfer the photo from the computer to the local webpage, and **Cloudinary** is used to take the local file and store it on their database.
+- In attempting this system, the following tutorials were used:
+  - [Cloudinary Node.js](http://cloudinary.com/documentation/node_integration#getting_started_guide)
+  - [CSS Tricks](https://css-tricks.com/image-upload-manipulation-react/)
+
+
+
+
+#### Payment
 
 
 **Original Flow Charts**
