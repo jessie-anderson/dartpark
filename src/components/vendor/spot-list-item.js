@@ -35,7 +35,7 @@ class SpotItem extends Component {
     // init component state here
 
     this.state = {
-      picUrl: '???',
+      picUrl: this.props.picUrl,
       spotName: this.props.spotName,
       address: this.props.address,
       price: this.props.price,
@@ -59,21 +59,29 @@ class SpotItem extends Component {
     this.testFunction = this.testFunction.bind(this);
     this.onButtonClick = this.onButtonClick.bind(this);
     // this.onDropFunction = this.onDropFunction.bind(this);
-    this.onEditClick = this.onEditClick.bind(this);
+    this.Click = this.onEditClick.bind(this);
     this.onAddressChange = this.onAddressChange.bind(this);
     this.onPriceChange = this.onPriceChange.bind(this);
     this.onStartDateChange = this.onStartDateChange.bind(this);
     this.onEndDateChange = this.onEndDateChange.bind(this);
     this.onSpotNameChange = this.onSpotNameChange.bind(this);
     this.onSave = this.onSave.bind(this);
+    this.onEditClick = this.onEditClick.bind(this);
     this.djsConfig = this.djsConfig.bind(this);
   }
 
   onEditClick() {
+    console.log('picUrl pre update: ' + this.props.picUrl);
+    console.log('address pre update: ' + this.props.address);
+    console.log('EDITING...');
     this.setState({ isEditing: !this.state.isEditing });
   }
 
   onSave() {
+    console.log('SAVING');
+    console.log('pre update: ' + this.props.address);
+    console.log('state' + this.state.address);
+
     const spot = {
       spotName: this.state.spotName,
       address: this.state.address,
@@ -83,6 +91,9 @@ class SpotItem extends Component {
       picUrl: this.state.picUrl,
     };
     this.props.updateSpot(spot, this.props._id);
+    console.log('post update: ' + this.props.address);
+    console.log('state' + this.state.address);
+
     this.setState({ isEditing: !this.state.isEditing });
   }
 
@@ -128,19 +139,20 @@ class SpotItem extends Component {
     //   }``
     // });
     this.savePictureURL('THE PICTURE LINK');
+  //  this.setState({ picUrl: 'updated!' });
   }
 
   savePictureURL(url) {
-    this.setState({ picUrl: url });
-    const spot = {
+    // this.setState({ picUrl: url });
+    const updatedSpot = {
       spotName: this.state.spotName,
       address: this.state.address,
       price: this.state.price,
       startDate: this.state.startDate,
       endDate: this.state.endDate,
-      picUrl: this.state.picUrl,
+      picUrl: url,
     };
-    this.props.updateSpot(spot, this.props._id);
+    this.props.updateSpot(updatedSpot, this.props._id);
     console.log(url);
     console.log(this.state.picUrl);
     console.log(this.props.picUrl);
@@ -175,27 +187,12 @@ class SpotItem extends Component {
       return (
         <div id="spot-item">
           <button id="std-btn" onClick={this.onEditClick}>Edit</button>
-          <button id="std-btn" onClick={this.onButtonClick}>Upload Photo</button>
           <h1>{this.props.spotName}</h1>
           <p>Address: {this.props.address}</p>
           <p>Price: {this.props.price}</p>
           <p>Start date: {this.props.startDate}</p>
           <p>End date: {this.props.endDate}</p>
           <p>Spot Picture: {this.props.picUrl}</p>
-
-          <Modal show={this.state.displayModal} onHide={this.onButtonClick}>
-            <Modal.Header closeButton>Add Picture</Modal.Header>
-            <Modal.Body>
-              <Tabs defaultActiveKey={1}>
-                <Tab eventKey={1} title="Upload Picture from Computer">
-                  <DropzoneComponent eventHandlers={this.state.eventHandlers} config={this.state.componentConfig} djsConfig={this.djsConfig} />
-                </Tab>
-                <Tab eventKey={2} title="Use Google Photo">lksd</Tab>
-              </Tabs>
-            </Modal.Body>
-            <Modal.Footer>ldkajs</Modal.Footer>
-          </Modal>
-
         </div>
       );
     } else {

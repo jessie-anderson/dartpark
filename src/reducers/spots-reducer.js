@@ -13,6 +13,7 @@ const SpotsReducer = (spots = { all: [], spot: null, searchTerm: '' }, action) =
       return Object.assign({}, spots, { all: action.payload });
     case SpotActionTypes.UPDATE_SPOT:
       console.log(action.payload);
+      console.log(action.payload.spot);
       return {
         all: action.payload.vendor.spots,
         spot: action.payload.spot,

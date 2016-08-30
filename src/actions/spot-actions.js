@@ -29,7 +29,7 @@ export function saveSearch(searchRequest) {
 export function createSpot(spot) {
   return (dispatch) => {
     axios.post(`${ROOT_URL}/vendor/spots`,
-      { spotName: spot.spotName, address: spot.spotAddress, startDate: spot.startDate, endDate: spot.endDate, price: spot.price, picUrl: '' },
+      { spotName: spot.spotName, address: spot.spotAddress, startDate: spot.startDate, endDate: spot.endDate, price: spot.price, picUrl: spot.picUrl },
       { headers: { authorizationvendor: localStorage.getItem('token') } })
     .then(response => {
       dispatch({
@@ -71,8 +71,6 @@ export function vendorGetSpot(id) {
 }
 
 export function updateSpot(spot, id) {
-  console.log(spot.picUrl);
-  console.log(spot.address);
   return (dispatch) => {
     axios.put(`${ROOT_URL}/vendor/spots/${id}`, {
       address: spot.address,
@@ -89,7 +87,7 @@ export function updateSpot(spot, id) {
         payload: response.data,
       });
     })
-    .catch(err => {});
+    .catch(err => { console.log('ERROR' + err); });
   };
 }
 
