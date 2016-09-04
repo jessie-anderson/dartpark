@@ -5,6 +5,7 @@ import { fetchConvoPreview, fetchConvo, sendMessage } from '../../actions/messag
 import io from 'socket.io-client';
 import { Button, FormControl, Form } from 'react-bootstrap';
 
+// socket
 const socketserver = 'http://dartpark.herokuapp.com/';
 
 // TODO: Make chat scroll to bottom when message is sent
